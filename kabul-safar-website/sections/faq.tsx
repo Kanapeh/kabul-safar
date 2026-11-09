@@ -19,7 +19,7 @@ export const Faq = () => {
             >
               {content.title}
             </h2>
-            <p className="text-xs leading-5 text-[rgba(0,0,0,0.75)] md:max-w-2xl md:text-sm">
+            <p className="text-xs leading-5 text-[rgba(0,0,0,0.75)] md:max-w-[42rem] md:text-sm">
               {content.subtitle}
             </p>
           </div>

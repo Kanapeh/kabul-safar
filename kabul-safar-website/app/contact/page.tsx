@@ -137,7 +137,7 @@ export default function ContactPage() {
               <h1 className="mt-6 text-3xl font-black text-white md:text-5xl lg:text-6xl drop-shadow-lg">
                 {content.heading}
               </h1>
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-white/90 md:text-lg md:leading-9 drop-shadow">
+              <p className="mx-auto mt-4 max-w-[42rem] text-base leading-8 text-white/90 md:text-lg md:leading-9 drop-shadow">
                 {content.description}
               </p>
 

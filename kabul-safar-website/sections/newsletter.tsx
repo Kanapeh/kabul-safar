@@ -18,7 +18,7 @@ export const Newsletter = () => {
 
   return (
     <section className="mt-12 overflow-hidden rounded-2xl bg-gradient-to-r from-[#0dadd1] to-[#377bc9] p-8 md:p-12">
-      <div className="mx-auto max-w-2xl text-center">
+      <div className="mx-auto max-w-[42rem] text-center">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm">
           <Mail className="h-6 w-6" />
         </div>

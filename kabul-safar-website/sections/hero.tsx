@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Plane } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { getBlogContent, getHeroContent } from "@/lib/data";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
@@ -134,7 +135,7 @@ export const Hero = () => {
       <div className="mt-4 flex flex-col items-center gap-6 md:mt-7 md:flex-row md:items-center md:gap-8 lg:gap-9">
         {/* Text */}
         <div
-          className={`w-full min-w-0 flex-1 ${isRtl ? "text-right" : "text-left"} text-center md:text-start`}
+          className={`motion-enter w-full min-w-0 flex-1 ${isRtl ? "text-right" : "text-left"} text-center md:text-start`}
         >
           <h1
             id="hero-title"
@@ -152,16 +153,20 @@ export const Hero = () => {
           <div className="mt-5 w-full md:mb-9">
             <a
               href={CONTACT_WHATSAPP_URL}
-              className="primary-action flex w-full items-center justify-center rounded-lg px-[22px] py-[13px] text-[13.5px] font-bold text-white hover:-translate-y-0.5"
+              className="hero-visa-cta primary-action motion-action group/visa-cta flex w-full items-center justify-center gap-sm rounded-lg px-[22px] py-[13px] text-[13.5px] font-bold text-white"
             >
               {content.consultCta}
+              <Plane
+                className="hero-visa-plane h-[18px] w-[18px] shrink-0"
+                aria-hidden="true"
+              />
             </a>
           </div>
 
         </div>
 
         {/* Mobile: arched image cluster below the hero copy */}
-        <div className="w-full md:hidden">
+        <div className="motion-enter w-full [--motion-delay:160ms] md:hidden">
           <div className="relative mx-auto h-[205px] w-full max-w-[330px]">
             {blogImages.map((src, index) => (
               <ArchImage
@@ -179,7 +184,7 @@ export const Hero = () => {
         </div>
 
         {/* Desktop: blog images in arch cluster */}
-        <div className="hidden min-w-0 shrink-0 md:flex md:flex-[1_1_380px] md:justify-center lg:flex-[0_0_380px]">
+        <div className="motion-enter hidden min-w-0 shrink-0 [--motion-delay:160ms] md:flex md:flex-[1_1_380px] md:justify-center lg:flex-[0_0_380px]">
           <div className="relative h-[400px] w-full max-w-[380px] overflow-hidden">
             {blogImages.map((src, index) => (
               <ArchImage

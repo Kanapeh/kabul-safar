@@ -852,9 +852,9 @@ export interface TrendingItem {
 const blogContent = {
   fa: {
     hero: {
-      title: "داستان‌های سفر: تجربه‌های واقعی از سفر به ایران و ترکیه",
+      title: "راهنمای سفر، قدم‌به‌قدم",
       subtitle:
-        "کابل سفر منبع شما برای راهنمایی‌های سفر است! محتوای انتخابی را برای روشن کردن، سرگرم کردن و درگیر کردن مسافران جهانی کاوش کنید.",
+        "نکته‌ها و راهنمایی‌های کاربردی برای برنامه‌ریزی و تجربهٔ بهتر سفر بخوانید.",
     },
     trendingTopics: [
       { id: "topic-1", name: "ویزا", icon: "FileText" },
@@ -975,9 +975,9 @@ const blogContent = {
   },
   en: {
     hero: {
-      title: "Travel Stories: Real Experiences from Iran and Turkey",
+      title: "Travel guides for your next journey",
       subtitle:
-        "Kabul Safar is your ultimate source for travel insights! Explore curated content to enlighten, entertain and engage global travelers.",
+        "Explore practical tips and clear guides to help you plan your next trip.",
     },
     trendingTopics: [
       { id: "topic-1", name: "Visa", icon: "FileText" },
@@ -1100,9 +1100,9 @@ const blogContent = {
   },
   ps: {
     hero: {
-      title: "د سفر کیسې: له ایران او ترکیې څخه واقعي تجربې",
+      title: "ستاسو د راتلونکي سفر لارښود",
       subtitle:
-        "کابل سفر ستاسو د سفر لارښوونې لپاره سرچینه ده! غوره شوي محتوا وګورئ چې نړیوال مسافران روزي، ښځندوي او په کې ښکې کوي.",
+        "د خپل راتلونکي سفر د پلان لپاره ګټورې لارښوونې او روښانه معلومات ولولئ.",
     },
     trendingTopics: [
       { id: "topic-1", name: "ویزه", icon: "FileText" },

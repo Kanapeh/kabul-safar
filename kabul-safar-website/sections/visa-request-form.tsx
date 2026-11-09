@@ -192,7 +192,7 @@ export const VisaRequestForm = () => {
           <h2 className="text-2xl font-bold text-slate-900">
             {content.formTitle}
           </h2>
-          <p className="max-w-2xl text-sm leading-6 text-slate-600">
+          <p className="max-w-[42rem] text-sm leading-6 text-slate-600">
             {content.formSubtitle}
           </p>
         </div>

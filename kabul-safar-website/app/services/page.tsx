@@ -5,16 +5,15 @@ import { CtaPromo } from "@/sections/cta-promo";
 import { Footer } from "@/sections/footer";
 import { Header } from "@/sections/header";
 import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
-import { SectionTitle } from "@/components/section-title";
 import { ConsultButton } from "@/components/consult-button";
 import { useI18n } from "@/components/i18n-provider";
-import { Shield, Clock, Globe, Heart, Zap, Users, Plane, MapPin } from "lucide-react";
+import { Shield, Globe, Heart, Zap, Users, Plane, MapPin } from "lucide-react";
 
 const pageText = {
   fa: {
-    title: "خدمات سفر شما را از مشاوره تا پرواز کامل می‌کنیم.",
+    title: "از ویزا تا پرواز، همراه سفر شما",
     subtitle:
-      "راهکارهای جامع برای ویزا، رزرو بلیط و پشتیبانی سفر با تمرکز بر تجربه‌ی بی‌دردسر.",
+      "برای ویزا، تهیه بلیط و برنامه‌ریزی سفر، راهنمایی روشن و پشتیبانی دریافت کنید.",
     action: "شروع مشاوره",
     highlight: "سفر شما امن و آسان خواهد بود",
     highlightText:
@@ -64,9 +63,9 @@ const pageText = {
     ],
   },
   en: {
-    title: "We complete your travel services from consultation to flight.",
+    title: "From visas to flights, travel with confidence",
     subtitle:
-      "Comprehensive visa, ticket booking, and travel support designed for a seamless journey.",
+      "Get clear guidance for visas, flight bookings, and planning your next trip.",
     action: "Start consultation",
     highlight: "Your travel is safe and easy",
     highlightText:
@@ -117,9 +116,9 @@ const pageText = {
     ],
   },
   ps: {
-    title: "ستاسو د سفر خدمتونه د مشورې نه تر الوتنې پورې بشپړ کوو.",
+    title: "له ویزې تر الوتنې، ستاسو د سفر ملګري",
     subtitle:
-      "د ویزې، ټکټ بکینګ او سفر ملاتړ حلونه د یوې بې ستونزې تجربې لپاره.",
+      "د ویزې، د الوتنې د ټکټ او سفر د پلان لپاره روښانه لارښوونه او ملاتړ ترلاسه کړئ.",
     action: "د مشورې پیل",
     highlight: "ستاسو سفر خوندي او اسانه دی",
     highlightText:
@@ -181,52 +180,44 @@ export default function ServicesPage() {
           <Header />
 
           {/* Hero Section */}
-          <section className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-slate-900 via-[#0dadd1] to-[#377bc9] p-8 md:p-16 shadow-2xl">
-            {/* Decorative Elements */}
-            <div className="absolute inset-0">
-              <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
-              <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#0dadd1]/20 blur-3xl" />
-              <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#377bc9]/10 blur-2xl" />
-            </div>
-
-            {/* Pattern Overlay */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }} />
-            </div>
-
-            {/* Floating Icons */}
-            <div className="absolute right-10 top-20 hidden animate-bounce md:block">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm">
-                <Plane className="h-8 w-8" />
-              </div>
-            </div>
-            <div className="absolute left-10 bottom-20 hidden animate-pulse md:block">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm">
-                <MapPin className="h-8 w-8" />
-              </div>
-            </div>
-
+          <section
+            dir={isRtl ? "rtl" : "ltr"}
+            className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#063b49] via-[#087f99] to-[#0dadd1] p-6 shadow-xl md:rounded-[32px] md:p-12"
+          >
+            <div className="pointer-events-none absolute -left-20 -top-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
             <div className="relative z-10">
-              <h1 className="max-w-4xl text-3xl font-black text-white md:text-5xl lg:text-6xl leading-tight drop-shadow-lg">
-                {content.title}
-              </h1>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-white/90 md:text-lg md:leading-9 drop-shadow">
-                {content.subtitle}
-              </p>
-              <div className={`mt-8 ${isRtl ? "flex justify-end" : "flex justify-start"}`}>
-                <ConsultButton
-                  label={content.action}
-                  className="rounded-xl px-6 py-3 text-sm font-semibold md:px-8 md:py-4 md:text-base"
-                />
+              <div className={`motion-enter w-full max-w-[42rem] md:pe-[18rem] ${isRtl ? "text-right" : "text-left"}`}>
+                <span className="inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/90">
+                  {lang === "en" ? "TRAVEL SERVICES" : lang === "ps" ? "د سفر خدمتونه" : "خدمات سفر"}
+                </span>
+                <h1 className="mt-4 text-balance text-3xl font-black leading-[1.35] text-white md:text-5xl md:leading-tight">
+                  {content.title}
+                </h1>
+                <p className="mt-4 max-w-[36rem] text-pretty text-sm leading-7 text-white/85 md:text-base md:leading-8">
+                  {content.subtitle}
+                </p>
+                <div className={`mt-6 ${isRtl ? "flex justify-end" : "flex justify-start"}`}>
+                  <ConsultButton
+                    label={content.action}
+                    className="rounded-xl px-6 py-3 text-sm font-semibold md:px-8 md:py-4 md:text-base"
+                  />
+                </div>
               </div>
 
-              {/* Decorative Dots */}
-              <div className={`mt-8 flex gap-2 ${isRtl ? "justify-end" : "justify-start"}`}>
-                <div className="h-2 w-2 rounded-full bg-white/60" />
-                <div className="h-2 w-2 rounded-full bg-white/40" />
-                <div className="h-2 w-2 rounded-full bg-white/20" />
+              <div className="mt-8 grid grid-cols-2 gap-3 md:absolute md:end-0 md:top-1/2 md:mt-0 md:w-64 md:-translate-y-1/2 md:grid-cols-1 md:gap-4">
+                {[
+                  { icon: Shield, label: lang === "en" ? "Visa guidance" : lang === "ps" ? "د ویزې لارښوونه" : "راهنمایی ویزا" },
+                  { icon: Plane, label: lang === "en" ? "Flight booking" : lang === "ps" ? "د الوتنې ټکټ" : "تهیه بلیط پرواز" },
+                  { icon: Globe, label: lang === "en" ? "Multilingual support" : lang === "ps" ? "څو ژبنی ملاتړ" : "پشتیبانی چندزبانه" },
+                ].map(({ icon: Icon, label }) => (
+                  <div
+                    key={label}
+                    className="motion-card flex min-h-14 items-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-3 py-3 text-xs font-semibold text-white backdrop-blur-sm md:gap-3 md:px-4 md:text-sm"
+                  >
+                    <Icon className="motion-card-icon h-4 w-4 shrink-0 text-cyan-100 md:h-5 md:w-5" aria-hidden="true" />
+                    <span>{label}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -254,9 +245,9 @@ export default function ServicesPage() {
               {content.items.map((item) => (
                 <div
                   key={item.title}
-                  className="group overflow-hidden rounded-[24px] border border-slate-200/50 bg-gradient-to-br from-white to-slate-50 p-6 shadow-lg ring-1 ring-slate-200/50 transition-all hover:shadow-2xl hover:-translate-y-2"
+                  className="motion-card group overflow-hidden rounded-[24px] border border-slate-200/50 bg-gradient-to-br from-white to-slate-50 p-6 shadow-lg ring-1 ring-slate-200/50"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg transition-transform group-hover:scale-110">
+                  <div className="motion-card-icon flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg">
                     <item.icon className="h-7 w-7" />
                   </div>
                   <h2 className="mt-4 text-lg font-bold text-slate-900 md:text-xl group-hover:text-[#0dadd1] transition-colors">

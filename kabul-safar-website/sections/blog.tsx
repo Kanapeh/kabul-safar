@@ -155,8 +155,8 @@ export const Blog = () => {
           <h1 id="blog-title" className="text-xl font-black leading-tight md:text-2xl lg:text-4xl">
             {content.title}
           </h1>
-          <p className="max-w-2xl text-xs leading-5 text-cyan-100/90 md:text-sm md:leading-6 md:text-base">{content.subtitle}</p>
-          <p className="max-w-2xl text-xs leading-5 text-white/90 md:text-sm md:leading-6 md:text-base">{content.intro}</p>
+          <p className="max-w-[42rem] text-xs leading-5 text-cyan-100/90 md:text-sm md:leading-6 md:text-base">{content.subtitle}</p>
+          <p className="max-w-[42rem] text-xs leading-5 text-white/90 md:text-sm md:leading-6 md:text-base">{content.intro}</p>
         </div>
       </div>
 
