@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/components/i18n-provider";
 import { getFaqContent } from "@/lib/data";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export const Faq = () => {
   const { lang } = useI18n();
@@ -29,17 +30,20 @@ export const Faq = () => {
 
         <div className="mt-5 grid gap-3 md:grid-cols-3">
           {content.items.map((item, index) => (
-            <article
+            <ScrollReveal
               key={`${item.question}-${index}`}
-              className="rounded-2xl border border-[#e0f5fb] bg-[#f4fcff] p-4 transition-all duration-200 hover:shadow-md"
+              className="h-full"
+              delayMs={(index % 3) * 80}
             >
-              <h3 className="text-xs font-bold text-black md:text-sm">
-                {item.question}
-              </h3>
-              <p className="mt-2 text-[10px] leading-5 text-[rgba(0,0,0,0.72)] md:text-xs md:leading-6">
-                {item.answer}
-              </p>
-            </article>
+              <article className="h-full rounded-2xl border border-[#e0f5fb] bg-[#f4fcff] p-4 transition-all duration-200 hover:shadow-md">
+                <h3 className="text-xs font-bold text-black md:text-sm">
+                  {item.question}
+                </h3>
+                <p className="mt-2 text-[10px] leading-5 text-[rgba(0,0,0,0.72)] md:text-xs md:leading-6">
+                  {item.answer}
+                </p>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

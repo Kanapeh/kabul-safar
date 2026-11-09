@@ -7,11 +7,16 @@ import { getPartnersTitle, partners } from "@/lib/data";
 
 export const Partners = () => {
   const { lang } = useI18n();
-  const isRtl = lang === "fa" || lang === "ps";
 
   return (
     <section
-      aria-label="همکاران ما"
+      aria-label={
+        lang === "fa"
+          ? "ایرلاین‌ها"
+          : lang === "ps"
+            ? "هوايي شرکتونه"
+            : "Airline brands"
+      }
       className="rounded-xl bg-white px-4 py-4 md:rounded-2xl md:px-6 md:py-6"
     >
       <h2 className="text-center text-sm font-semibold text-slate-900 md:text-base">
@@ -24,15 +29,21 @@ export const Partners = () => {
           <div
             key={partner.name}
             className="flex shrink-0 items-center justify-center md:max-w-[120px]"
-            style={{ width: 'calc(25% - 8px)' }}
+            style={{ width: "calc(25% - 8px)" }}
           >
-            <Image
-              src={partner.src}
-              alt={partner.name}
-              width={partner.width * 2}
-              height={partner.height * 2}
-              className="h-auto w-full object-contain"
-            />
+            {partner.name === "Emirates" ? (
+              <span className="font-serif text-[11px] font-semibold tracking-wide text-slate-700 md:text-base">
+                {partner.name}
+              </span>
+            ) : (
+              <Image
+                src={partner.src}
+                alt={partner.name}
+                width={partner.width * 2}
+                height={partner.height * 2}
+                className="h-auto w-full object-contain"
+              />
+            )}
           </div>
         ))}
       </div>

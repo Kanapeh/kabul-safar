@@ -3,8 +3,14 @@
 import { useState, useEffect, useRef } from "react";
 import { useI18n } from "@/components/i18n-provider";
 import { getFooterContent } from "@/lib/data";
-import { Search, Calendar, Users, Plane, ArrowRightLeft } from "lucide-react";
+import { Search, Minus, Plus, Plane, ArrowRightLeft } from "lucide-react";
 import { Toast } from "@/components/toast";
+import DatePicker from "react-multi-date-picker";
+import DateObject from "react-date-object";
+import persian from "react-date-object/calendars/persian";
+import gregorian from "react-date-object/calendars/gregorian";
+import persianFa from "react-date-object/locales/persian_fa";
+import gregorianEn from "react-date-object/locales/gregorian_en";
 
 export const FlightSearchForm = () => {
   const { lang } = useI18n();
@@ -25,7 +31,43 @@ export const FlightSearchForm = () => {
   const originRef = useRef<HTMLDivElement | null>(null);
   const destRef = useRef<HTMLDivElement | null>(null);
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = formatIsoDate(new Date());
+  const pickerCalendar = isRtl ? persian : gregorian;
+  const pickerLocale = isRtl ? persianFa : gregorianEn;
+
+  function toPickerDate(isoDate: string): DateObject | null {
+    if (!isoDate) return null;
+
+    return new DateObject({
+      date: isoDate,
+      calendar: gregorian,
+      locale: gregorianEn,
+    }).convert(pickerCalendar, pickerLocale);
+  }
+
+  function toIsoDate(dateObject: DateObject | null): string {
+    if (!dateObject) return "";
+    return dateObject.convert(gregorian, gregorianEn).format("YYYY-MM-DD");
+  }
+
+  function formatIsoDate(dateValue: Date): string {
+    const year = dateValue.getFullYear();
+    const month = String(dateValue.getMonth() + 1).padStart(2, "0");
+    const day = String(dateValue.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function addDaysToIsoDate(isoDate: string, days: number): string {
+    const result = new Date(`${isoDate}T12:00:00`);
+    result.setDate(result.getDate() + days);
+    return formatIsoDate(result);
+  }
+
+  const changePassengers = (amount: number) => {
+    setPassengers((current) =>
+      String(Math.max(1, Math.min(9, Number(current) + amount))),
+    );
+  };
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -832,9 +874,9 @@ export const FlightSearchForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-lg">
         {/* Trip Type Selector */}
-        <div className="flex gap-2">
+        <div className="flex gap-sm">
           <button
             type="button"
             onClick={() => {
@@ -861,10 +903,10 @@ export const FlightSearchForm = () => {
         </div>
 
         {/* Origin and Destination */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-lg items-end">
           {/* Origin */}
           <div ref={originRef} className="relative md:col-span-5">
-            <label className="mb-2 block text-sm font-semibold text-slate-700">
+            <label className="mb-sm block text-sm font-semibold text-slate-700">
               {lang === "fa" ? "کشور مبدا" : lang === "ps" ? "د مبدا هیواد" : "From Country"}
             </label>
             <div className="relative">
@@ -922,7 +964,7 @@ export const FlightSearchForm = () => {
 
           {/* Destination */}
           <div ref={destRef} className="relative md:col-span-5">
-            <label className="mb-2 block text-sm font-semibold text-slate-700">
+            <label className="mb-sm block text-sm font-semibold text-slate-700">
               {lang === "fa" ? "کشور مقصد" : lang === "ps" ? "د مقصد هیواد" : "To Country"}
             </label>
             <div className="relative">
@@ -969,24 +1011,37 @@ export const FlightSearchForm = () => {
         </div>
 
         {/* Date and Passengers */}
-        <div className={`grid gap-4 ${tripType === "round-trip" ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"}`}>
+        <div className={`grid gap-lg ${tripType === "round-trip" ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"}`}>
           {/* Departure Date */}
           <div>
-            <label className="mb-2 block text-sm font-semibold text-slate-700">
+            <label className="mb-sm block text-sm font-semibold text-slate-700">
               {lang === "fa" ? "تاریخ رفت" : lang === "ps" ? "د رفت نېټه" : "Departure Date"}
             </label>
-            <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">
+            <div className="flex flex-col gap-sm sm:flex-row sm:gap-sm">
               <div className="relative flex-1 w-full">
-                <input
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  min={today}
+                <DatePicker
+                  value={toPickerDate(date)}
+                  onChange={(selectedDate) =>
+                    setDate(toIsoDate(selectedDate))
+                  }
+                  calendar={pickerCalendar}
+                  locale={pickerLocale}
+                  minDate={toPickerDate(today) ?? undefined}
+                  format={isRtl ? "YYYY/MM/DD" : "MM/DD/YYYY"}
+                  placeholder={
+                    lang === "fa"
+                      ? "سال/ماه/روز"
+                      : lang === "ps"
+                        ? "کال/میاشت/ورځ"
+                        : "MM/DD/YYYY"
+                  }
                   required
-                  className={`w-full rounded-xl border-2 border-slate-200 py-2.5 text-sm text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-3 pl-3' : 'pl-3 pr-3'}`}
+                  calendarPosition={isRtl ? "bottom-right" : "bottom-left"}
+                  containerClassName="w-full"
+                  inputClass="w-full rounded-xl border-2 border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-[#0dadd1] focus:ring-2 focus:ring-[#0dadd1]/20"
                 />
               </div>
-              <div className="flex gap-2 sm:w-auto">
+              <div className="flex gap-sm sm:w-auto">
                 <button
                   type="button"
                   onClick={() => setDate(today)}
@@ -996,11 +1051,7 @@ export const FlightSearchForm = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => {
-                    const tomorrow = new Date();
-                    tomorrow.setDate(tomorrow.getDate() + 1);
-                    setDate(tomorrow.toISOString().split("T")[0]);
-                  }}
+                  onClick={() => setDate(addDaysToIsoDate(today, 1))}
                   className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
                 >
                   {lang === "fa" ? "فردا" : lang === "ps" ? "پرېږده" : "Tomorrow"}
@@ -1012,27 +1063,38 @@ export const FlightSearchForm = () => {
           {/* Return Date (only for round-trip) */}
           {tripType === "round-trip" && (
             <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
+              <label className="mb-sm block text-sm font-semibold text-slate-700">
                 {lang === "fa" ? "تاریخ برگشت" : lang === "ps" ? "د ورست نېټه" : "Return Date"}
               </label>
-              <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">
+              <div className="flex flex-col gap-sm sm:flex-row sm:gap-sm">
                 <div className="relative flex-1 w-full">
-                  <input
-                    type="date"
-                    value={returnDate}
-                    onChange={(e) => setReturnDate(e.target.value)}
-                    min={date || today}
+                  <DatePicker
+                    value={toPickerDate(returnDate)}
+                    onChange={(selectedDate) =>
+                      setReturnDate(toIsoDate(selectedDate))
+                    }
+                    calendar={pickerCalendar}
+                    locale={pickerLocale}
+                    minDate={toPickerDate(date || today) ?? undefined}
+                    format={isRtl ? "YYYY/MM/DD" : "MM/DD/YYYY"}
+                    placeholder={
+                      lang === "fa"
+                        ? "سال/ماه/روز"
+                        : lang === "ps"
+                          ? "کال/میاشت/ورځ"
+                          : "MM/DD/YYYY"
+                    }
                     required={tripType === "round-trip"}
-                    className={`w-full rounded-xl border-2 border-slate-200 py-2.5 text-sm text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all ${isRtl ? 'pr-3 pl-3' : 'pl-3 pr-3'}`}
+                    calendarPosition={isRtl ? "bottom-right" : "bottom-left"}
+                    containerClassName="w-full"
+                    inputClass="w-full rounded-xl border-2 border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-[#0dadd1] focus:ring-2 focus:ring-[#0dadd1]/20"
                   />
                 </div>
                 <button
                   type="button"
-                  onClick={() => {
-                    const nextDay = new Date(date || today);
-                    nextDay.setDate(nextDay.getDate() + 1);
-                    setReturnDate(nextDay.toISOString().split("T")[0]);
-                  }}
+                  onClick={() =>
+                    setReturnDate(addDaysToIsoDate(date || today, 1))
+                  }
                   className="flex-1 sm:flex-none rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-3 py-2.5 text-xs font-semibold text-blue-700 shadow-sm transition-all hover:from-blue-100 hover:to-blue-200 hover:shadow-md border border-blue-200 whitespace-nowrap"
                 >
                   {lang === "fa" ? "روز بعد" : lang === "ps" ? "بل ورځ" : "+1 Day"}
@@ -1043,22 +1105,60 @@ export const FlightSearchForm = () => {
 
           {/* Passengers */}
           <div>
-            <label className="mb-2 block text-sm font-semibold text-slate-700">
+            <label className="mb-sm block text-sm font-semibold text-slate-700">
               {lang === "fa" ? "تعداد مسافران" : lang === "ps" ? "د مسافرینو شمیر" : "Passengers"}
             </label>
-            <div className="relative">
-              <select
-                value={passengers}
-                onChange={(e) => setPassengers(e.target.value)}
-                className={`w-full rounded-xl border-2 border-slate-200 py-3 text-base text-slate-900 focus:border-[#0dadd1] focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 transition-all appearance-none ${isRtl ? 'pr-14 pl-4' : 'pl-14 pr-4'}`}
-              >
-                <option value="1">1 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passenger"}</option>
-                <option value="2">2 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
-                <option value="3">3 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
-                <option value="4">4 {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
-                <option value="5">5+ {lang === "fa" ? "مسافر" : lang === "ps" ? "مسافر" : "Passengers"}</option>
-              </select>
-              <Users className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? 'left-4' : 'right-4'}`} />
+            <div
+              dir={isRtl ? "rtl" : "ltr"}
+              className="flex min-h-12 items-center justify-between rounded-xl border-2 border-slate-200 px-3 text-slate-900 transition-all focus-within:border-[#0dadd1] focus-within:ring-2 focus-within:ring-[#0dadd1]/20"
+            >
+              <span className="text-sm font-medium">
+                {lang === "fa"
+                  ? "مسافر"
+                  : lang === "ps"
+                    ? "مسافر"
+                    : Number(passengers) === 1
+                      ? "Passenger"
+                      : "Passengers"}
+              </span>
+              <div className="flex items-center gap-sm">
+                <button
+                  type="button"
+                  onClick={() => changePassengers(-1)}
+                  disabled={Number(passengers) <= 1}
+                  aria-label={
+                    lang === "fa"
+                      ? "کم کردن مسافر"
+                      : lang === "ps"
+                        ? "د مسافرو کمول"
+                        : "Decrease passengers"
+                  }
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-[#141d2b] transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <Minus className="h-4 w-4" aria-hidden="true" />
+                </button>
+                <span
+                  className="min-w-5 text-center text-base font-semibold"
+                  aria-live="polite"
+                >
+                  {passengers}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => changePassengers(1)}
+                  disabled={Number(passengers) >= 9}
+                  aria-label={
+                    lang === "fa"
+                      ? "اضافه کردن مسافر"
+                      : lang === "ps"
+                        ? "د مسافرو زیاتول"
+                        : "Increase passengers"
+                  }
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-[#141d2b] transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <Plus className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1067,7 +1167,7 @@ export const FlightSearchForm = () => {
         <button
           type="submit"
           disabled={isSearching}
-          className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-[#0dadd1] to-[#377bc9] px-6 py-4 text-base font-bold text-white shadow-lg transition-all hover:from-[#0a9bbf] hover:to-[#2d6aa8] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+          className="primary-action flex w-full items-center justify-center gap-xs rounded-xl px-6 py-4 text-base font-bold text-white shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSearching ? (
             <>

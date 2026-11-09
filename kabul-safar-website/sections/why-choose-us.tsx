@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/components/i18n-provider";
 import { getWhyContent } from "@/lib/data";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export const WhyChooseUs = () => {
   const { lang } = useI18n();
@@ -20,13 +21,13 @@ export const WhyChooseUs = () => {
 
       <div className="grid grid-cols-[86px_1fr_86px] items-end gap-2 md:grid-cols-3 md:gap-4">
         {content.features.map((feature) => (
-          <article
-            key={feature.id}
-            className={`flex flex-col items-center rounded-[10px] px-2.5 py-4 text-center ${feature.variant === "light"
+          <ScrollReveal key={feature.id} className="h-full" delayMs={(feature.id - 1) * 90}>
+            <article
+              className={`flex h-full flex-col items-center rounded-[10px] px-2.5 py-4 text-center transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg ${feature.variant === "light"
               ? "min-h-[116px] bg-[rgba(13,173,209,0.8)] text-black md:min-h-[220px]"
               : "min-h-[128px] bg-[rgba(2,45,55,0.85)] text-white md:min-h-[220px]"
               }`}
-          >
+            >
             <feature.icon
               className={`mb-2 h-5 w-5 ${feature.variant === "light" ? "text-[#022d37]" : "text-white"
                 } md:h-8 md:w-8`}
@@ -41,7 +42,8 @@ export const WhyChooseUs = () => {
             >
               {feature.description}
             </p>
-          </article>
+            </article>
+          </ScrollReveal>
         ))}
       </div>
     </section>

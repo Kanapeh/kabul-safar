@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n-provider";
 import { getDestinationContent } from "@/lib/data";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export const Destination = () => {
   const { lang } = useI18n();
@@ -22,7 +23,7 @@ export const Destination = () => {
   const active = slides[activeIndex] ?? slides[0];
 
   return (
-    <section aria-label={content.title} className="space-y-2">
+    <section aria-label={content.title} className="space-y-lg">
       <div className="flex items-center justify-between px-1 md:mb-1">
         <a href="#" className="text-[9px] font-semibold text-[#377bc9]">
           {content.viewAll}
@@ -76,7 +77,8 @@ export const Destination = () => {
 
       <div className="hidden grid-cols-2 gap-4 md:grid">
         {slides.map((slide) => (
-          <article key={`desktop-${slide.id}`} className="overflow-hidden rounded-2xl bg-white shadow-sm">
+          <ScrollReveal key={`desktop-${slide.id}`} className="h-full">
+          <article className="h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
             <div className="relative">
               <Image
                 src={slide.imageSrc}
@@ -95,6 +97,7 @@ export const Destination = () => {
               <span>{slide.subtitle}</span>
             </div>
           </article>
+          </ScrollReveal>
         ))}
       </div>
     </section>

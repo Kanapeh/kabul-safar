@@ -34,10 +34,7 @@ export const ServiceFeature = () => {
           <p className="mt-2 text-xs leading-4 tracking-wide text-[rgba(59,57,57,0.96)] md:mt-4 md:text-base md:leading-7">
             {content.body}
           </p>
-          <div className="mt-3 flex items-center justify-end gap-2 md:mt-5 md:gap-3">
-            <span className="inline-flex h-5.25 items-center rounded-[10px] bg-[#0dadd1] px-2.5 text-[8px] font-semibold text-white md:h-9 md:rounded-xl md:px-4 md:text-sm">
-              {content.discount}
-            </span>
+          <div className="mt-3 flex items-center justify-end md:mt-5">
             <ConsultButton
               compact
               className="h-8 px-3 text-[10px] md:h-10 md:px-4 md:text-xs"

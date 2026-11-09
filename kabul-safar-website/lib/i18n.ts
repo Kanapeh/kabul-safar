@@ -1,7 +1,7 @@
 export type Lang = "fa" | "en" | "ps";
 
 export const supportedLangs: { id: Lang; label: string; dir: "rtl" | "ltr" }[] = [
-  { id: "fa", label: "FA", dir: "rtl" },
+  { id: "fa", label: "دری", dir: "rtl" },
   { id: "en", label: "EN", dir: "ltr" },
   { id: "ps", label: "PS", dir: "rtl" },
 ];
@@ -42,4 +42,3 @@ export function getDirection(lang: Lang): "rtl" | "ltr" {
 export function t(lang: Lang, key: string): string {
   return dictionaries[lang]?.[key] ?? dictionaries.fa[key] ?? key;
 }
-

@@ -10,7 +10,6 @@ import {
   Home,
   LogOut,
   Menu,
-  MessageCircle,
   Moon,
   PhoneCall,
   Plane,
@@ -20,6 +19,7 @@ import { useMobileMenu } from "@/hooks/use-mobile-menu";
 import { getNavItems } from "@/lib/data";
 import { useI18n } from "@/components/i18n-provider";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 
 export const Header = () => {
   const { isOpen, toggle, close } = useMobileMenu();
@@ -77,7 +77,7 @@ export const Header = () => {
             aria-label="تماس واتساپ"
             className="flex h-7 w-7 items-center justify-center rounded-full bg-[#25D366] text-white transition-opacity hover:opacity-85"
           >
-            <MessageCircle className="h-4 w-4" aria-hidden="true" />
+            <WhatsAppIcon className="h-4 w-4" />
           </a>
         </div>
 

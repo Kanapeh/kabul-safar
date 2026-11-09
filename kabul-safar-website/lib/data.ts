@@ -41,7 +41,6 @@ type LocalizedContent = {
     description: string;
     bullets: string[];
     consultCta: string;
-    secondaryCta: string;
     tags: string[];
   };
   partnersTitle: string;
@@ -60,7 +59,6 @@ type LocalizedContent = {
     titleAccent: string;
     titleSuffix: string;
     body: string;
-    discount: string;
   };
   stats: { title: string; labels: string[] };
   why: {
@@ -70,8 +68,7 @@ type LocalizedContent = {
   };
   about: {
     title: string;
-    subtitle: string;
-    columns: string[];
+    description: string;
   };
   testimonials: {
     title: string;
@@ -115,26 +112,25 @@ const content: Record<Lang, LocalizedContent> = {
       titleAsia: "ترکیه",
       subTitle: "برای افغانستانی‌ها",
       description:
-        "کابل سفر با مشاوره رایگان و پیگیری سریع، دریافت ویزای ایران و ترکیه را برای شما ساده می‌کند. پشتیبانی به زبان‌های دری، پشتو و انگلیسی همیشه در کنار شماست.",
-      bullets: ["مشاوره رایگان سفر", "انتخاب بهترین گزینه", "پیگیری سریع رزرو"],
+        "برای ویزای ایران و ترکیه، با مشاوره رایگان و پشتیبانی به زبان دری، پشتو و انگلیسی همراهتان هستیم.",
+      bullets: ["مشاوره رایگان سفر", "بررسی مدارک", "پیگیری درخواست"],
       consultCta: "شروع درخواست ویزا",
-      secondaryCta: "مشاهده شرایط",
       tags: [
-        "۱۰۰٪ تضمین صحت مدارک",
+        "بررسی دقیق مدارک",
         "پرونده‌های فوری و ویژه",
         "طراحی‌شده برای مسیر شما",
       ],
     },
-    partnersTitle: "همکاری با معتبرترین ایرلاین ها",
+    partnersTitle: "برخی از ایرلاین‌های پرطرفدار",
     destination: {
-      title: "مکان های تحت پوشش",
+      title: "مکان‌های تحت پوشش",
       viewAll: "مشاهده همه",
       slides: [
-        { title: "Afghanistan", subtitle: "Band-Amir Bamiyan" },
-        { title: "Iran", subtitle: "Naghse-jahan Esfahan" },
-        { title: "Turkey", subtitle: "Galata-Tower Turkey" },
-        { title: "Karbala", subtitle: "Karbala-Emam-Hossein" },
-        { title: "Makkah", subtitle: "مکه مکرمه" },
+        { title: "افغانستان", subtitle: "بند امیر، بامیان" },
+        { title: "ایران", subtitle: "میدان نقش‌جهان، اصفهان" },
+        { title: "ترکیه", subtitle: "برج گالاتا، استانبول" },
+        { title: "کربلا", subtitle: "حرم امام حسین (ع)" },
+        { title: "مدینه", subtitle: "مسجدالنبی (ص)" },
       ],
     },
     howItWorks: {
@@ -161,11 +157,10 @@ const content: Record<Lang, LocalizedContent> = {
       titleAccent: "وطن",
       titleSuffix: "با خدمات کابل سفر ساده تر از همیشه",
       body: "ما با ارائه راهنمایی تخصصی، ارتباط شفاف و پشتیبانی قابل اعتماد، روند دریافت ویزای ایران را برای هموطنان افغانستانی مقیم اروپا آسان و مطمئن می‌سازیم",
-      discount: "20% تخفیف",
     },
     stats: {
-      title: "تجربه ما",
-      labels: ["مسافرین راضی", "سال تجربه", "میانگین رضایت"],
+      title: "خدمات ما",
+      labels: ["دری، پشتو و انگلیسی", "ایران و ترکیه", "مشاوره و پیگیری"],
     },
     why: {
       title: "ساده، مطمئن و حرفه‌ای",
@@ -191,12 +186,8 @@ const content: Record<Lang, LocalizedContent> = {
     },
     about: {
       title: "درباره ما",
-      subtitle:
-        "از راهنمایی‌های ویزا گرفته تا خدمات مربوط به پرواز، تیم ما اینجاست تا سفر شما به ایران را آسان، مطمئن و بدون استرس کند.",
-      columns: [
-        "در کابل سفر باور داریم که هر سفر موفق با اعتماد آغاز می‌شود. هدف ما این است که روند دریافت ویزای ایران را برای هموطنان افغانستانی مقیم اروپا ساده، سریع و قابل اطمینان کنیم.",
-        "تیم ما در تمامی مراحل، از بررسی مدارک تا راهنمایی و پاسخ‌گویی، در کنار شما خواهد بود تا با اطمینان بیشتری برای سفر خود برنامه‌ریزی کنید.",
-      ],
+      description:
+        "کابل سفر به هم‌وطنان افغانستانی مقیم اروپا برای ویزای ایران و ترکیه و تهیه بلیط پرواز راهنمایی می‌کند. تیم ما در بررسی مدارک، توضیح مراحل و پاسخ‌گویی به پرسش‌ها همراه شماست تا با آگاهی بیشتری برای سفر برنامه‌ریزی کنید.",
     },
     testimonials: {
       title: "داستان مسافرین ما",
@@ -305,30 +296,29 @@ const content: Record<Lang, LocalizedContent> = {
       titleAsia: "",
       subTitle: "For Afghans",
       description:
-        "Kabul Safar makes Iran and Turkey visa applications simple for Afghan travelers with free guidance, careful document review, and fast follow-up. Support is available in Dari, Pashto, and English, so you can plan your trip with confidence.",
+        "Get free guidance for Iran and Turkey visas, with support in Dari, Pashto, and English.",
       bullets: [
         "Free initial consultation",
-        "Document accuracy guarantee",
-        "Fast case tracking",
+        "Document review",
+        "Application follow-up",
       ],
       consultCta: "Start visa application",
-      secondaryCta: "View requirements",
       tags: [
-        "100% document accuracy",
+        "Document review and guidance",
         "Urgent & priority cases",
         "Built for your journey",
       ],
     },
-    partnersTitle: "Partnering with trusted airlines",
+    partnersTitle: "Popular airline brands",
     destination: {
       title: "Covered destinations",
       viewAll: "View all",
       slides: [
-        { title: "Afghanistan", subtitle: "Band-Amir Bamiyan" },
-        { title: "Iran", subtitle: "Naghse-jahan Esfahan" },
-        { title: "Turkey", subtitle: "Galata-Tower Turkey" },
-        { title: "Karbala", subtitle: "Karbala-Emam-Hossein" },
-        { title: "Makkah", subtitle: "Saudi Arabia" },
+        { title: "Afghanistan", subtitle: "Band-e Amir, Bamiyan" },
+        { title: "Iran", subtitle: "Naqsh-e Jahan Square, Isfahan" },
+        { title: "Turkey", subtitle: "Galata Tower, Istanbul" },
+        { title: "Karbala", subtitle: "Imam Hussein Shrine" },
+        { title: "Medina", subtitle: "Prophet's Mosque" },
       ],
     },
     howItWorks: {
@@ -355,14 +345,13 @@ const content: Record<Lang, LocalizedContent> = {
       titleAccent: "Homeland",
       titleSuffix: "with Kabul Safar, easier than ever",
       body: "With expert guidance, clear communication, and trusted support, we make Iran visa processing easy and reliable for Afghan citizens living in Europe.",
-      discount: "20% OFF",
     },
     stats: {
-      title: "Our experience",
+      title: "Our services",
       labels: [
-        "Satisfied travelers",
-        "Years of experience",
-        "Average satisfaction",
+        "Dari, Pashto, English",
+        "Iran and Turkey",
+        "Consultation and follow-up",
       ],
     },
     why: {
@@ -389,12 +378,8 @@ const content: Record<Lang, LocalizedContent> = {
     },
     about: {
       title: "About us",
-      subtitle:
-        "From visa guidance to flight assistance, our team is here to make your Iran trip simple, reliable, and stress-free.",
-      columns: [
-        "At Kabul Safar, we believe every successful journey starts with trust. Our goal is to simplify and speed up Iran visa processing for Afghans living in Europe.",
-        "Our team is beside you in all stages, from document review to final support, so you can plan your trip confidently.",
-      ],
+      description:
+        "Kabul Safar helps Afghans living in Europe with guidance for Iran and Turkey visas and flight bookings. Our team reviews documents, explains each step, and answers questions so you can plan your trip with clearer information.",
     },
     testimonials: {
       title: "Traveler stories",
@@ -503,30 +488,29 @@ const content: Record<Lang, LocalizedContent> = {
       titleAsia: "ترکیې ویزې",
       subTitle: "د افغانانو لپاره",
       description:
-        "کابل سفر د ایران او ترکیې ویزې لاره د افغان مسافرانو لپاره اسانه کوي؛ له وړیا مشوره، دقیق اسناد چک کول او ګړندۍ تعقیب څخه. د دری، پښتو او انګلیسي ملاتړ ستاسو سره په آرامۍ سفر پلان کولو لپاره حاضر دی.",
+        "د ایران او ترکیې ویزو لپاره وړیا مشوره او په دري، پښتو او انګلیسي ژبو ملاتړ ترلاسه کړئ.",
       bullets: [
         "لومړنۍ وړیا مشوره",
-        "د اسنادو د سمون تضمین",
-        "د پېښې ګړندۍ تعقیب",
+        "د اسنادو کتنه",
+        "د غوښتنې تعقیب",
       ],
       consultCta: "د ویزې غوښتنه پیل کړئ",
-      secondaryCta: "شرایط وګورئ",
       tags: [
-        "۱۰۰٪ د اسنادو د سمون تضمین",
+        "د اسنادو کره کتنه",
         "عاجل او ځانګړي پېښې",
         "ستاسو د لارې لپاره ډیزاین شوی",
       ],
     },
-    partnersTitle: "له معتبره هوايي شرکتونو سره همکاري",
+    partnersTitle: "ځینې مشهور هوايي شرکتونه",
     destination: {
       title: "تر پوښښ لاندې ځایونه",
       viewAll: "ټول وګوره",
       slides: [
-        { title: "Afghanistan", subtitle: "Band-Amir Bamiyan" },
-        { title: "Iran", subtitle: "Naghse-jahan Esfahan" },
-        { title: "Turkey", subtitle: "Galata-Tower Turkey" },
-        { title: "Karbala", subtitle: "Karbala-Emam-Hossein" },
-        { title: "Makkah", subtitle: "مکه مکرمه" },
+        { title: "افغانستان", subtitle: "بند امیر، بامیان" },
+        { title: "ایران", subtitle: "میدان نقش‌جهان، اصفهان" },
+        { title: "ترکیه", subtitle: "برج گالاتا، استانبول" },
+        { title: "کربلا", subtitle: "د امام حسین (ع) حرم" },
+        { title: "مدینه", subtitle: "نبوي جومات" },
       ],
     },
     howItWorks: {
@@ -550,11 +534,11 @@ const content: Record<Lang, LocalizedContent> = {
       titleAccent: "وطن",
       titleSuffix: "د کابل سفر له خدمتونو سره تر هر وخت اسانه",
       body: "موږ د مسلکي لارښوونې، روښانه اړیکو او باور وړ ملاتړ له لارې د اروپا مېشتو افغانانو لپاره د ایران ویزې بهیر اسانه او خوندي کوو.",
-      discount: "۲۰٪ تخفیف",
+
     },
     stats: {
-      title: "زموږ تجربه",
-      labels: ["راضي مسافر", "د تجربې کلونه", "منځنۍ رضایت"],
+      title: "زموږ خدمتونه",
+      labels: ["دري، پښتو او انګلیسي", "ایران او ترکیه", "مشوره او تعقیب"],
     },
     why: {
       title: "اسانه، خوندي، مسلکي",
@@ -578,12 +562,8 @@ const content: Record<Lang, LocalizedContent> = {
     },
     about: {
       title: "زموږ په اړه",
-      subtitle:
-        "له ویزې لارښوونې تر الوتنې خدماتو پورې، زموږ ټیم ستاسو د سفر د اسانتیا لپاره دلته دی.",
-      columns: [
-        "موږ باور لرو چې هر بریالی سفر له باور څخه پیلېږي. زموږ موخه د اروپا مېشتو افغانانو لپاره د ایران ویزې بهیر ساده او چټک کول دي.",
-        "زموږ ټیم د اسنادو له ارزونې تر وروستي پړاو پورې ستاسو ترڅنګ وي ترڅو سفر مو په ډاډه زړه پلان کړئ.",
-      ],
+      description:
+        "کابل سفر په اروپا کې مېشتو افغانانو ته د ایران او ترکیې ویزو او د الوتنو د ټکټونو په اړه لارښوونه کوي. زموږ ټیم د اسنادو په کتنه، د پړاوونو په تشریح او ستاسو پوښتنو ته په ځواب ویلو کې مرسته کوي، څو خپل سفر په لا ښه معلوماتو پلان کړئ.",
     },
     testimonials: {
       title: "د مسافرو کیسې",
@@ -746,13 +726,20 @@ export function getStatsContent(lang: Lang): {
   stats: StatItem[];
 } {
   const localized = pick(lang).stats;
+  const values =
+    lang === "en"
+      ? ["3 languages", "2 countries", "WhatsApp"]
+      : lang === "ps"
+        ? ["۳ ژبې", "۲ هېوادونه", "واټساپ"]
+        : ["۳ زبان", "۲ کشور", "واتساپ"];
+
   return {
     title: localized.title,
-    stats: [
-      { id: 1, value: "5k", label: localized.labels[0] },
-      { id: 2, value: "2+", label: localized.labels[1] },
-      { id: 3, value: "4.9", label: localized.labels[2] },
-    ],
+    stats: localized.labels.map((label, index) => ({
+      id: index + 1,
+      value: values[index],
+      label,
+    })),
   };
 }
 

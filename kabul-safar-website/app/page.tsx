@@ -17,14 +17,14 @@ export default function Home() {
   return (
     <LanguageDirWrapper>
       <div className="mx-auto min-h-screen w-full max-w-100.5 bg-[#e9ebed] md:max-w-300">
-        <main className="space-y-4 px-4 py-4 md:space-y-8 md:px-8 md:py-6">
+        <main className="space-y-2xl px-4 py-4">
           <Header />
           <Hero />
           <Partners />
           <Destination />
           <HowItWorks />
 
-          <div className="space-y-5 rounded-[10px] bg-white p-4 md:space-y-8 md:rounded-2xl md:p-8">
+          <div className="space-y-xl rounded-[10px] bg-white p-4 md:rounded-2xl md:p-8">
             <ServiceFeature />
             <Stats />
             <WhyChooseUs />

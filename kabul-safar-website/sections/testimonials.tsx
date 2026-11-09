@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import { useI18n } from "@/components/i18n-provider";
 import { getTestimonialsContent } from "@/lib/data";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export const Testimonials = () => {
   const { lang } = useI18n();
@@ -20,10 +21,12 @@ export const Testimonials = () => {
 
       <div className="flex gap-3 overflow-x-auto px-1 pb-2 pt-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pt-6">
         {content.testimonials.map((testimonial) => (
-          <article
+          <ScrollReveal
             key={testimonial.id}
-            className="relative min-w-[180px] rounded-xl bg-white px-3 pb-3 pt-8 shadow-sm md:min-w-0 md:rounded-xl md:px-4 md:pb-4 md:pt-10"
+            className="min-w-[180px] md:min-w-0"
+            delayMs={(content.testimonials.indexOf(testimonial) % 3) * 90}
           >
+            <article className="relative h-full rounded-xl bg-white px-3 pb-3 pt-8 shadow-sm md:rounded-xl md:px-4 md:pb-4 md:pt-10">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
               <Image
                 src={testimonial.avatar}
@@ -55,7 +58,8 @@ export const Testimonials = () => {
               <p className="text-[8px] font-bold text-black md:text-sm">{testimonial.name}</p>
               <p className="text-[6px] text-[rgba(0,0,0,0.67)] md:text-xs">{testimonial.role}</p>
             </div>
-          </article>
+            </article>
+          </ScrollReveal>
         ))}
       </div>
     </section>

@@ -1,13 +1,9 @@
 "use client";
 
-import { ArrowRight, Check, Heart } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useI18n } from "@/components/i18n-provider";
 import { getBlogContent, getHeroContent } from "@/lib/data";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
-
-const featureIcons = [Heart, Check, ArrowRight] as const;
 
 function HeroTags({
   tags,
@@ -40,8 +36,8 @@ function HeroTags({
             key={tag}
             className={
               variant === "mobile"
-                ? "flex items-center gap-1.5 rounded-full border border-[#e7e5df] bg-white px-3 py-2 text-center text-[11px] font-bold text-[#141d2b] shadow-[0_10px_24px_-12px_rgba(20,29,43,0.25)]"
-                : `absolute z-40 flex max-w-[160px] items-center gap-1.5 rounded-full border border-[#e7e5df] bg-white px-3 py-2 text-[10.5px] font-bold leading-snug text-[#141d2b] shadow-[0_10px_24px_-12px_rgba(20,29,43,0.25)] sm:max-w-[180px] sm:px-4 sm:py-[9px] sm:text-[11.5px] ${positions[index] ?? ""}`
+                ? "flex max-w-[95%] items-center gap-xs whitespace-nowrap rounded-full border border-[#e7e5df] bg-white px-2.5 py-1 text-center text-[10px] font-bold text-[#141d2b] shadow-[0_10px_24px_-12px_rgba(20,29,43,0.25)]"
+                : `absolute z-40 flex max-w-[160px] items-center gap-xs rounded-full border border-[#e7e5df] bg-white px-3 py-2 text-[10.5px] font-bold leading-snug text-[#141d2b] shadow-[0_10px_24px_-12px_rgba(20,29,43,0.25)] sm:max-w-[180px] sm:px-4 sm:py-[9px] sm:text-[11.5px] ${positions[index] ?? ""}`
             }
           >
             {percentMatch ? (
@@ -52,12 +48,7 @@ function HeroTags({
                 <span>{percentMatch[2]}</span>
               </>
             ) : (
-              <>
-                <span className="text-[15px] font-black text-[#C89A3E]">
-                  &rdquo;
-                </span>
-                {tag}
-              </>
+              tag
             )}
           </div>
         );
@@ -122,12 +113,17 @@ export const Hero = () => {
         "absolute top-[60px] left-[199px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
         "absolute top-0 left-[80px] z-30 h-[300px] w-[150px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
       ];
-
-  const mobileArches = [
-    "relative z-10 h-[190px] w-[34%] max-w-[150px] shrink-0 shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-    "relative z-20 -mx-3.5 mb-[30px] h-[160px] w-[30%] max-w-[130px] shrink-0 shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-    "relative z-30 mb-2.5 h-[190px] w-[34%] max-w-[150px] shrink-0 shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-  ];
+  const mobileArches = isRtl
+    ? [
+        "absolute bottom-0 right-0 z-10 h-[155px] w-[105px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute bottom-2 right-[82px] z-20 h-[175px] w-[118px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-0 right-[172px] z-30 h-[190px] w-[135px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
+      ]
+    : [
+        "absolute bottom-0 left-0 z-10 h-[155px] w-[105px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute bottom-2 left-[82px] z-20 h-[175px] w-[118px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
+        "absolute top-0 left-[172px] z-30 h-[190px] w-[135px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
+      ];
 
   return (
     <section
@@ -153,59 +149,32 @@ export const Hero = () => {
             {content.description}
           </p>
 
-          <div className="mt-5 flex flex-wrap justify-center gap-3 md:mb-9 md:justify-start">
+          <div className="mt-5 w-full md:mb-9">
             <a
               href={CONTACT_WHATSAPP_URL}
-              className="rounded-lg bg-[#141d2b] px-[22px] py-[13px] text-[13.5px] font-bold text-white transition-transform hover:-translate-y-0.5"
+              className="primary-action flex w-full items-center justify-center rounded-lg px-[22px] py-[13px] text-[13.5px] font-bold text-white hover:-translate-y-0.5"
             >
               {content.consultCta}
             </a>
-            <Link
-              href="/services"
-              className="rounded-lg border-[1.4px] border-[#141d2b] px-[22px] py-[13px] text-[13.5px] font-bold text-[#141d2b] transition-transform hover:-translate-y-0.5"
-            >
-              {content.secondaryCta}
-            </Link>
           </div>
 
-          <div className="mt-6 flex flex-wrap justify-center gap-5 md:mt-0 md:justify-start md:gap-[34px]">
-            {content.bullets.map((label, index) => {
-              const Icon = featureIcons[index] ?? Heart;
-              return (
-                <div
-                  key={label}
-                  className="max-w-[100px] text-center text-[11px] font-semibold leading-snug text-[#565a63]"
-                >
-                  <div className="mx-auto mb-2 flex h-[30px] w-[30px] items-center justify-center text-[#141d2b]">
-                    <Icon
-                      className="h-6 w-6"
-                      strokeWidth={1.8}
-                      aria-hidden="true"
-                    />
-                  </div>
-                  {label}
-                </div>
-              );
-            })}
-          </div>
         </div>
 
-        {/* Mobile: blog images */}
+        {/* Mobile: arched image cluster below the hero copy */}
         <div className="w-full md:hidden">
-          <div className="flex w-full items-end justify-center">
+          <div className="relative mx-auto h-[205px] w-full max-w-[330px]">
             {blogImages.map((src, index) => (
               <ArchImage
                 key={src}
                 src={src}
                 className={mobileArches[index] ?? mobileArches[0]}
                 priority={index === 0}
-                sizes="(max-width: 768px) 34vw, 150px"
+                sizes="(max-width: 768px) 150px, 190px"
               />
             ))}
-          </div>
-
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
-            <HeroTags tags={content.tags} variant="mobile" isRtl={isRtl} />
+            <div className="absolute inset-x-0 bottom-0 z-40 flex flex-col items-center gap-sm">
+              <HeroTags tags={content.tags} variant="mobile" isRtl={isRtl} />
+            </div>
           </div>
         </div>
 

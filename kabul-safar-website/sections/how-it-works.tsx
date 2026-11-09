@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/components/i18n-provider";
 import { getHowItWorksContent } from "@/lib/data";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export const HowItWorks = () => {
   const { lang } = useI18n();
@@ -27,18 +28,12 @@ export const HowItWorks = () => {
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
         {content.steps.map((step) => (
-          <article
-            key={step.id}
-            className={`relative flex flex-col rounded-2xl p-4 transition-transform duration-200 ease-out hover:-translate-y-2 hover:shadow-lg ${
-              step.accent
-                ? "bg-[#377bc9] text-white md:min-h-60"
-                : "bg-[rgba(98,202,225,0.6)] text-black md:min-h-52.5"
-            }`}
-          >
+          <ScrollReveal key={step.id} className="h-full" delayMs={(step.id - 1) * 100}>
+            <article className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-[#f1f8fa] p-4 text-[#141d2b] transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg md:min-h-52.5">
             <div className="flex items-start justify-between">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/20 md:h-12 md:w-12">
                 <step.icon
-                  className={`h-5 w-5 ${step.accent ? "text-white" : "text-[#377bc9]"}`}
+                  className="h-5 w-5 text-[#377bc9]"
                   aria-hidden="true"
                 />
               </div>
@@ -53,7 +48,7 @@ export const HowItWorks = () => {
             </h3>
 
             <p
-              className={`mt-2 text-[10px] leading-5 tracking-wide ${step.accent ? "text-white/90" : "text-black/90"} md:text-sm md:leading-6`}
+              className="mt-2 text-[10px] leading-5 tracking-wide text-slate-700 md:text-sm md:leading-6"
             >
               {step.description}
             </p>
@@ -63,7 +58,8 @@ export const HowItWorks = () => {
                 {step.id}
               </span>
             </div>
-          </article>
+            </article>
+          </ScrollReveal>
         ))}
       </div>
     </section>
