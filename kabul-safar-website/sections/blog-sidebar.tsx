@@ -14,17 +14,21 @@ export const BlogSidebar = () => {
       {/* About Section */}
       <div className="group overflow-hidden rounded-2xl bg-gradient-to-br from-white to-slate-50 p-6 shadow-lg ring-1 ring-slate-200/50 transition-all hover:shadow-xl">
         <div className="flex flex-col items-center text-center">
-          <div className="relative h-24 w-24 overflow-hidden rounded-2xl ring-4 ring-white shadow-lg bg-gradient-to-br from-[#0dadd1] to-[#377bc9] p-2">
+          <div className="relative h-24 w-24 overflow-hidden rounded-2xl bg-white p-1 ring-4 ring-white shadow-lg">
             <Image
-              src="/Logo.jpeg"
+              src="/images/Kabul%20safar%20logo.jpg"
               alt="Kabul Safar"
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              className="object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </div>
           <h3 className="mt-4 text-lg font-bold text-slate-900">Kabul Safar</h3>
           <p className="text-sm font-semibold text-[#0dadd1]">
-            {lang === "fa" ? "راهنمای سفر" : lang === "ps" ? "د سفر لارښوونکی" : "Travel Guide"}
+            {lang === "fa"
+              ? "راهنمای سفر"
+              : lang === "ps"
+                ? "د سفر لارښوونکی"
+                : "Travel Guide"}
           </p>
           <p className="mt-3 text-sm leading-6 text-slate-600">
             {lang === "fa"
@@ -35,16 +39,31 @@ export const BlogSidebar = () => {
           </p>
           <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
             <MapPin className="h-4 w-4" />
-            <span>Paris, France</span>
+            <span>
+              {lang === "fa"
+                ? "استکهلم، سوئد"
+                : lang === "ps"
+                  ? "سټاکهولم، سویډن"
+                  : "Stockholm, Sweden"}
+            </span>
           </div>
           <div className="mt-4 flex gap-3">
-            <a href="#" className="rounded-full bg-slate-100 p-2 text-slate-400 transition-all hover:bg-[#0dadd1] hover:text-white">
+            <a
+              href="#"
+              className="rounded-full bg-slate-100 p-2 text-slate-400 transition-all hover:bg-[#0dadd1] hover:text-white"
+            >
               <Share2 className="h-4 w-4" />
             </a>
-            <a href="#" className="rounded-full bg-slate-100 p-2 text-slate-400 transition-all hover:bg-[#0dadd1] hover:text-white">
+            <a
+              href="#"
+              className="rounded-full bg-slate-100 p-2 text-slate-400 transition-all hover:bg-[#0dadd1] hover:text-white"
+            >
               <Share2 className="h-4 w-4" />
             </a>
-            <a href="#" className="rounded-full bg-slate-100 p-2 text-slate-400 transition-all hover:bg-[#0dadd1] hover:text-white">
+            <a
+              href="#"
+              className="rounded-full bg-slate-100 p-2 text-slate-400 transition-all hover:bg-[#0dadd1] hover:text-white"
+            >
               <Share2 className="h-4 w-4" />
             </a>
           </div>
@@ -85,12 +104,17 @@ export const BlogSidebar = () => {
         </h3>
         <div className="space-y-4">
           {content.trendingItems.map((item, idx) => (
-            <div key={item.id} className="group flex gap-3 transition-all hover:translate-x-1">
+            <div
+              key={item.id}
+              className="group flex gap-3 transition-all hover:translate-x-1"
+            >
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-sm font-bold text-white shadow-md">
                 {idx + 1}
               </div>
               <div>
-                <h4 className="font-semibold text-slate-900 group-hover:text-[#0dadd1] transition-colors">{item.title}</h4>
+                <h4 className="font-semibold text-slate-900 group-hover:text-[#0dadd1] transition-colors">
+                  {item.title}
+                </h4>
                 <p className="text-sm text-slate-600">{item.description}</p>
               </div>
             </div>

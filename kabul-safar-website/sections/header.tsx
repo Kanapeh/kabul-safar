@@ -29,35 +29,35 @@ export const Header = () => {
   const sidebarLabels =
     lang === "en"
       ? {
-        home: "Home",
-        article: "Article",
-        flights: "Search flights",
-        about: "About us",
-        contact: "Contact us",
-        theme: "Theme",
-        logout: "Logout",
-      }
+          home: "Home",
+          article: "Article",
+          flights: "Search flights",
+          about: "About us",
+          contact: "Contact us",
+          theme: "Theme",
+          logout: "Logout",
+        }
       : lang === "ps"
         ? {
-          home: "کور",
-          article: "مقاله",
-          blog: "بلاګ",
-          flights: "الوتنه وپلټئ",
-          about: "زموږ په اړه",
-          contact: "له موږ سره اړیکه",
-          theme: "تم",
-          logout: "وتل",
-        }
+            home: "کور",
+            article: "مقاله",
+            blog: "بلاګ",
+            flights: "الوتنه وپلټئ",
+            about: "زموږ په اړه",
+            contact: "له موږ سره اړیکه",
+            theme: "تم",
+            logout: "وتل",
+          }
         : {
-          home: "خانه",
-          article: "مقاله",
-          blog: "مقالات",
-          flights: "جستجوی پرواز",
-          about: "درباره ما",
-          contact: "تماس با ما",
-          theme: "تم",
-          logout: "خروج",
-        };
+            home: "خانه",
+            article: "مقاله",
+            blog: "مقالات",
+            flights: "جستجوی پرواز",
+            about: "درباره ما",
+            contact: "تماس با ما",
+            theme: "تم",
+            logout: "خروج",
+          };
   const sidebarItems = [
     { label: sidebarLabels.home, href: "/", icon: Home, active: true },
     { label: sidebarLabels.flights, href: "/flights", icon: Plane },
@@ -69,31 +69,41 @@ export const Header = () => {
       <nav
         aria-label="منوی اصلی"
         dir="ltr"
-        className="grid grid-cols-3 items-center rounded-[26px] bg-white px-5 py-4 shadow-sm md:grid-cols-[auto_1fr_auto] md:px-6"
+        className="grid grid-cols-[auto_1fr] items-center rounded-full bg-white px-3 py-2 shadow-[0_8px_24px_rgba(25,34,56,0.06)] md:grid-cols-[auto_1fr_auto] md:px-6 md:py-3"
       >
         <div className="flex items-center justify-start">
           <a
             href={CONTACT_WHATSAPP_URL}
             aria-label="تماس واتساپ"
-            className="flex h-7 w-7 items-center justify-center rounded-full bg-[#25D366] text-white transition-opacity hover:opacity-85"
+            className="hidden h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white transition-opacity hover:opacity-85 md:flex"
           >
             <WhatsAppIcon className="h-4 w-4" />
           </a>
+          <div className="md:hidden">
+            <LanguageSwitch />
+          </div>
         </div>
 
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-end md:justify-center">
           <Link
             href="/"
             aria-label="صفحه اصلی - Kabul Safar"
-            className="md:hidden rounded-full overflow-hidden"
+            className="flex items-center gap-2 overflow-hidden rounded-full bg-white md:hidden"
           >
             <Image
-              src="/Logo.jpeg"
+              src="/images/Kabul%20safar%20logo.jpg"
               alt="Kabul Safar"
-              width={36}
-              height={36}
-              className="h-9 w-9 rounded-full object-cover"
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-full border border-slate-200 object-contain"
             />
+            <span className="whitespace-nowrap text-lg font-extrabold text-[#192238]">
+              {lang === "en"
+                ? "Kabul Safar"
+                : lang === "ps"
+                  ? "کابل سفر"
+                  : "کابل سفر"}
+            </span>
           </Link>
 
           <div
@@ -123,24 +133,21 @@ export const Header = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-3">
+        <div className="hidden items-center justify-end gap-3 md:flex">
           <div className="hidden items-center gap-3 md:flex">
             <Link
               href="/"
               aria-label="صفحه اصلی - Kabul Safar"
-              className="rounded-full overflow-hidden"
+              className="overflow-hidden rounded-xl bg-white"
             >
               <Image
-                src="/Logo.jpeg"
+                src="/images/Kabul%20safar%20logo.jpg"
                 alt="Kabul Safar"
-                width={36}
-                height={36}
-                className="h-9 w-9 rounded-full object-cover"
+                width={56}
+                height={56}
+                className="h-14 w-14 object-contain"
               />
             </Link>
-            <LanguageSwitch />
-          </div>
-          <div className="md:hidden">
             <LanguageSwitch />
           </div>
         </div>
@@ -158,11 +165,11 @@ export const Header = () => {
             <div className="flex items-center justify-between" dir="ltr">
               <div className="flex items-center gap-2">
                 <Image
-                  src="/Logo.jpeg"
+                  src="/images/Kabul%20safar%20logo.jpg"
                   alt="Kabul Safar"
-                  width={32}
-                  height={32}
-                  className="h-8 w-8 rounded-full object-cover"
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 rounded-lg bg-white object-contain"
                 />
                 <span className="text-sm font-medium text-[#111]">
                   Kabul Safar
@@ -186,17 +193,19 @@ export const Header = () => {
                   key={`${item.label}-${item.href}`}
                   href={item.href}
                   onClick={close}
-                  className={`flex items-center justify-between rounded-full px-4 py-3 text-right text-[13px] font-semibold ${item.active
-                    ? "bg-[#A7DBEA] text-[#111]"
-                    : "bg-[#fbfbfb] text-[#111]"
-                    }`}
+                  className={`flex items-center justify-between rounded-full px-4 py-3 text-right text-[13px] font-semibold ${
+                    item.active
+                      ? "bg-[#A7DBEA] text-[#111]"
+                      : "bg-[#fbfbfb] text-[#111]"
+                  }`}
                 >
                   <item.icon className="h-5 w-5 shrink-0" aria-hidden="true" />
-                  <span className="whitespace-nowrap overflow-hidden text-ellipsis">{item.label}</span>
+                  <span className="whitespace-nowrap overflow-hidden text-ellipsis">
+                    {item.label}
+                  </span>
                 </a>
               ))}
             </div>
-
           </aside>
         </div>
       ) : null}

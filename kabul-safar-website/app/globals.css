@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #e9ebed;
-  --foreground: #050505;
-  --cyan: #0dadd1;
-  --blue: #377bc9;
-  --navy: #022d37;
-  --footer: #284d55;
+  --background: #eef1f4;
+  --foreground: #192238;
+  --cyan: #0b86a3;
+  --blue: #3576ba;
+  --navy: #192238;
+  --footer: #234b53;
   --phone-btn: #0a5174;
   --card-light: rgba(98, 202, 225, 0.5);
   --card-stat: #f6f8f8;
@@ -15,8 +15,8 @@
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-2xl: 3rem;
-  --primary-action: #0dadd1;
-  --primary-action-hover: #0a9bbf;
+  --primary-action: #192238;
+  --primary-action-hover: #29334b;
 }
 
 @theme inline {

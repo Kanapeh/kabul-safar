@@ -3,7 +3,6 @@ import { Vazirmatn } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { I18nProvider } from "@/components/i18n-provider";
-import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { MobileFooter } from "@/components/mobile-footer";
 
 const vazirmatn = Vazirmatn({
@@ -43,7 +42,7 @@ export default function RootLayout({
                   script.src = 'https://emrldco.com/NTU5MTg4.js?t=559188';
                   document.head.appendChild(script);
               })();
-            `
+            `,
           }}
         />
       </head>
@@ -51,7 +50,6 @@ export default function RootLayout({
         <I18nProvider>
           {children}
           <MobileFooter />
-          <FloatingWhatsApp />
         </I18nProvider>
       </body>
     </html>

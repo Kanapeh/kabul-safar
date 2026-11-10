@@ -12,52 +12,56 @@ export const HowItWorks = () => {
     <section
       id="services"
       aria-labelledby="how-it-works-title"
-      className="space-y-3"
+      className="space-y-4"
     >
       <header className="space-y-1 text-center">
         <h2
           id="how-it-works-title"
-          className="text-xs font-semibold text-black md:text-2xl"
+          className="text-lg font-bold text-[#192238] md:text-2xl"
         >
           {content.title}
         </h2>
-        <p className="text-[8px] leading-4 tracking-wide text-[rgba(0,0,0,0.68)] md:mx-auto md:max-w-3xl md:text-sm md:leading-6">
+        <p className="text-sm leading-6 text-[#64717b] md:mx-auto md:max-w-3xl md:text-base md:leading-7">
           {content.subtitle}
         </p>
       </header>
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
         {content.steps.map((step) => (
-          <ScrollReveal key={step.id} className="h-full" delayMs={(step.id - 1) * 100}>
-            <article className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-[#f1f8fa] p-4 text-[#141d2b] transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg md:min-h-52.5">
-            <div className="flex items-start justify-between">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/20 md:h-12 md:w-12">
-                <step.icon
-                  className="h-5 w-5 text-[#377bc9]"
-                  aria-hidden="true"
-                />
+          <ScrollReveal
+            key={step.id}
+            className="h-full"
+            delayMs={(step.id - 1) * 100}
+          >
+            <article className="relative flex h-full flex-row items-center gap-4 rounded-[22px] bg-white p-5 text-[#192238] shadow-[0_8px_24px_rgba(25,34,56,0.05)] transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg md:min-h-52.5 md:flex-col md:items-start md:p-6">
+              <div className="flex shrink-0 items-start justify-between">
+                <div className="hidden h-10 w-10 items-center justify-center rounded-full bg-[#e5f5f9] md:inline-flex md:h-12 md:w-12">
+                  <step.icon
+                    className="h-5 w-5 text-[#087f99]"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e5f5f9] text-base font-bold text-[#087f99] md:hidden">
+                  {step.id}
+                </span>
               </div>
 
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-semibold text-[#2c6994] md:hidden">
-                {step.id}
-              </span>
-            </div>
+              <div className="min-w-0 flex-1 text-right md:flex-none">
+                <h3 className="text-base font-bold leading-6 md:text-lg md:leading-7">
+                  {step.title}
+                </h3>
 
-            <h3 className="mt-2 text-sm font-semibold leading-5 md:mt-0 md:text-lg md:leading-7">
-              {step.title}
-            </h3>
+                <p className="mt-1 text-xs leading-5 text-[#64717b] md:mt-2 md:text-sm md:leading-6">
+                  {step.description}
+                </p>
+              </div>
 
-            <p
-              className="mt-2 text-[10px] leading-5 tracking-wide text-slate-700 md:text-sm md:leading-6"
-            >
-              {step.description}
-            </p>
-
-            <div className="hidden md:block absolute left-1/2 bottom-4 -translate-x-1/2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-semibold text-[#2c6994] md:h-10 md:w-10 md:text-base">
-                {step.id}
-              </span>
-            </div>
+              <div className="hidden md:block absolute left-1/2 bottom-4 -translate-x-1/2">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-semibold text-[#2c6994] md:h-10 md:w-10 md:text-base">
+                  {step.id}
+                </span>
+              </div>
             </article>
           </ScrollReveal>
         ))}

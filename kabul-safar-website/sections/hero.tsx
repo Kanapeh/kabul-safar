@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Plane } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { getBlogContent, getHeroContent } from "@/lib/data";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 
 function HeroTags({
   tags,
@@ -130,7 +130,7 @@ export const Hero = () => {
     <section
       aria-labelledby="hero-title"
       dir={isRtl ? "rtl" : "ltr"}
-      className="overflow-hidden rounded-[10px] bg-white px-5 py-6 shadow-[0_30px_70px_-30px_rgba(20,29,43,0.35)] md:rounded-2xl md:px-10 md:pb-10 md:pt-7"
+      className="overflow-hidden rounded-[28px] bg-white px-5 py-7 shadow-[0_18px_48px_-34px_rgba(25,34,56,0.32)] md:rounded-[32px] md:px-10 md:pb-10 md:pt-7"
     >
       <div className="mt-4 flex flex-col items-center gap-6 md:mt-7 md:flex-row md:items-center md:gap-8 lg:gap-9">
         {/* Text */}
@@ -139,7 +139,7 @@ export const Hero = () => {
         >
           <h1
             id="hero-title"
-            className="text-[30px] font-extrabold leading-[1.35] tracking-tight text-[#141d2b] md:text-[44px] lg:text-[52px]"
+            className="text-[30px] font-extrabold leading-[1.35] text-[#192238] md:text-[44px] lg:text-[52px]"
           >
             {titleLine1}
             <br className="mt-2 block" />
@@ -153,16 +153,12 @@ export const Hero = () => {
           <div className="mt-5 w-full md:mb-9">
             <a
               href={CONTACT_WHATSAPP_URL}
-              className="hero-visa-cta primary-action motion-action group/visa-cta flex w-full items-center justify-center gap-sm rounded-lg px-[22px] py-[13px] text-[13.5px] font-bold text-white"
+              className="hero-visa-cta primary-action motion-action group/visa-cta flex w-full items-center justify-center gap-sm rounded-2xl px-[22px] py-4 text-base font-bold text-white"
             >
               {content.consultCta}
-              <Plane
-                className="hero-visa-plane h-[18px] w-[18px] shrink-0"
-                aria-hidden="true"
-              />
+              <WhatsAppIcon className="h-5 w-5 shrink-0" />
             </a>
           </div>
-
         </div>
 
         {/* Mobile: arched image cluster below the hero copy */}

@@ -16,7 +16,7 @@ import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
 export default function Home() {
   return (
     <LanguageDirWrapper>
-      <div className="mx-auto min-h-screen w-full max-w-100.5 bg-[#e9ebed] md:max-w-300">
+      <div className="mx-auto min-h-screen w-full max-w-100.5 bg-[#eef1f4] md:max-w-300">
         <main className="space-y-2xl px-4 py-4">
           <Header />
           <Hero />

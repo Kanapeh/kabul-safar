@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 import { useI18n } from "@/components/i18n-provider";
-import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_DISPLAY_2, CONTACT_PHONE_DISPLAY_FORMATTED, CONTACT_PHONE_DISPLAY_2_FORMATTED, CONTACT_PHONE_TEL, CONTACT_PHONE_TEL_2 } from "@/lib/contact";
+import {
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_DISPLAY_2,
+  CONTACT_PHONE_DISPLAY_FORMATTED,
+  CONTACT_PHONE_DISPLAY_2_FORMATTED,
+  CONTACT_PHONE_TEL,
+  CONTACT_PHONE_TEL_2,
+} from "@/lib/contact";
 import { getFooterContent } from "@/lib/data";
 
 export const Footer = () => {
@@ -12,13 +19,13 @@ export const Footer = () => {
   return (
     <footer
       id="contact"
-      className="bg-gradient-to-b from-[#284d55] to-[#1a3a40] px-4 pb-6 pt-8 text-white md:px-8 md:pt-12"
+      className="bg-[#234b53] px-4 pb-6 pt-8 text-white md:px-8 md:pt-12"
     >
-      <div className="flex flex-col items-start gap-6 md:flex-row md:items-start md:justify-between md:gap-12">
-        <div className="grid w-full grid-cols-3 gap-4 md:flex-1">
+      <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+        <div className="order-2 grid w-full grid-cols-3 gap-4 lg:order-1 lg:flex-1">
           {content.groups.map((group) => (
             <div key={group.title} className="min-w-0">
-              <h3 className="text-xs font-bold md:text-base whitespace-nowrap text-white/95">
+              <h3 className="whitespace-nowrap text-sm font-bold text-white/95 md:text-base">
                 {group.title}
               </h3>
               <ul className="mt-2 space-y-1.5 md:mt-3 md:space-y-2">
@@ -26,7 +33,7 @@ export const Footer = () => {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-[9px] text-white/80 transition-all hover:text-white hover:translate-x-1 md:text-xs block truncate"
+                      className="block truncate text-xs text-white/75 transition-all hover:translate-x-1 hover:text-white md:text-sm"
                     >
                       {link.label}
                     </a>
@@ -37,35 +44,41 @@ export const Footer = () => {
           ))}
         </div>
 
-        <div className="w-full shrink-0 space-y-4 text-right md:w-[340px]">
-          <div className="flex items-center justify-between gap-6">
-            <div className="flex shrink-0">
+        <div className="order-1 w-full shrink-0 space-y-4 text-right lg:order-2 lg:w-85">
+          <div className="flex flex-col items-stretch gap-4">
+            <div className="flex shrink-0 items-center gap-3">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#0dadd1] to-[#377bc9] blur-md opacity-50"></div>
+                <div className="absolute inset-0 rounded-xl bg-[#0b86a3] opacity-35 blur-md"></div>
                 <Image
-                  src="/images/Logo.jpeg"
+                  src="/images/Kabul%20safar%20logo.jpg"
                   alt="Kabul Safar"
-                  width={70}
-                  height={70}
+                  width={96}
+                  height={96}
                   priority
-                  className="relative rounded-full border-2 border-white/20"
+                  className="relative rounded-xl border-2 border-white/20 bg-white"
                   style={{ objectFit: "contain" }}
                 />
+              </div>
+              <div>
+                <p className="text-lg font-bold text-white">کابل سفر</p>
+                <p className="mt-1 text-xs text-white/70">ویزا و خدمات سفر</p>
               </div>
             </div>
             <div className="flex flex-col items-end gap-2.5">
               <a
                 href={CONTACT_PHONE_TEL}
-                className="inline-flex h-8 min-w-[110px] items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#0a5174] to-[#0d6a8a] px-3 text-[9px] font-semibold text-white whitespace-nowrap shadow-lg transition-all hover:from-[#0d6a8a] hover:to-[#0a5174] hover:shadow-xl md:h-11 md:min-w-[150px] md:px-4 md:text-sm"
+                className="inline-flex h-9 min-w-27.5 items-center gap-2.5 rounded-xl border border-white/10 bg-white/10 px-3 text-xs font-semibold text-white whitespace-nowrap transition-colors hover:bg-white/15 md:h-11 md:min-w-37.5 md:px-4 md:text-sm"
               >
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/15">
                   ☎
                 </span>
-                <span dir="ltr">{content.phone || CONTACT_PHONE_DISPLAY_FORMATTED}</span>
+                <span dir="ltr">
+                  {content.phone || CONTACT_PHONE_DISPLAY_FORMATTED}
+                </span>
               </a>
               <a
                 href={CONTACT_PHONE_TEL_2}
-                className="inline-flex h-8 min-w-[110px] items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#0a5174] to-[#0d6a8a] px-3 text-[9px] font-semibold text-white whitespace-nowrap shadow-lg transition-all hover:from-[#0d6a8a] hover:to-[#0a5174] hover:shadow-xl md:h-11 md:min-w-[150px] md:px-4 md:text-sm"
+                className="inline-flex h-9 min-w-27.5 items-center gap-2.5 rounded-xl border border-white/10 bg-white/10 px-3 text-xs font-semibold text-white whitespace-nowrap transition-colors hover:bg-white/15 md:h-11 md:min-w-37.5 md:px-4 md:text-sm"
               >
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/15">
                   ☎
@@ -74,15 +87,19 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <p className="text-[9px] leading-5 text-white/85 md:text-sm md:leading-6">
+          <p className="text-sm leading-6 text-white/80 md:text-sm md:leading-6">
             {content.blurb}
           </p>
           <div className="flex flex-col gap-3">
             <a
               href="/services"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0dadd1] to-[#377bc9] px-5 py-3 text-[11px] font-semibold text-white shadow-lg transition-all hover:from-[#0a9bbf] hover:to-[#2d6aa8] hover:shadow-xl hover:-translate-y-0.5 md:text-sm"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#192238] px-5 py-3 text-xs font-semibold text-white shadow-sm transition-all hover:bg-[#29334b] hover:-translate-y-0.5 md:text-sm"
             >
-              {lang === "fa" ? "مشاهده خدمات" : lang === "ps" ? "خدمتونه وګورئ" : "View Services"}
+              {lang === "fa"
+                ? "مشاهده خدمات"
+                : lang === "ps"
+                  ? "خدمتونه وګورئ"
+                  : "View Services"}
             </a>
             <div className="inline-flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-3 backdrop-blur-sm shadow-md">
               <span className="text-[11px] font-semibold text-white/95">
@@ -92,7 +109,7 @@ export const Footer = () => {
                 href="https://www.instagram.com/kabulsafar?igsh=c3dwaDBldTM2OTdn"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-[#377bc9] text-white transition-all hover:bg-[#2c6390] hover:scale-110"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:bg-white/20 hover:scale-105"
                 aria-label="Instagram"
               >
                 <svg
@@ -113,7 +130,7 @@ export const Footer = () => {
                 href="https://www.facebook.com/share/17xH3H7WbN/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-[#377bc9] text-white transition-all hover:bg-[#2c6390] hover:scale-110"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:bg-white/20 hover:scale-105"
                 aria-label="Facebook"
               >
                 <svg
@@ -128,7 +145,7 @@ export const Footer = () => {
                 href="https://youtube.com/@kabulsafar?si=BohGpBLBBrZ9dVqh"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-[#377bc9] text-white transition-all hover:bg-[#2c6390] hover:scale-110"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:bg-white/20 hover:scale-105"
                 aria-label="YouTube"
               >
                 <svg
@@ -148,7 +165,7 @@ export const Footer = () => {
                 href="https://www.tiktok.com/@kabul.safar?_r=1&_t=ZN-97zx2im1yJK"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-[#377bc9] text-white transition-all hover:bg-[#2c6390] hover:scale-110"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:bg-white/20 hover:scale-105"
                 aria-label="TikTok"
               >
                 <svg
@@ -163,7 +180,7 @@ export const Footer = () => {
                 href="https://www.threads.com/@kabulsafar28"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-[#377bc9] text-white transition-all hover:bg-[#2c6390] hover:scale-110"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:bg-white/20 hover:scale-105"
                 aria-label="Threads"
               >
                 <svg
@@ -182,21 +199,6 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Embedded map of Stockholm, Sweden */}
-      <div className="mt-8">
-        <div className="overflow-hidden rounded-2xl border border-white/15 shadow-2xl">
-          <iframe
-            title="Stockholm, Sweden map"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=17.5,59.0,18.5,59.6&layer=mapnik&marker=59.3293,18.0686"
-            className="w-full h-48 md:h-56"
-            loading="lazy"
-          />
-        </div>
-        <p className="mt-3 text-center text-[9px] text-white/60 md:text-xs">
-          نقشه استکهلم، سوئد — منبع: OpenStreetMap
-        </p>
       </div>
 
       <div className="mt-6 border-t border-white/10 pt-4">
