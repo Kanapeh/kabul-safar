@@ -78,10 +78,10 @@ export const Hero = () => {
             {content.description}
           </p>
 
-          <ul className="mt-5 inline-flex flex-col items-start gap-2 text-start">
+          <ul className="mx-auto mt-5 grid max-w-[22rem] grid-cols-3 gap-2 md:mx-0 md:flex md:max-w-none md:flex-wrap md:gap-x-5 md:gap-y-2">
             {content.bullets.map((bullet) => (
-              <li key={bullet} className="flex items-center gap-2 text-[15px] font-semibold text-ink">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky text-white">
+              <li key={bullet} className="flex flex-col items-center gap-1.5 rounded-2xl bg-white/70 px-1.5 py-2.5 text-center text-[12px] font-bold leading-5 text-ink md:flex-row md:whitespace-nowrap md:rounded-none md:bg-transparent md:p-0 md:text-[15px] md:font-semibold">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sky text-white">
                   <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
                 </span>
                 {bullet}
