@@ -7,10 +7,9 @@ import { Search, Minus, Plus, Plane, ArrowRightLeft } from "lucide-react";
 import { Toast } from "@/components/toast";
 import DatePicker from "react-multi-date-picker";
 import DateObject from "react-date-object";
-import persian from "react-date-object/calendars/persian";
 import gregorian from "react-date-object/calendars/gregorian";
-import persianFa from "react-date-object/locales/persian_fa";
 import gregorianEn from "react-date-object/locales/gregorian_en";
+import { getCalendarSetup, type CalendarType } from "@/lib/calendars";
 
 export const FlightSearchForm = () => {
   const { lang } = useI18n();
@@ -32,8 +31,40 @@ export const FlightSearchForm = () => {
   const destRef = useRef<HTMLDivElement | null>(null);
 
   const today = formatIsoDate(new Date());
-  const pickerCalendar = isRtl ? persian : gregorian;
-  const pickerLocale = isRtl ? persianFa : gregorianEn;
+  // Afghans use both calendars: Solar Hijri (Afghan months) and Gregorian.
+  const [calendarChoice, setCalendarChoice] = useState<CalendarType | null>(null);
+  const calendarType: CalendarType = calendarChoice ?? (isRtl ? "afghan" : "gregorian");
+  const otherCalendarType: CalendarType = calendarType === "afghan" ? "gregorian" : "afghan";
+  const {
+    calendar: pickerCalendar,
+    locale: pickerLocale,
+    format: pickerFormat,
+  } = getCalendarSetup(calendarType, lang);
+
+  /** The same date written in the other calendar, e.g. "۳۰ عقرب ۱۴۰۵" ⇄ "21 November 2026" */
+  function otherCalendarLabel(isoDate: string): string {
+    if (!isoDate) return "";
+    const other = getCalendarSetup(otherCalendarType, lang);
+    return new DateObject({ date: isoDate, calendar: gregorian, locale: gregorianEn })
+      .convert(other.calendar, other.locale)
+      .format("D MMMM YYYY");
+  }
+
+  const calendarLabels =
+    lang === "en"
+      ? { title: "Calendar", afghan: "Solar Hijri", gregorian: "Gregorian", equivalent: "Equals" }
+      : lang === "ps"
+        ? { title: "جنتري", afghan: "لمریز", gregorian: "میلادي", equivalent: "برابر" }
+        : { title: "تقویم", afghan: "هجری شمسی", gregorian: "میلادی", equivalent: "معادل" };
+
+  const placeholder =
+    calendarType === "afghan"
+      ? lang === "ps"
+        ? "کال/میاشت/ورځ"
+        : "سال/ماه/روز"
+      : lang === "en"
+        ? "DD/MM/YYYY"
+        : "روز/ماه/سال";
 
   function toPickerDate(isoDate: string): DateObject | null {
     if (!isoDate) return null;
@@ -1337,13 +1368,37 @@ export const FlightSearchForm = () => {
         >
           {/* Departure Date */}
           <div>
-            <label className="mb-sm block text-sm font-semibold text-slate-700">
-              {lang === "fa"
-                ? "تاریخ رفت"
-                : lang === "ps"
-                  ? "د رفت نېټه"
-                  : "Departure Date"}
-            </label>
+            <div className="mb-sm flex flex-wrap items-center justify-between gap-2">
+              <label className="block text-sm font-semibold text-slate-700">
+                {lang === "fa"
+                  ? "تاریخ رفت"
+                  : lang === "ps"
+                    ? "د تګ نېټه"
+                    : "Departure Date"}
+              </label>
+              <div
+                role="radiogroup"
+                aria-label={calendarLabels.title}
+                className="inline-flex rounded-xl bg-[#eef1f4] p-0.5 text-xs font-bold"
+              >
+                {(["afghan", "gregorian"] as const).map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    role="radio"
+                    aria-checked={calendarType === type}
+                    onClick={() => setCalendarChoice(type)}
+                    className={`rounded-[10px] px-3 py-1.5 transition-colors ${
+                      calendarType === type
+                        ? "bg-white text-[#192238] shadow-sm"
+                        : "text-slate-500 hover:text-[#192238]"
+                    }`}
+                  >
+                    {calendarLabels[type]}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className="flex flex-col gap-sm">
               <div className="relative flex-1 w-full">
                 <DatePicker
@@ -1352,19 +1407,19 @@ export const FlightSearchForm = () => {
                   calendar={pickerCalendar}
                   locale={pickerLocale}
                   minDate={toPickerDate(today) ?? undefined}
-                  format={isRtl ? "YYYY/MM/DD" : "MM/DD/YYYY"}
-                  placeholder={
-                    lang === "fa"
-                      ? "سال/ماه/روز"
-                      : lang === "ps"
-                        ? "کال/میاشت/ورځ"
-                        : "MM/DD/YYYY"
-                  }
+                  format={pickerFormat}
+                  placeholder={placeholder}
                   required
                   calendarPosition={isRtl ? "bottom-right" : "bottom-left"}
                   containerClassName="w-full"
                   inputClass="w-full rounded-xl border-2 border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-[#0b86a3] focus:ring-2 focus:ring-[#0b86a3]/20"
                 />
+                {date ? (
+                  <p className="mt-1.5 text-xs font-medium text-slate-500">
+                    {calendarLabels.equivalent} ({calendarLabels[otherCalendarType]}):{" "}
+                    <span className="font-bold text-[#0a7f99]">{otherCalendarLabel(date)}</span>
+                  </p>
+                ) : null}
               </div>
               <div
                 dir={isRtl ? "rtl" : "ltr"}
@@ -1424,19 +1479,19 @@ export const FlightSearchForm = () => {
                     calendar={pickerCalendar}
                     locale={pickerLocale}
                     minDate={toPickerDate(date || today) ?? undefined}
-                    format={isRtl ? "YYYY/MM/DD" : "MM/DD/YYYY"}
-                    placeholder={
-                      lang === "fa"
-                        ? "سال/ماه/روز"
-                        : lang === "ps"
-                          ? "کال/میاشت/ورځ"
-                          : "MM/DD/YYYY"
-                    }
+                    format={pickerFormat}
+                    placeholder={placeholder}
                     required={tripType === "round-trip"}
                     calendarPosition={isRtl ? "bottom-right" : "bottom-left"}
                     containerClassName="w-full"
                     inputClass="w-full rounded-xl border-2 border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-[#0b86a3] focus:ring-2 focus:ring-[#0b86a3]/20"
                   />
+                  {returnDate ? (
+                    <p className="mt-1.5 text-xs font-medium text-slate-500">
+                      {calendarLabels.equivalent} ({calendarLabels[otherCalendarType]}):{" "}
+                      <span className="font-bold text-[#0a7f99]">{otherCalendarLabel(returnDate)}</span>
+                    </p>
+                  ) : null}
                 </div>
                 <button
                   type="button"

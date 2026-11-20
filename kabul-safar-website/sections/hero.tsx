@@ -42,18 +42,13 @@ export const Hero = () => {
   const images = getBlogContent(lang)
     .posts.slice(0, 3)
     .map((post) => post.image);
-  const isRtl = lang === "fa" || lang === "ps";
-
-  const titleLine1 = isRtl
-    ? `${content.titlePrefix} ${content.titleIran} ${content.titleAsia}`.trim()
-    : content.titlePrefix;
 
   const labels =
     lang === "en"
       ? { eyebrow: "For Afghans living in Europe", flights: "Search flights", trust: "Trusted travel partner" }
       : lang === "ps"
         ? { eyebrow: "په اروپا کې د اوسېدونکو افغانانو لپاره", flights: "الوتنه ولټوئ", trust: "د باور وړ ملګری" }
-        : { eyebrow: "ویژه هم‌وطنان مقیم اروپا", flights: "جستجوی پرواز", trust: "همراه مطمئن سفر" };
+        : { eyebrow: "ویژه افغان‌های مقیم اروپا", flights: "جستجوی پرواز", trust: "همراه مطمئن سفر" };
 
   return (
     <section
@@ -80,10 +75,12 @@ export const Hero = () => {
 
           <h1
             id="hero-title"
-            className="mt-4 text-[32px] font-black leading-[1.35] text-ink md:text-[48px] lg:text-[56px]"
+            className="mt-4 text-[34px] font-black leading-[1.4] text-ink sm:text-[40px] md:text-[48px] lg:text-[56px]"
           >
-            {titleLine1}
-            <span className="block text-teal">{content.subTitle}</span>
+            <span className="block whitespace-nowrap">{content.titlePrefix}</span>
+            <span className="block whitespace-nowrap text-teal">
+              {`${content.titleIran} ${content.titleAsia}`.trim()}
+            </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-[30rem] text-[15px] leading-8 text-muted md:mx-0 md:text-lg md:leading-9">

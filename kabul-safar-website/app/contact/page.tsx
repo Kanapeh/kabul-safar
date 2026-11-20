@@ -1,12 +1,20 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
-import { Footer } from "@/sections/footer";
-import { Header } from "@/sections/header";
-import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
+import { useState } from "react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { PageShell } from "@/components/page-shell";
+import { PageHero } from "@/components/page-hero";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { useI18n } from "@/components/i18n-provider";
-import { Mail, Phone, MapPin, Send, MessageCircle, Plane, MapPin as Pin } from "lucide-react";
-import { CONTACT_WHATSAPP_URL, CONTACT_PHONE_DISPLAY } from "@/lib/contact";
+import {
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_DISPLAY_FORMATTED,
+  CONTACT_PHONE_DISPLAY_2_FORMATTED,
+  CONTACT_PHONE_TEL,
+  CONTACT_PHONE_TEL_2,
+  CONTACT_WHATSAPP_URL,
+} from "@/lib/contact";
+import { Faq } from "@/sections/faq";
 
 const pageText = {
   fa: {
@@ -69,229 +77,213 @@ const pageText = {
 };
 
 export default function ContactPage() {
-  const { lang, dir } = useI18n();
-  const content = pageText[lang];
-  const isRTL = dir === "rtl";
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const { lang } = useI18n();
+  const content = pageText[lang] ?? pageText.fa;
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+
+  const ui =
+    lang === "en"
+      ? {
+          eyebrow: "Contact",
+          whatsapp: "WhatsApp",
+          whatsappHint: "Fastest way to reach us",
+          phone: "Phone",
+          email: "Email",
+          formTitle: "Send us a message",
+          formHint: "Your message opens in WhatsApp so our team can answer you right away.",
+          required: "Please write your name and message.",
+          france: "France",
+          sweden: "Sweden",
+        }
+      : lang === "ps"
+        ? {
+            eyebrow: "اړیکه",
+            whatsapp: "واټساپ",
+            whatsappHint: "موږ ته د رسېدو تر ټولو چټکه لاره",
+            phone: "تلیفون",
+            email: "بریښنالیک",
+            formTitle: "موږ ته پیغام ولیږئ",
+            formHint: "ستاسو پیغام په واټساپ کې پرانیستل کېږي څو زموږ ټیم ژر ځواب درکړي.",
+            required: "مهرباني وکړئ خپل نوم او پیغام ولیکئ.",
+            france: "فرانسه",
+            sweden: "سویډن",
+          }
+        : {
+            eyebrow: "ارتباط با ما",
+            whatsapp: "واتساپ",
+            whatsappHint: "سریع‌ترین راه ارتباط با ما",
+            phone: "تلفن",
+            email: "ایمیل",
+            formTitle: "برای ما پیام بفرستید",
+            formHint: "پیام شما در واتساپ باز می‌شود تا تیم ما سریع پاسخ دهد.",
+            required: "لطفاً نام و پیام خود را بنویسید.",
+            france: "فرانسه",
+            sweden: "سوئد",
+          };
+
+  const [error, setError] = useState("");
 
   const handleChange =
     (key: keyof typeof formData) =>
-      (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData((prev) => ({ ...prev, [key]: event.target.value }));
-      };
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((prev) => ({ ...prev, [key]: event.target.value }));
+      setError("");
+    };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { name, email, subject, message } = formData;
-    const encodedMessage = encodeURIComponent(
-      `${content.heading}\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
-    );
-    window.open(`${CONTACT_WHATSAPP_URL}?text=${encodedMessage}`, "_blank");
+    if (!name.trim() || !message.trim()) {
+      setError(ui.required);
+      return;
+    }
+    const lines = [
+      `${content.nameLabel}: ${name}`,
+      email ? `${content.emailLabel}: ${email}` : "",
+      subject ? `${content.subjectLabel}: ${subject}` : "",
+      "",
+      message,
+    ].filter((line, i) => line !== "" || i === 3);
+    window.open(`${CONTACT_WHATSAPP_URL}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
   };
 
+  const fieldClass =
+    "mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-ink outline-none transition placeholder:text-muted/60 focus:border-teal focus:ring-4 focus:ring-teal/10";
+
+  const methods = [
+    {
+      href: CONTACT_PHONE_TEL,
+      icon: Phone,
+      label: ui.phone,
+      value: CONTACT_PHONE_DISPLAY_FORMATTED,
+      ltr: true,
+    },
+    {
+      href: CONTACT_PHONE_TEL_2,
+      icon: Phone,
+      label: ui.phone,
+      value: CONTACT_PHONE_DISPLAY_2_FORMATTED,
+      ltr: true,
+    },
+    {
+      href: `mailto:${content.email}`,
+      icon: Mail,
+      label: ui.email,
+      value: content.email,
+      ltr: true,
+    },
+  ];
+
   return (
-    <LanguageDirWrapper>
-      <div
-        className={`mx-auto min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-slate-50 to-blue-50 md:max-w-7xl ${isRTL ? "rtl" : "ltr"}`}
-      >
-        <main className="space-y-12 px-4 py-8 md:px-8 md:py-12">
-          <Header />
+    <PageShell>
+      <PageHero eyebrow={ui.eyebrow} title={content.heading} subtitle={content.description} />
 
-          {/* Hero Section */}
-          <section className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-slate-900 via-[#0dadd1] to-[#377bc9] p-8 md:p-16 shadow-2xl">
-            {/* Decorative Elements */}
-            <div className="absolute inset-0">
-              <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
-              <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#0dadd1]/20 blur-3xl" />
-              <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#377bc9]/10 blur-2xl" />
-            </div>
+      <section className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+        {/* Contact methods */}
+        <div className="space-y-4">
+          <a
+            href={CONTACT_WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="group relative flex items-center gap-4 overflow-hidden rounded-[24px] bg-gradient-to-br from-[#25d366] to-[#128c4b] p-5 text-white shadow-[0_20px_40px_-24px_rgba(18,140,75,0.8)] md:p-6"
+          >
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/20">
+              <WhatsAppIcon className="h-7 w-7" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-lg font-extrabold">{ui.whatsapp}</span>
+              <span className="block text-sm text-white/85">{ui.whatsappHint}</span>
+            </span>
+            <span dir="ltr" className="hidden text-sm font-bold sm:block">
+              {CONTACT_PHONE_DISPLAY_FORMATTED}
+            </span>
+          </a>
 
-            {/* Pattern Overlay */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }} />
-            </div>
-
-            {/* Floating Icons */}
-            <div className="absolute right-10 top-20 hidden animate-bounce md:block">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm">
-                <Plane className="h-8 w-8" />
-              </div>
-            </div>
-            <div className="absolute left-10 bottom-20 hidden animate-pulse md:block">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-sm">
-                <Pin className="h-8 w-8" />
-              </div>
-            </div>
-
-            <div className="relative z-10 text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm shadow-2xl">
-                <MessageCircle className="h-8 w-8" />
-              </div>
-              <h1 className="mt-6 text-3xl font-black text-white md:text-5xl lg:text-6xl drop-shadow-lg">
-                {content.heading}
-              </h1>
-              <p className="mx-auto mt-4 max-w-[42rem] text-base leading-8 text-white/90 md:text-lg md:leading-9 drop-shadow">
-                {content.description}
-              </p>
-
-              {/* Decorative Dots */}
-              <div className="mt-8 flex justify-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-white/60" />
-                <div className="h-2 w-2 rounded-full bg-white/40" />
-                <div className="h-2 w-2 rounded-full bg-white/20" />
-              </div>
-            </div>
-          </section>
-
-          {/* Contact Section */}
-          <section className="grid gap-8 rounded-[32px] bg-gradient-to-br from-white to-slate-50 p-8 shadow-xl ring-1 ring-slate-200/50 md:grid-cols-2 md:p-12 lg:p-16">
-            {/* Left - Contact Information */}
-            <div
-              className={`group overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0dadd1] to-[#377bc9] p-8 text-white shadow-lg transition-all hover:shadow-xl ${isRTL ? "text-right" : "text-left"}`}
-            >
-              <h2 className="text-2xl font-bold md:text-3xl">
-                {content.contactTitle}
-              </h2>
-              <p className="mt-3 text-sm opacity-90 md:text-base">
-                {content.contactSubtitle}
-              </p>
-
-              <div className="mt-8 space-y-6">
-                {/* Phone */}
-                <a
-                  href={CONTACT_WHATSAPP_URL}
-                  className={`group flex items-start gap-4 rounded-2xl bg-white/10 p-4 transition-all hover:bg-white/20 hover:-translate-x-1 ${isRTL ? "flex-row-reverse hover:translate-x-1" : "flex-row"}`}
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20 transition-transform group-hover:scale-110">
-                    <Phone className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold">Phone</p>
-                    <p className="text-sm opacity-90">{content.phone}</p>
-                  </div>
+          <ul className="ks-card divide-y divide-line">
+            {methods.map((m) => (
+              <li key={m.value}>
+                <a href={m.href} className="flex items-center gap-4 p-4 transition-colors hover:bg-canvas/60 md:p-5">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-soft text-teal">
+                    <m.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs font-semibold text-muted">{m.label}</span>
+                    <span dir={m.ltr ? "ltr" : undefined} className="block truncate font-bold text-ink">
+                      {m.value}
+                    </span>
+                  </span>
                 </a>
+              </li>
+            ))}
+          </ul>
 
-                {/* Email */}
-                <a
-                  href={`mailto:${content.email}`}
-                  className={`group flex items-start gap-4 rounded-2xl bg-white/10 p-4 transition-all hover:bg-white/20 hover:-translate-x-1 ${isRTL ? "flex-row-reverse hover:translate-x-1" : "flex-row"}`}
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20 transition-transform group-hover:scale-110">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold">Email</p>
-                    <p className="text-sm opacity-90">{content.email}</p>
-                  </div>
-                </a>
+          <div className="ks-card p-5">
+            <p className="flex items-center gap-2 text-sm font-extrabold text-ink">
+              <MapPin className="h-4 w-4 text-teal" aria-hidden="true" />
+              {content.locationTitle}
+            </p>
+            <ul className="mt-4 grid grid-cols-2 gap-3">
+              {[
+                { flag: "🇫🇷", city: content.locationFrance, country: ui.france },
+                { flag: "🇸🇪", city: content.locationSweden, country: ui.sweden },
+              ].map((office) => (
+                <li key={office.city} className="rounded-2xl bg-canvas p-4">
+                  <span className="text-2xl" aria-hidden="true">
+                    {office.flag}
+                  </span>
+                  <p className="mt-2 text-sm font-bold text-ink">{office.city}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
-                {/* Locations */}
-                <div className="rounded-2xl bg-white/10 p-5">
-                  <div className="flex items-center gap-3 mb-4">
-                    <MapPin className="h-5 w-5" />
-                    <p className="text-sm font-semibold uppercase tracking-wider">
-                      {content.locationTitle}
-                    </p>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="group flex items-center gap-3 rounded-xl bg-white/10 p-4 transition-all hover:bg-white/20 hover:-translate-x-1">
-                      <span className="text-2xl transition-transform group-hover:scale-110">🇫🇷</span>
-                      <p className="text-sm font-semibold">{content.locationFrance}</p>
-                    </div>
-                    <div className="group flex items-center gap-3 rounded-xl bg-white/10 p-4 transition-all hover:bg-white/20 hover:-translate-x-1">
-                      <span className="text-2xl transition-transform group-hover:scale-110">🇸🇪</span>
-                      <p className="text-sm font-semibold">{content.locationSweden}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Form */}
+        <form onSubmit={handleSubmit} noValidate className="ks-card space-y-4 p-5 md:p-8">
+          <div>
+            <h2 className="text-xl font-extrabold text-ink">{ui.formTitle}</h2>
+            <p className="mt-1 text-sm leading-7 text-muted">{ui.formHint}</p>
+          </div>
 
-            {/* Right - Contact Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label
-                  className={`block text-sm font-semibold text-slate-700 md:text-base ${isRTL ? "text-right" : "text-left"}`}
-                >
-                  {content.nameLabel}
-                </label>
-                <input
-                  type="text"
-                  className={`mt-2 w-full rounded-xl border-2 border-slate-200/50 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition-all focus:border-[#0dadd1] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 md:py-4 md:text-base ${isRTL ? "text-right" : "text-left"}`}
-                  placeholder="John Doe"
-                  value={formData.name}
-                  onChange={handleChange("name")}
-                />
-              </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="block text-sm font-semibold text-ink">
+              {content.nameLabel} *
+              <input type="text" autoComplete="name" className={fieldClass} value={formData.name} onChange={handleChange("name")} />
+            </label>
+            <label className="block text-sm font-semibold text-ink">
+              {content.emailLabel}
+              <input type="email" dir="ltr" autoComplete="email" className={fieldClass} value={formData.email} onChange={handleChange("email")} />
+            </label>
+          </div>
+          <label className="block text-sm font-semibold text-ink">
+            {content.subjectLabel}
+            <input type="text" className={fieldClass} value={formData.subject} onChange={handleChange("subject")} />
+          </label>
+          <label className="block text-sm font-semibold text-ink">
+            {content.messageLabel} *
+            <textarea
+              rows={5}
+              className={`${fieldClass} resize-y leading-7`}
+              placeholder={content.writePlaceholder}
+              value={formData.message}
+              onChange={handleChange("message")}
+            />
+          </label>
 
-              <div>
-                <label
-                  className={`block text-sm font-semibold text-slate-700 md:text-base ${isRTL ? "text-right" : "text-left"}`}
-                >
-                  {content.emailLabel}
-                </label>
-                <input
-                  type="email"
-                  className={`mt-2 w-full rounded-xl border-2 border-slate-200/50 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition-all focus:border-[#0dadd1] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 md:py-4 md:text-base ${isRTL ? "text-right" : "text-left"}`}
-                  placeholder="hello@example.com"
-                  value={formData.email}
-                  onChange={handleChange("email")}
-                />
-              </div>
+          {error ? (
+            <p role="alert" className="rounded-xl bg-red-50 px-3 py-2.5 text-sm font-medium text-red-700">
+              {error}
+            </p>
+          ) : null}
 
-              <div>
-                <label
-                  className={`block text-sm font-semibold text-slate-700 md:text-base ${isRTL ? "text-right" : "text-left"}`}
-                >
-                  {content.subjectLabel}
-                </label>
-                <input
-                  type="text"
-                  className={`mt-2 w-full rounded-xl border-2 border-slate-200/50 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition-all focus:border-[#0dadd1] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 md:py-4 md:text-base ${isRTL ? "text-right" : "text-left"}`}
-                  placeholder="I need help with visa"
-                  value={formData.subject}
-                  onChange={handleChange("subject")}
-                />
-              </div>
+          <button type="submit" className="ks-btn ks-btn-primary w-full py-4 sm:w-auto sm:px-8">
+            <Send className="h-5 w-5 rtl:-scale-x-100" aria-hidden="true" />
+            {content.sendButton}
+          </button>
+        </form>
+      </section>
 
-              <div>
-                <label
-                  className={`block text-sm font-semibold text-slate-700 md:text-base ${isRTL ? "text-right" : "text-left"}`}
-                >
-                  {content.messageLabel}
-                </label>
-                <textarea
-                  className={`mt-2 w-full rounded-xl border-2 border-slate-200/50 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition-all focus:border-[#0dadd1] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0dadd1]/20 md:py-4 md:text-base ${isRTL ? "text-right" : "text-left"}`}
-                  rows={5}
-                  placeholder={content.writePlaceholder}
-                  value={formData.message}
-                  onChange={handleChange("message")}
-                />
-              </div>
-
-              <div
-                className={`flex ${isRTL ? "justify-end" : "justify-start"}`}
-              >
-                <button
-                  type="submit"
-                  className={`group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#0dadd1] to-[#377bc9] px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-1 md:px-8 md:py-4 md:text-base ${isRTL ? "flex-row-reverse" : "flex-row"}`}
-                >
-                  <Send className="h-5 w-5 transition-transform group-hover:scale-110" />
-                  {content.sendButton}
-                </button>
-              </div>
-            </form>
-          </section>
-        </main>
-        <Footer />
-      </div>
-    </LanguageDirWrapper>
+      <Faq />
+    </PageShell>
   );
 }

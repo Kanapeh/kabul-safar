@@ -1,14 +1,12 @@
 "use client";
 
-import { About } from "@/sections/about";
-import { CtaPromo } from "@/sections/cta-promo";
-import { Footer } from "@/sections/footer";
-import { Header } from "@/sections/header";
-import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
+import { CheckCircle2, Plane, Scale, Search } from "lucide-react";
+import { PageShell } from "@/components/page-shell";
+import { PageHero } from "@/components/page-hero";
 import { FlightSearchForm } from "@/components/flight-search-form";
 import { useI18n } from "@/components/i18n-provider";
-
-import { FileCheck, Send, Clock, Plane, MapPin, Search } from "lucide-react";
+import { CtaPromo } from "@/sections/cta-promo";
+import { Destination } from "@/sections/destination";
 
 const pageText = {
   fa: {
@@ -26,19 +24,19 @@ const pageText = {
         title: "جستجوی سریع",
         description:
           "در چند ثانیه بهترین پروازها را برای مسیر خود پیدا کنید.",
-        icon: FileCheck,
+        icon: Search,
       },
       {
         title: "مقایسه قیمت‌ها",
         description:
           "قیمت‌ها را از ایرلاین‌های مختلف مقایسه کنید و بهترین گزینه را انتخاب کنید.",
-        icon: Send,
+        icon: Scale,
       },
       {
         title: "رزرو آسان",
         description:
           "فرآیند رزرو ساده و سریع با پشتیبانی در تمام مراحل.",
-        icon: Clock,
+        icon: CheckCircle2,
       },
     ],
   },
@@ -56,18 +54,18 @@ const pageText = {
       {
         title: "Fast search",
         description: "Find the best flights for your route in seconds.",
-        icon: FileCheck,
+        icon: Search,
       },
       {
         title: "Compare prices",
         description:
           "Compare prices from different airlines and choose the best option.",
-        icon: Send,
+        icon: Scale,
       },
       {
         title: "Easy booking",
         description: "Simple and quick booking process with support at every step.",
-        icon: Clock,
+        icon: CheckCircle2,
       },
     ],
   },
@@ -82,123 +80,92 @@ const pageText = {
     ],
     steps: [
       {
-        title: "چ٫که لټون",
+        title: "چټک لټون",
         description:
-          "خپل لار لپاره غوره الوتنې په چندانو ثانیو کې ومومئ.",
-        icon: FileCheck,
+          "خپل لار لپاره غوره الوتنې په څو ثانیو کې ومومئ.",
+        icon: Search,
       },
       {
-        title: "د قیمتونو پرتګال",
+        title: "د بیو پرتله",
         description:
-          "د مختلفو الوتونکو شرکتونو څخه قیمتونه پرتګال کړئ او غوره غوره وټاکئ.",
-        icon: Send,
+          "د مختلفو الوتونکو شرکتونو څخه بیې پرتله کړئ او غوره انتخاب وټاکئ.",
+        icon: Scale,
       },
       {
         title: "اسانه راجستر",
         description:
-          "ساده او چ٫که راجستر پروسه په هر پړاو کې ملاتڬ سره.",
-        icon: Clock,
+          "ساده او چټکه بکینګ پروسه په هر پړاو کې له ملاتړ سره.",
+        icon: CheckCircle2,
       },
     ],
   },
 };
 
-export default function VisaPage() {
+export default function FlightsPage() {
   const { lang } = useI18n();
-  const content = pageText[lang];
-  const isRtl = lang !== "en";
+  const content = pageText[lang] ?? pageText.fa;
+  const eyebrow = lang === "en" ? "Flight search" : lang === "ps" ? "د الوتنې لټون" : "جستجوی پرواز";
+  const formTitle = lang === "fa" ? "مسیر سفر خود را وارد کنید" : lang === "ps" ? "د خپل سفر لاره ولیکئ" : "Enter your route";
 
   return (
-    <LanguageDirWrapper>
-      <div className="mx-auto min-h-screen w-full bg-gradient-to-br from-slate-50 to-blue-50 max-w-7xl">
-        <main className="space-y-12 px-4 py-8 md:px-8 md:py-12">
-          <Header />
+    <PageShell>
+      <PageHero
+        tone="dark"
+        className="pb-24 md:pb-32"
+        eyebrow={eyebrow}
+        eyebrowIcon={<Plane className="h-3.5 w-3.5" aria-hidden="true" />}
+        title={content.title}
+        subtitle={content.subtitle}
+      />
 
-          {/* Hero Section */}
-          <section
-            dir={isRtl ? "rtl" : "ltr"}
-            className="relative overflow-hidden rounded-[28px] bg-[#10263b] p-6 shadow-xl md:rounded-[32px] md:p-12"
-          >
-            <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#0dadd1]/20 blur-3xl" />
-            <div className="relative z-10">
-              <div className={`motion-enter w-full max-w-[42rem] md:pe-[15rem] ${isRtl ? "text-right" : "text-left"}`}>
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-cyan-100">
-                  <Plane className="h-3.5 w-3.5" aria-hidden="true" />
-                  {lang === "en" ? "FLIGHT SEARCH" : lang === "ps" ? "د الوتنې لټون" : "جستجوی پرواز"}
+      <section
+        id="flight-search"
+        aria-labelledby="flight-form-title"
+        className="ks-card relative z-10 -mt-20 scroll-mt-24 px-4 py-6 md:mx-8 md:-mt-24 md:px-10 md:py-9"
+      >
+        <h2 id="flight-form-title" className="mb-5 flex items-center gap-2 text-lg font-extrabold text-ink md:text-xl">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-soft text-teal">
+            <Search className="h-4 w-4" aria-hidden="true" />
+          </span>
+          {formTitle}
+        </h2>
+        <FlightSearchForm />
+      </section>
+
+      <section aria-labelledby="why-book" className="space-y-6">
+        <div className="text-center">
+          <h2 id="why-book" className="text-[22px] font-extrabold text-ink md:text-[30px]">
+            {content.highlight}
+          </h2>
+          <ul className="mx-auto mt-4 flex max-w-[44rem] flex-col items-center gap-2 md:flex-row md:justify-center md:gap-6">
+            {content.points.map((point) => (
+              <li key={point} className="flex items-center gap-2 text-sm font-semibold text-muted">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-teal" aria-hidden="true" />
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <ol className="grid gap-3 md:grid-cols-3 md:gap-5">
+          {content.steps.map((step, index) => (
+            <li key={step.title} className="ks-card flex items-start gap-4 p-5 md:flex-col md:p-7">
+              <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-teal-soft text-teal">
+                <step.icon className="h-6 w-6" aria-hidden="true" />
+                <span className="absolute -end-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-navy text-xs font-bold text-white ring-4 ring-white">
+                  {lang === "en" ? index + 1 : (index + 1).toLocaleString("fa-IR")}
                 </span>
-                <h1 className="mt-4 text-balance text-3xl font-black leading-[1.35] text-white md:text-5xl md:leading-tight">
-                  {content.title}
-                </h1>
-                <p className="mt-4 max-w-[36rem] text-pretty text-sm leading-7 text-slate-300 md:text-base md:leading-8">
-                  {content.subtitle}
-                </p>
-                <a
-                  href="#flight-search"
-                  className="primary-action motion-action mt-6 inline-flex min-h-12 items-center justify-center gap-sm rounded-xl px-5 py-3 text-sm font-bold text-white shadow-lg md:px-6 md:text-base"
-                >
-                  <Search className="h-4 w-4" aria-hidden="true" />
-                  {content.action}
-                </a>
+              </span>
+              <div>
+                <h3 className="text-base font-extrabold text-ink md:text-lg">{step.title}</h3>
+                <p className="mt-1 text-sm leading-7 text-muted">{step.description}</p>
               </div>
+            </li>
+          ))}
+        </ol>
+      </section>
 
-              <div className="motion-enter relative mx-auto mt-8 flex h-36 w-36 items-center justify-center rounded-[32px] border border-white/15 bg-white/10 shadow-2xl backdrop-blur-sm [--motion-delay:160ms] md:absolute md:end-0 md:top-1/2 md:mx-0 md:mt-0 md:h-52 md:w-52 md:-translate-y-1/2">
-                <div className="absolute inset-4 rounded-[26px] border border-dashed border-cyan-100/35" />
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0dadd1] text-white shadow-lg md:h-20 md:w-20">
-                  <Plane className="h-8 w-8 md:h-10 md:w-10" aria-hidden="true" />
-                </div>
-                <MapPin className="absolute bottom-5 left-5 h-5 w-5 text-cyan-100" aria-hidden="true" />
-                <MapPin className="absolute right-5 top-5 h-5 w-5 text-white/70" aria-hidden="true" />
-              </div>
-            </div>
-          </section>
-
-          {/* Steps Section */}
-          <section className="rounded-[32px] bg-gradient-to-br from-white to-slate-50 p-6 shadow-xl ring-1 ring-slate-200/50 md:p-12">
-            <div className="mb-6">
-              <h2 className="text-xl font-black text-slate-900 md:text-3xl">
-                {content.highlight}
-              </h2>
-            </div>
-            <div className="grid gap-3 grid-cols-3">
-              {content.steps.map((step) => (
-                <div
-                  key={step.title}
-                  className="motion-card group overflow-hidden rounded-[20px] border border-slate-200/50 bg-gradient-to-br from-white to-slate-50 p-3 shadow-lg ring-1 ring-slate-200/50"
-                >
-                  <div className="motion-card-icon flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg md:h-10 md:w-10">
-                    <step.icon className="h-4 w-4 md:h-5 md:w-5" />
-                  </div>
-                  <h3 className="mt-2 text-[10px] font-bold text-slate-900 md:text-sm group-hover:text-[#0dadd1] transition-colors">
-                    {step.title}
-                  </h3>
-                  <p className="mt-1.5 text-[9px] leading-3 text-slate-600 md:text-xs md:leading-4">
-                    {step.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Flight Search Form Section */}
-          <section id="flight-search" className="scroll-mt-8 rounded-[32px] bg-gradient-to-br from-white to-slate-50 p-6 shadow-xl ring-1 ring-slate-200/50 md:p-12">
-            <div className="mb-6">
-              <h2 className="text-xl font-black text-slate-900 md:text-3xl">
-                {lang === "fa" ? "جستجوی پرواز" : lang === "ps" ? "الوتنه وپلټئ" : "Search Flights"}
-              </h2>
-              <p className="mt-2 text-sm text-slate-600 md:text-base">
-                {lang === "fa" ? "بهترین پروازها را برای سفر خود پیدا کنید" : lang === "ps" ? "خپل سفر لپاره غوره الوتنې ومومئ" : "Find the best flights for your trip"}
-              </p>
-            </div>
-            <div className="w-full">
-              <FlightSearchForm />
-            </div>
-          </section>
-
-          <About />
-          <CtaPromo />
-        </main>
-        <Footer />
-      </div>
-    </LanguageDirWrapper>
+      <Destination />
+      <CtaPromo />
+    </PageShell>
   );
 }

@@ -107,12 +107,12 @@ const content: Record<Lang, LocalizedContent> = {
       { label: "تماس با ما" },
     ],
     hero: {
-      titlePrefix: "ویزای",
-      titleIran: "ایران و",
-      titleAsia: "ترکیه",
+      titlePrefix: "ویزا و بلیط سفر",
+      titleIran: "به همه کشورها",
+      titleAsia: "",
       subTitle: "برای افغان‌ها",
       description:
-        "برای ویزای ایران و ترکیه، با مشاوره رایگان و پشتیبانی به زبان دری، پشتو و انگلیسی همراهتان هستیم.",
+        "از ویزای ایران و ترکیه تا مقصدهای دیگر، و بلیط پرواز به هر کجای دنیا؛ با مشاوره رایگان و پشتیبانی به زبان دری، پشتو و انگلیسی همراهتان هستیم.",
       bullets: ["مشاوره رایگان سفر", "بررسی مدارک", "پیگیری درخواست"],
       consultCta: "شروع درخواست ویزا",
       tags: [
@@ -140,7 +140,7 @@ const content: Record<Lang, LocalizedContent> = {
       steps: [
         {
           title: "خدمت مورد نظر خود را انتخاب کنید",
-          description: "ویزای ایران یا مشاوره برای بلیط سفر",
+          description: "ویزای کشور مقصد یا بلیط پرواز به هر کجای دنیا",
         },
         {
           title: "درخواست خود را ثبت کنید",
@@ -156,16 +156,16 @@ const content: Record<Lang, LocalizedContent> = {
       titlePrefix: "سفر به",
       titleAccent: "وطن",
       titleSuffix: "با خدمات کابل سفر ساده تر از همیشه",
-      body: "ما با ارائه راهنمایی تخصصی، ارتباط شفاف و پشتیبانی قابل اعتماد، روند دریافت ویزای ایران را برای هموطنان افغان مقیم اروپا آسان و مطمئن می‌سازیم",
+      body: "ما با ارائه راهنمایی تخصصی، ارتباط شفاف و پشتیبانی قابل اعتماد، روند دریافت ویزا و تهیه بلیط سفر به هر کشوری را برای هموطنان افغان مقیم اروپا آسان و مطمئن می‌سازیم",
     },
     stats: {
       title: "خدمات ما",
-      labels: ["دری، پشتو و انگلیسی", "ایران و ترکیه", "مشاوره و پیگیری"],
+      labels: ["دری، پشتو و انگلیسی", "ویزا و بلیط به هر مقصد", "مشاوره و پیگیری"],
     },
     why: {
       title: "ساده، مطمئن و حرفه‌ای",
       subtitle:
-        "دریافت ویزای ایران نباید پیچیده باشد. ما با ارائه راهنمایی دقیق، پشتیبانی حرفه‌ای و ارتباط شفاف، این مسیر را برای شما آسان می‌کنیم.",
+        "دریافت ویزا و بلیط سفر نباید پیچیده باشد. ما با ارائه راهنمایی دقیق، پشتیبانی حرفه‌ای و ارتباط شفاف، این مسیر را برای شما آسان می‌کنیم.",
       cards: [
         {
           title: "پشتیبانی حرفه‌ای",
@@ -187,7 +187,7 @@ const content: Record<Lang, LocalizedContent> = {
     about: {
       title: "درباره ما",
       description:
-        "کابل سفر به هم‌وطنان افغان مقیم اروپا برای ویزای ایران و ترکیه و تهیه بلیط پرواز راهنمایی می‌کند. تیم ما در بررسی مدارک، توضیح مراحل و پاسخ‌گویی به پرسش‌ها همراه شماست تا با آگاهی بیشتری برای سفر برنامه‌ریزی کنید.",
+        "کابل سفر به هم‌وطنان افغان مقیم اروپا برای دریافت ویزای کشورهای مختلف و تهیه بلیط پرواز به هر مقصدی راهنمایی می‌کند. تیم ما در بررسی مدارک، توضیح مراحل و پاسخ‌گویی به پرسش‌ها همراه شماست تا با آگاهی بیشتری برای سفر برنامه‌ریزی کنید.",
     },
     testimonials: {
       title: "داستان مسافرین ما",
@@ -226,7 +226,7 @@ const content: Record<Lang, LocalizedContent> = {
         {
           question: "مدارک مورد نیاز چه چیزهایی هستند؟",
           answer:
-            "لیست مدارک لازم برای ویزای ایران بر اساس وضعیت شما ارسال می‌شود و در هر مرحله همراهتان خواهیم بود.",
+            "لیست مدارک لازم بر اساس کشور مقصد و وضعیت شما ارسال می‌شود و در هر مرحله همراهتان خواهیم بود.",
         },
         {
           question: "پشتیبانی به چه زبان‌هایی ارائه می‌شود؟",
@@ -244,7 +244,7 @@ const content: Record<Lang, LocalizedContent> = {
     footer: {
       brand: "Kabul Safar",
       blurb:
-        "کابل سفر همراه مطمئن شما در دریافت ویزای ایران و ترکیه و خدمات سفر است. ما با ارائه مشاوره تخصصی و پشتیبانی حرفه‌ای، در تمام مراحل کنار شما خواهیم بود.",
+        "کابل سفر همراه مطمئن شما در دریافت ویزا، بلیط پرواز و خدمات سفر به همه کشورهاست. ما با ارائه مشاوره تخصصی و پشتیبانی حرفه‌ای، در تمام مراحل کنار شما خواهیم بود.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
@@ -291,12 +291,12 @@ const content: Record<Lang, LocalizedContent> = {
       { label: "Contact" },
     ],
     hero: {
-      titlePrefix: "Iran & Turkey Visa",
-      titleIran: "",
+      titlePrefix: "Visas & Flights",
+      titleIran: "to Every Country",
       titleAsia: "",
       subTitle: "For Afghans",
       description:
-        "Get free guidance for Iran and Turkey visas, with support in Dari, Pashto, and English.",
+        "From Iran and Turkey to destinations worldwide — visa guidance and flight tickets anywhere, with free consultation and support in Dari, Pashto, and English.",
       bullets: [
         "Free initial consultation",
         "Document review",
@@ -328,7 +328,7 @@ const content: Record<Lang, LocalizedContent> = {
       steps: [
         {
           title: "Choose your service",
-          description: "Iran visa or ticket consultation",
+          description: "A visa for your destination or a flight anywhere",
         },
         {
           title: "Submit your request",
@@ -344,20 +344,20 @@ const content: Record<Lang, LocalizedContent> = {
       titlePrefix: "Travel to",
       titleAccent: "Homeland",
       titleSuffix: "with Kabul Safar, easier than ever",
-      body: "With expert guidance, clear communication, and trusted support, we make Iran visa processing easy and reliable for Afghan citizens living in Europe.",
+      body: "With expert guidance, clear communication, and trusted support, we make visas and flight bookings to any country easy and reliable for Afghans living in Europe.",
     },
     stats: {
       title: "Our services",
       labels: [
         "Dari, Pashto, English",
-        "Iran and Turkey",
+        "Visas & flights anywhere",
         "Consultation and follow-up",
       ],
     },
     why: {
       title: "Simple, secure, professional",
       subtitle:
-        "Getting an Iran visa should not be complicated. We make the process easy through clear guidance and professional support.",
+        "Getting a visa or a flight should not be complicated. We make the process easy through clear guidance and professional support.",
       cards: [
         {
           title: "Professional support",
@@ -379,7 +379,7 @@ const content: Record<Lang, LocalizedContent> = {
     about: {
       title: "About us",
       description:
-        "Kabul Safar helps Afghans living in Europe with guidance for Iran and Turkey visas and flight bookings. Our team reviews documents, explains each step, and answers questions so you can plan your trip with clearer information.",
+        "Kabul Safar helps Afghans living in Europe with visas for many countries and flight bookings to any destination. Our team reviews documents, explains each step, and answers questions so you can plan your trip with clearer information.",
     },
     testimonials: {
       title: "Traveler stories",
@@ -436,7 +436,7 @@ const content: Record<Lang, LocalizedContent> = {
     footer: {
       brand: "Kabul Safar",
       blurb:
-        "Kabul Safar is your reliable partner for Iran and Turkey visa and travel services. We provide expert consultation and support in every step.",
+        "Kabul Safar is your reliable partner for visas, flights and travel services to every country. We provide expert consultation and support in every step.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
@@ -483,12 +483,12 @@ const content: Record<Lang, LocalizedContent> = {
       { label: "اړیکه" },
     ],
     hero: {
-      titlePrefix: "د",
-      titleIran: "ایران او",
-      titleAsia: "ترکیې ویزې",
+      titlePrefix: "ویزه او د الوتکې ټکټ",
+      titleIran: "ټولو هېوادونو ته",
+      titleAsia: "",
       subTitle: "د افغانانو لپاره",
       description:
-        "د ایران او ترکیې ویزو لپاره وړیا مشوره او په دري، پښتو او انګلیسي ژبو ملاتړ ترلاسه کړئ.",
+        "له ایران او ترکیې نیولې تر نورو هېوادونو — ویزه او د نړۍ هر ځای ته ټکټ، له وړیا مشورې او په دري، پښتو او انګلیسي ملاتړ سره.",
       bullets: [
         "لومړنۍ وړیا مشوره",
         "د اسنادو کتنه",
@@ -518,7 +518,7 @@ const content: Record<Lang, LocalizedContent> = {
       subtitle:
         "په درې اسانه پړاوونو کې خپله غوښتنه ثبت کړئ. بهیر د واتساپ له لارې ډېر ساده دی.",
       steps: [
-        { title: "خپل خدمت وټاکئ", description: "د ایران ویزه یا د ټکټ مشوره" },
+        { title: "خپل خدمت وټاکئ", description: "د منزل هېواد ویزه یا هر ځای ته د الوتنې ټکټ" },
         {
           title: "غوښتنه ثبت کړئ",
           description: "له موږ سره د واتساپ یا فورم له لارې اړیکه ونیسئ.",
@@ -533,17 +533,17 @@ const content: Record<Lang, LocalizedContent> = {
       titlePrefix: "آسیا ته سفر",
       titleAccent: "وطن",
       titleSuffix: "د کابل سفر له خدمتونو سره تر هر وخت اسانه",
-      body: "موږ د مسلکي لارښوونې، روښانه اړیکو او باور وړ ملاتړ له لارې د اروپا مېشتو افغانانو لپاره د ایران ویزې بهیر اسانه او خوندي کوو.",
+      body: "موږ د مسلکي لارښوونې، روښانه اړیکو او باور وړ ملاتړ له لارې د اروپا مېشتو افغانانو لپاره هر هېواد ته د ویزې او ټکټ بهیر اسانه او خوندي کوو.",
 
     },
     stats: {
       title: "زموږ خدمتونه",
-      labels: ["دري، پښتو او انګلیسي", "ایران او ترکیه", "مشوره او تعقیب"],
+      labels: ["دري، پښتو او انګلیسي", "هر منزل ته ویزه او ټکټ", "مشوره او تعقیب"],
     },
     why: {
       title: "اسانه، خوندي، مسلکي",
       subtitle:
-        "د ایران ویزه باید پېچلې نه وي. موږ دا لاره د دقیقې لارښوونې او مسلکي ملاتړ له لارې اسانه کوو.",
+        "د ویزې او ټکټ اخیستل باید پېچلي نه وي. موږ دا لاره د دقیقې لارښوونې او مسلکي ملاتړ له لارې اسانه کوو.",
       cards: [
         {
           title: "مسلکي ملاتړ",
@@ -563,7 +563,7 @@ const content: Record<Lang, LocalizedContent> = {
     about: {
       title: "زموږ په اړه",
       description:
-        "کابل سفر په اروپا کې مېشتو افغانانو ته د ایران او ترکیې ویزو او د الوتنو د ټکټونو په اړه لارښوونه کوي. زموږ ټیم د اسنادو په کتنه، د پړاوونو په تشریح او ستاسو پوښتنو ته په ځواب ویلو کې مرسته کوي، څو خپل سفر په لا ښه معلوماتو پلان کړئ.",
+        "کابل سفر په اروپا کې مېشتو افغانانو ته د بېلابېلو هېوادونو د ویزو او هر منزل ته د الوتنو د ټکټونو په اړه لارښوونه کوي. زموږ ټیم د اسنادو په کتنه، د پړاوونو په تشریح او ستاسو پوښتنو ته په ځواب ویلو کې مرسته کوي، څو خپل سفر په لا ښه معلوماتو پلان کړئ.",
     },
     testimonials: {
       title: "د مسافرو کیسې",
@@ -619,7 +619,7 @@ const content: Record<Lang, LocalizedContent> = {
     footer: {
       brand: "Kabul Safar",
       blurb:
-        "کابل سفر د ایران او ترکیې ویزې او سفر خدمتونو کې ستاسو باوري ملګری دی. موږ په هر پړاو کې مسلکي مشوره او ملاتړ وړاندې کوو.",
+        "کابل سفر ټولو هېوادونو ته د ویزې، ټکټ او سفر خدمتونو کې ستاسو باوري ملګری دی. موږ په هر پړاو کې مسلکي مشوره او ملاتړ وړاندې کوو.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
       designer: "Designer: Sepanta(Ali) Alizadeh",
@@ -728,10 +728,10 @@ export function getStatsContent(lang: Lang): {
   const localized = pick(lang).stats;
   const values =
     lang === "en"
-      ? ["3 languages", "2 countries", "WhatsApp"]
+      ? ["3 languages", "All countries", "WhatsApp"]
       : lang === "ps"
-        ? ["۳ ژبې", "۲ هېوادونه", "واټساپ"]
-        : ["۳ زبان", "۲ کشور", "واتساپ"];
+        ? ["۳ ژبې", "ټول هېوادونه", "واټساپ"]
+        : ["۳ زبان", "همه کشورها", "واتساپ"];
 
   return {
     title: localized.title,

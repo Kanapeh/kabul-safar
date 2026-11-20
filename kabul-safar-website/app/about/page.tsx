@@ -1,10 +1,16 @@
 "use client";
 
-import { Footer } from "@/sections/footer";
-import { Header } from "@/sections/header";
-import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
+import Image from "next/image";
+import { Check, Clock, Globe, Heart, Quote, Shield } from "lucide-react";
+import { PageShell } from "@/components/page-shell";
+import { PageHero } from "@/components/page-hero";
+import { SectionHeading } from "@/components/section-heading";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { useI18n } from "@/components/i18n-provider";
-import { Plane, Shield, Clock, Heart, Globe, Check } from "lucide-react";
+import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
+import { CtaPromo } from "@/sections/cta-promo";
+import { Testimonials } from "@/sections/testimonials";
 
 const pageText = {
   fa: {
@@ -115,15 +121,15 @@ const pageText = {
     ],
     features: [
       {
-        title: "ویرزې ساده کول",
+        title: "ویزه ساده کول",
         description:
           "موږ د پیچلو ویزې مرحلو لپاره واضح او ګام په ګام لارښود وړاندې کوو.",
         icon: Shield,
       },
       {
-        title: "چ٫ک ټکټونه",
+        title: "چټک ټکټونه",
         description:
-          "موږ غوره لارې پیدا کوو او ستاسو الوتنې په چ٫کۍ او اطمینان سره بBOOK کوو.",
+          "موږ غوره لارې پیدا کوو او ستاسو الوتنې په چټکۍ او اطمینان سره بک کوو.",
         icon: Clock,
       },
       {
@@ -144,7 +150,7 @@ const pageText = {
     quoteBy: "د کابل سفر ټیم",
     impact: [
       "د مهاجرو لپاره هر وخت واتساپ ملاتړ",
-      "د نړۍ په کچه چ٫که ټکټ او ویزه همغږي",
+      "د نړۍ په کچه چټک ټکټ او ویزه همغږي",
       "تر تګ او رسیدو پورې بشپړ مرسته",
     ],
   },
@@ -152,171 +158,98 @@ const pageText = {
 
 export default function AboutPage() {
   const { lang } = useI18n();
-  const content = pageText[lang];
-  const isRtl = lang !== "en";
+  const content = pageText[lang] ?? pageText.fa;
+
+  const ui =
+    lang === "en"
+      ? { eyebrow: "About Kabul Safar", cta: "Talk to our team", impact: "What you can count on", why: "Our values" }
+      : lang === "ps"
+        ? { eyebrow: "د کابل سفر په اړه", cta: "زموږ له ټیم سره خبرې وکړئ", impact: "په څه حساب کولی شئ", why: "زموږ ارزښتونه" }
+        : { eyebrow: "درباره کابل سفر", cta: "گفتگو با تیم ما", impact: "روی چه چیزی می‌توانید حساب کنید", why: "ارزش‌های ما" };
 
   return (
-    <LanguageDirWrapper>
-      <div
-        className={`mx-auto min-h-screen w-full bg-gradient-to-br from-slate-50 to-blue-50 ${isRtl ? "rtl" : "ltr"} max-w-7xl`}
-      >
-        <main className="space-y-16 px-4 py-8 md:px-8 md:py-12">
-          <Header />
+    <PageShell>
+      <PageHero
+        eyebrow={ui.eyebrow}
+        title={content.heading}
+        subtitle={content.description}
+        actions={
+          <a href={CONTACT_WHATSAPP_URL} target="_blank" rel="noreferrer" className="ks-btn ks-btn-primary py-4 sm:px-7">
+            <WhatsAppIcon className="h-5 w-5" />
+            {ui.cta}
+          </a>
+        }
+        aside={
+          <div className="relative mx-auto h-[260px] w-full max-w-[380px] md:h-[340px]">
+            <div className="absolute inset-0 overflow-hidden rounded-t-[999px] rounded-b-[32px] border-4 border-white shadow-[0_24px_48px_-24px_rgba(25,34,56,0.55)]">
+              <Image src="/images/bamiyan.jpg" alt="" fill sizes="380px" className="object-cover" priority />
+            </div>
+            <div className="absolute -bottom-3 start-1/2 flex -translate-x-1/2 items-center gap-2 rounded-2xl border border-line bg-white px-4 py-2.5 shadow-lg rtl:translate-x-1/2">
+              <Image src="/images/Kabul%20safar%20logo.jpg" alt="" width={32} height={32} className="h-8 w-8 rounded-lg object-contain" />
+              <span className="whitespace-nowrap text-sm font-extrabold text-ink">{lang === "en" ? "Kabul Safar" : "کابل سفر"}</span>
+            </div>
+          </div>
+        }
+      />
 
-          {/* Hero Section */}
-          <section
-            dir={isRtl ? "rtl" : "ltr"}
-            className="relative overflow-hidden rounded-[28px] border border-[#d9edf1] bg-gradient-to-br from-[#eaf8fa] via-white to-[#f6fbfc] p-6 shadow-lg md:rounded-[32px] md:p-12"
-          >
-            <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#0dadd1]/10 blur-3xl" />
-            <div className="relative z-10">
-              <div className={`motion-enter w-full max-w-[42rem] md:pe-[18rem] ${isRtl ? "text-right" : "text-left"}`}>
-                <span className="inline-flex rounded-full border border-[#0dadd1]/20 bg-white px-4 py-2 text-xs font-semibold text-[#087f99] shadow-sm md:text-sm">
-                {lang === "en"
-                  ? "About Kabul Safar"
-                  : lang === "ps"
-                    ? "د کابل سفر په اړه"
-                    : "درباره کابل سفر"}
+      <section aria-label={content.highlightTitle}>
+        <ul className="grid grid-cols-3 gap-2 rounded-[24px] bg-navy p-2 md:gap-3 md:p-3">
+          {content.stats.map((stat) => (
+            <li key={stat.label} className="rounded-[18px] bg-white/5 px-2 py-5 text-center md:py-7">
+              <p className="text-2xl font-black text-amber md:text-4xl" dir="ltr">
+                {stat.value}
+              </p>
+              <p className="mt-1 text-xs font-medium leading-5 text-white/70 md:text-sm">{stat.label}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="about-why" className="space-y-6">
+        <SectionHeading id="about-why" eyebrow={ui.why} title={content.highlightTitle} subtitle={content.highlightText} />
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {content.features.map((feature, idx) => (
+            <li key={feature.title}>
+              <ScrollReveal className="h-full" delayMs={idx * 70}>
+                <article className="ks-card motion-card h-full p-6">
+                  <span className="motion-card-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-soft text-teal">
+                    <feature.icon className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-4 text-lg font-extrabold text-ink">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-muted">{feature.description}</p>
+                </article>
+              </ScrollReveal>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
+        <figure className="relative overflow-hidden rounded-[28px] bg-amber-soft/80 p-7 md:p-10">
+          <Quote className="h-10 w-10 text-amber" aria-hidden="true" />
+          <blockquote className="mt-4 text-xl font-extrabold leading-[1.8] text-ink md:text-2xl">
+            {content.quote}
+          </blockquote>
+          <figcaption className="mt-5 text-sm font-bold text-muted">— {content.quoteBy}</figcaption>
+        </figure>
+
+        <div className="ks-card p-7 md:p-8">
+          <h2 className="text-lg font-extrabold text-ink">{ui.impact}</h2>
+          <ul className="mt-5 space-y-4">
+            {content.impact.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                  <Check className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <h1 className="mt-4 text-balance text-3xl font-black leading-[1.4] text-[#10263b] md:text-5xl md:leading-tight">
-                  {content.heading}
-                </h1>
-                <p className="mt-4 max-w-[36rem] text-pretty text-sm leading-7 text-slate-600 md:text-base md:leading-8">
-                  {content.description}
-                </p>
-              </div>
-
-              <div className="motion-enter mt-8 grid w-full max-w-[24rem] grid-cols-3 gap-2 rounded-[24px] border border-white bg-white/80 p-3 shadow-[0_20px_50px_-30px_rgba(16,38,59,0.35)] backdrop-blur-sm [--motion-delay:160ms] md:absolute md:end-0 md:top-1/2 md:mt-0 md:w-64 md:-translate-y-1/2 md:gap-2 md:p-4">
-                {[
-                  {
-                    icon: Shield,
-                    label: lang === "en" ? "Visa guidance" : lang === "ps" ? "د ویزې لارښوونه" : "راهنمایی ویزا",
-                  },
-                  {
-                    icon: Plane,
-                    label: lang === "en" ? "Flight booking" : lang === "ps" ? "د الوتنې ټکټ" : "تهیه بلیط پرواز",
-                  },
-                  {
-                    icon: Globe,
-                    label: lang === "en" ? "Multilingual support" : lang === "ps" ? "څو ژبنی ملاتړ" : "پشتیبانی چندزبانه",
-                  },
-                ].map(({ icon: Icon, label }) => (
-                  <div key={label} className="motion-card flex min-w-0 flex-col items-center gap-2 rounded-xl bg-[#f2f9fa] px-1.5 py-3 text-center text-[10px] font-semibold leading-4 text-[#173448] md:px-2 md:text-xs">
-                    <span className="motion-card-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-[#0dadd1] shadow-sm">
-                      <Icon className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                    <span className="text-balance">{label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Stats Section */}
-          <section className="grid gap-6 rounded-[32px] bg-gradient-to-br from-white to-slate-50 p-8 shadow-xl ring-1 ring-slate-200/50 md:grid-cols-3 md:p-12">
-            {content.stats.map((stat, idx) => (
-              <div
-                key={idx}
-                className={`motion-card group text-center ${idx !== content.stats.length - 1 ? "md:border-r md:border-slate-100" : ""}`}
-              >
-                <p className="text-4xl font-black text-[#0dadd1] md:text-5xl lg:text-6xl drop-shadow">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-sm font-semibold text-slate-600 md:text-base group-hover:text-[#0dadd1] transition-colors">
-                  {stat.label}
-                </p>
-              </div>
+                <span className="text-[15px] leading-7 text-ink">{item}</span>
+              </li>
             ))}
-          </section>
+          </ul>
+        </div>
+      </section>
 
-          {/* Features Section */}
-          <section>
-            <div className={`mb-8 ${isRtl ? "text-right" : "text-left"}`}>
-              <h2 className="text-2xl font-black text-slate-900 md:text-4xl">
-                {content.highlightTitle}
-              </h2>
-              <p className="mt-4 max-w-[42rem] text-base leading-7 text-slate-600 md:text-lg">
-                {content.highlightText}
-              </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {content.features.map((feature, idx) => (
-                <div
-                  key={idx}
-                  className="group overflow-hidden rounded-[24px] border border-slate-200/50 bg-gradient-to-br from-white to-slate-50 p-6 shadow-lg ring-1 ring-slate-200/50 transition-all hover:shadow-2xl hover:-translate-y-2"
-                >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg transition-transform group-hover:scale-110">
-                    <feature.icon className="h-7 w-7" />
-                  </div>
-                  <h3 className="mt-4 text-lg font-bold text-slate-900 md:text-xl group-hover:text-[#0dadd1] transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600 md:text-base">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Quote Section */}
-          <section className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-slate-900 via-[#0dadd1] to-[#377bc9] p-8 md:p-16 shadow-2xl">
-            {/* Decorative Elements */}
-            <div className="absolute inset-0">
-              <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
-              <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-[#0dadd1]/20 blur-3xl" />
-            </div>
-
-            {/* Pattern Overlay */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }} />
-            </div>
-
-            <div className="relative z-10 text-center">
-              <div className="mb-6 flex justify-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 text-4xl text-white backdrop-blur-sm shadow-2xl">
-                  &quot;
-                </div>
-              </div>
-              <p className="text-xl font-bold leading-9 text-white drop-shadow md:text-2xl md:leading-10 lg:text-3xl">
-                {content.quote}
-              </p>
-              <p className="mt-6 text-base font-semibold text-white/90 md:text-lg">
-                — {content.quoteBy}
-              </p>
-            </div>
-          </section>
-
-          {/* Impact Section */}
-          <section className="rounded-[32px] bg-gradient-to-br from-white to-slate-50 p-8 shadow-xl ring-1 ring-slate-200/50 md:p-12">
-            <div className={`mb-8 ${isRtl ? "text-right" : "text-left"}`}>
-              <h2 className="text-2xl font-black text-slate-900 md:text-4xl">
-                {lang === "en"
-                  ? "Our Impact"
-                  : lang === "ps"
-                    ? "زموږ اغیز"
-                    : "تاثیر ما"}
-              </h2>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
-              {content.impact.map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`group flex items-start gap-4 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 p-6 transition-all hover:shadow-lg hover:-translate-y-1 ${isRtl ? "flex-row-reverse" : "flex-row"}`}
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0dadd1] to-[#377bc9] text-white shadow-lg transition-transform group-hover:scale-110">
-                    <Check className="h-5 w-5" />
-                  </div>
-                  <p className="text-sm leading-7 text-slate-700 md:text-base group-hover:text-[#0dadd1] transition-colors">{item}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        </main>
-        <Footer />
-      </div>
-    </LanguageDirWrapper>
+      <Testimonials />
+      <CtaPromo />
+    </PageShell>
   );
 }
