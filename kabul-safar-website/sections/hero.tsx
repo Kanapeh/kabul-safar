@@ -114,10 +114,18 @@ export const Hero = () => {
         <div className="motion-enter [--motion-delay:160ms]">
           <div className="relative mx-auto h-[250px] w-full max-w-[340px] md:h-[400px] md:max-w-[420px]">
             {/* Brand accent: the Figma bright cyan, kept as a shape behind the photos */}
-            <div
-              aria-hidden="true"
-              className="absolute left-1/2 top-[6%] aspect-square h-[92%] -translate-x-1/2 rounded-full bg-sky"
-            />
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+              {[
+                "left-[-2%] top-[24%] opacity-100",
+                "left-[16%] top-[50%] opacity-70",
+                "left-[-18%] top-[76%] opacity-40",
+              ].map((cls) => (
+                <span
+                  key={cls}
+                  className={`absolute h-10 w-[104%] -rotate-[22deg] rounded-full bg-sky md:h-14 ${cls}`}
+                />
+              ))}
+            </div>
             {images[0] ? (
               <ArchImage
                 src={images[0]}
