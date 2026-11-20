@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #eef1f4;
+  --background: #f2f4f7;
   --foreground: #192238;
   --cyan: #0b86a3;
   --blue: #3576ba;
@@ -17,11 +17,33 @@
   --space-2xl: 3rem;
   --primary-action: #192238;
   --primary-action-hover: #29334b;
+
+  /* Design system — Kabul Safar */
+  --ks-navy: #192238;
+  --ks-navy-2: #243150;
+  --ks-teal: #0a7f99;
+  --ks-teal-soft: #e5f4f7;
+  --ks-amber: #e8a13a;
+  --ks-amber-soft: #fdf3e2;
+  --ks-ink: #192238;
+  --ks-muted: #5d6878;
+  --ks-line: #e3e8ee;
+  --ks-canvas: #f2f4f7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-navy: var(--ks-navy);
+  --color-navy-2: var(--ks-navy-2);
+  --color-teal: var(--ks-teal);
+  --color-teal-soft: var(--ks-teal-soft);
+  --color-amber: var(--ks-amber);
+  --color-amber-soft: var(--ks-amber-soft);
+  --color-ink: var(--ks-ink);
+  --color-muted: var(--ks-muted);
+  --color-line: var(--ks-line);
+  --color-canvas: var(--ks-canvas);
   --font-sans: var(--font-vazirmatn);
   --spacing-xs: var(--space-xs);
   --spacing-sm: var(--space-sm);
@@ -274,6 +296,228 @@ body {
   .hero-visa-cta:hover .hero-visa-plane,
   .hero-visa-cta:focus-visible .hero-visa-plane {
     transform: none;
+    animation: none;
+  }
+}
+
+/* ---------- Kabul Safar UI primitives ---------- */
+@layer components {
+.ks-card {
+  background: #fff;
+  border: 1px solid var(--ks-line);
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 2px rgba(25, 34, 56, 0.04),
+    0 12px 32px -24px rgba(25, 34, 56, 0.18);
+}
+
+.ks-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 999px;
+  background: var(--ks-teal-soft);
+  color: var(--ks-teal);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ks-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  padding: 0.85rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.ks-btn:active {
+  transform: scale(0.98);
+}
+
+.ks-btn:focus-visible {
+  outline: 3px solid rgba(10, 127, 153, 0.35);
+  outline-offset: 2px;
+}
+
+.ks-btn-primary {
+  background: var(--ks-navy);
+  color: #fff;
+  box-shadow: 0 10px 24px -14px rgba(25, 34, 56, 0.7);
+}
+
+.ks-btn-primary:hover {
+  background: var(--ks-navy-2);
+}
+
+.ks-btn-ghost {
+  background: #fff;
+  color: var(--ks-navy);
+  border: 1px solid var(--ks-line);
+}
+
+.ks-btn-ghost:hover {
+  background: var(--ks-canvas);
+}
+
+.ks-btn-whatsapp {
+  background: #1f9d55;
+  color: #fff;
+}
+
+.ks-btn-whatsapp:hover {
+  background: #188547;
+}
+
+.ks-scroll-x {
+  scrollbar-width: none;
+}
+
+.ks-scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+.ks-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms ease;
+}
+
+.ks-collapse[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.ks-collapse > div {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ks-collapse {
+    transition: none;
+  }
+}
+}
+
+/* ---------- Editor (Tiptap) ---------- */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: right;
+  height: 0;
+  color: #9aa4b2;
+  pointer-events: none;
+}
+
+[dir="ltr"] .tiptap p.is-editor-empty:first-child::before {
+  float: left;
+}
+
+.tiptap img.ProseMirror-selectednode {
+  outline: 3px solid var(--ks-teal);
+}
+
+.article-content h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.article-content h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.article-content h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.article-content ul {
+  list-style: disc;
+}
+
+.article-content ol {
+  list-style: decimal;
+}
+
+.article-content blockquote {
+  border-inline-start: 4px solid var(--ks-teal);
+  background: var(--ks-teal-soft);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--ks-navy);
+}
+
+/* ---------- Mobile drawer motion ---------- */
+.ks-backdrop-in {
+  animation: ks-fade-in 200ms ease both;
+}
+
+.ks-drawer-in {
+  animation: ks-drawer-in-ltr 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+[dir="rtl"] .ks-drawer-in,
+.ks-drawer-in:where([dir="rtl"] *) {
+  animation-name: ks-drawer-in-rtl;
+}
+
+.ks-stagger-in {
+  animation: ks-stagger-in 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes ks-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ks-drawer-in-ltr {
+  from {
+    opacity: 0.4;
+    transform: translateX(-104%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ks-drawer-in-rtl {
+  from {
+    opacity: 0.4;
+    transform: translateX(104%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ks-stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ks-backdrop-in,
+  .ks-drawer-in,
+  .ks-stagger-in {
     animation: none;
   }
 }

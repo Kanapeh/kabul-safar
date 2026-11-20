@@ -16,15 +16,15 @@ import { LanguageDirWrapper } from "@/sections/language-dir-wrapper";
 export default function Home() {
   return (
     <LanguageDirWrapper>
-      <div className="mx-auto min-h-screen w-full max-w-100.5 bg-[#eef1f4] md:max-w-300">
-        <main className="space-y-2xl px-4 py-4">
+      <div className="mx-auto min-h-screen w-full max-w-300">
+        <main className="space-y-12 px-4 pt-2 md:space-y-20 md:px-6">
           <Header />
           <Hero />
           <Partners />
-          <Destination />
           <HowItWorks />
+          <Destination />
 
-          <div className="space-y-xl rounded-[10px] bg-white p-4 md:rounded-2xl md:p-8">
+          <div className="ks-card space-y-12 p-5 md:space-y-16 md:p-10">
             <ServiceFeature />
             <Stats />
             <WhyChooseUs />

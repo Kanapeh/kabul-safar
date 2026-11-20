@@ -32,7 +32,7 @@ export const BlogSidebar = () => {
           </p>
           <p className="mt-3 text-sm leading-6 text-slate-600">
             {lang === "fa"
-              ? "متخصص در ارائه خدمات ویزا و راهنمایی سفر برای افغانستانی‌ها"
+              ? "متخصص در ارائه خدمات ویزا و راهنمایی سفر برای افغان‌ها"
               : lang === "ps"
                 ? "د افغانانو لپاره د ویزې او د سفر لارښونې متخصص"
                 : "Specialized in visa services and travel guidance for Afghans"}

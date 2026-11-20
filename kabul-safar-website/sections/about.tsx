@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useI18n } from "@/components/i18n-provider";
 import { getAboutContent } from "@/lib/data";
 
@@ -11,16 +12,21 @@ export const About = () => {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="mx-auto w-full max-w-3xl space-y-4"
+      className="flex flex-col items-center gap-4 rounded-[24px] bg-amber-soft/70 p-6 text-center md:flex-row md:gap-6 md:p-8 md:text-start"
     >
-      <header className="space-y-2 text-center">
-        <h2 id="about-title" className="text-sm font-bold tracking-wide text-black md:text-2xl">
+      <Image
+        src="/images/Kabul%20safar%20logo.jpg"
+        alt=""
+        width={72}
+        height={72}
+        className="h-16 w-16 shrink-0 rounded-2xl border border-white bg-white object-contain shadow-sm md:h-[72px] md:w-[72px]"
+      />
+      <div className="min-w-0">
+        <h2 id="about-title" className="text-lg font-extrabold text-ink md:text-xl">
           {content.title}
         </h2>
-      </header>
-      <p className="text-center text-sm leading-6 text-slate-700 md:text-base md:leading-7">
-        {content.description}
-      </p>
+        <p className="mt-2 text-[15px] leading-8 text-ink/80">{content.description}</p>
+      </div>
     </section>
   );
 };

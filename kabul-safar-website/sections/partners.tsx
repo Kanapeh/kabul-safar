@@ -3,62 +3,57 @@
 import Image from "next/image";
 import { useI18n } from "@/components/i18n-provider";
 import { FlightSearchForm } from "@/components/flight-search-form";
+import { SectionHeading } from "@/components/section-heading";
 import { getPartnersTitle, partners } from "@/lib/data";
 
 export const Partners = () => {
   const { lang } = useI18n();
 
+  const labels =
+    lang === "en"
+      ? { eyebrow: "Flight tickets", title: "Start your trip", subtitle: "Pick your route and date — we'll find the best options and confirm on WhatsApp." }
+      : lang === "ps"
+        ? { eyebrow: "د الوتکې ټکټ", title: "خپل سفر پیل کړئ", subtitle: "لاره او نېټه وټاکئ؛ موږ غوره انتخابونه پیدا کوو او په واټساپ کې یې تاییدوو." }
+        : { eyebrow: "بلیط هواپیما", title: "سفر خود را آغاز کنید", subtitle: "مسیر و تاریخ را انتخاب کنید؛ بهترین گزینه‌ها را پیدا کرده و در واتساپ با شما هماهنگ می‌کنیم." };
+
   return (
     <section
-      aria-label={
-        lang === "fa"
-          ? "ایرلاین‌ها"
-          : lang === "ps"
-            ? "هوايي شرکتونه"
-            : "Airline brands"
-      }
-      className="rounded-[28px] bg-white px-5 py-6 shadow-[0_10px_32px_-28px_rgba(25,34,56,0.34)] md:px-8 md:py-8"
+      id="flight-search"
+      aria-labelledby="flight-search-form"
+      className="ks-card scroll-mt-24 px-4 py-6 md:px-10 md:py-10"
     >
-      <h2 className="text-center text-sm font-semibold text-[#64717b] md:text-base">
-        {getPartnersTitle(lang)}
-      </h2>
-
-      {/* Airline logos (show under title) */}
-      <div className="mt-4 grid w-full grid-cols-2 gap-3 px-2 md:mt-6 md:grid-cols-4 md:gap-4">
-        {partners.map((partner) => (
-          <div
-            key={partner.name}
-            className="flex h-16 items-center justify-center rounded-xl border border-slate-200 px-4 md:h-20"
-          >
-            <Image
-              src={partner.src}
-              alt={partner.name}
-              width={132}
-              height={40}
-              className="h-7 w-[116px] max-w-full object-contain grayscale brightness-0"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Search header */}
-      <h3
+      <SectionHeading
         id="flight-search-form"
-        className="mt-6 text-center text-xl font-bold text-[#192238] md:text-2xl"
-      >
-        {lang === "fa"
-          ? "سفر خود را آغاز کنید"
-          : lang === "ps"
-            ? "خپل سفر پیل کړئ"
-            : "Start your trip"}
-      </h3>
+        eyebrow={labels.eyebrow}
+        title={labels.title}
+        subtitle={labels.subtitle}
+      />
 
-      {/* Flight search form */}
-      <div className="mt-4 w-full">
+      <div className="mt-6 w-full">
         <FlightSearchForm />
       </div>
 
-      {/* (logos shown above) */}
+      <div className="mt-8 border-t border-line pt-6">
+        <p className="text-center text-xs font-semibold text-muted md:text-sm">
+          {getPartnersTitle(lang)}
+        </p>
+        <ul className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+          {partners.map((partner) => (
+            <li
+              key={partner.name}
+              className="flex h-14 items-center justify-center rounded-2xl bg-canvas px-4"
+            >
+              <Image
+                src={partner.src}
+                alt={partner.name}
+                width={132}
+                height={40}
+                className="h-6 w-[110px] max-w-full object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 };

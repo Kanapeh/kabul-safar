@@ -38,9 +38,10 @@ export function LanguageSwitch() {
         type="button"
         aria-label={t("header.lang")}
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 rounded-full bg-[#377bc9] px-3 py-1.5 text-white transition-opacity hover:opacity-85"
+        aria-expanded={open}
+        className="flex h-10 items-center gap-1.5 rounded-xl border border-line bg-white px-3 text-ink transition-colors hover:bg-canvas"
       >
-        <Globe className="h-4 w-4" aria-hidden="true" />
+        <Globe className="h-4 w-4 text-teal" aria-hidden="true" />
         <span className="text-xs font-semibold">
           {supportedLangs.find((l) => l.id === lang)?.label || lang}
         </span>
@@ -48,7 +49,7 @@ export function LanguageSwitch() {
       </button>
 
       <div
-        className={`absolute left-0 top-7 z-30 min-w-20 overflow-hidden rounded-xl border border-slate-100 bg-white shadow-lg transition-all ${open ? "opacity-100" : "pointer-events-none opacity-0"
+        className={`absolute end-0 top-12 z-40 min-w-28 overflow-hidden rounded-2xl border border-line bg-white p-1 shadow-xl transition-all ${open ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
       >
         {supportedLangs.map((l) => (
@@ -59,7 +60,7 @@ export function LanguageSwitch() {
               setLang(l.id);
               setOpen(false);
             }}
-            className={`flex w-full items-center justify-between px-3 py-2 text-[11px] font-semibold transition-colors hover:bg-slate-50 ${l.id === lang ? "text-[#377bc9]" : "text-slate-700"
+            className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors hover:bg-canvas ${l.id === lang ? "bg-teal-soft text-teal" : "text-ink"
               }`}
           >
             <span>{l.label}</span>

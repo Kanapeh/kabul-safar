@@ -2,52 +2,56 @@
 
 import Image from "next/image";
 import { useI18n } from "@/components/i18n-provider";
-import { ConsultButton } from "@/components/consult-button";
 import { getServiceFeatureContent } from "@/lib/data";
+import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 
 export const ServiceFeature = () => {
   const { lang } = useI18n();
   const content = getServiceFeatureContent(lang);
+  const labels =
+    lang === "en"
+      ? { cta: "Quick visa", eyebrow: "Why Kabul Safar" }
+      : lang === "ps"
+        ? { cta: "ژر ویزه", eyebrow: "ولې کابل سفر" }
+        : { cta: "درخواست ویزای سریع", eyebrow: "چرا کابل سفر" };
 
   return (
-    <section aria-labelledby="service-feature-title">
-      <div className="flex gap-3 md:items-center md:gap-6">
-        <div className="relative h-44.75 w-[42%] shrink-0 overflow-hidden rounded-[26px] md:h-85 md:w-[34%]">
-          <Image
-            src="/images/bamiyan.jpg"
-            alt="بت‌های بامیان"
-            width={152}
-            height={179}
-            className="h-full w-full object-cover"
-          />
-        </div>
+    <section
+      aria-labelledby="service-feature-title"
+      className="grid items-center gap-6 md:grid-cols-[0.8fr_1.2fr] md:gap-10"
+    >
+      <div className="relative h-56 overflow-hidden rounded-[24px] md:h-[360px]">
+        <Image
+          src="/images/bamiyan.jpg"
+          alt={lang === "en" ? "Buddhas of Bamiyan" : "بت‌های بامیان"}
+          fill
+          sizes="(max-width: 768px) 100vw, 420px"
+          className="object-cover"
+        />
+      </div>
 
-        <div className="flex flex-1 flex-col justify-center text-right">
-          <h2
-            id="service-feature-title"
-            className="text-xs font-semibold leading-5 text-black md:text-3xl md:leading-tight"
-          >
-            {content.titlePrefix}{" "}
-            <span className="text-[#0dadd1]">{content.titleAccent}</span>{" "}
-            {content.titleSuffix}
-          </h2>
-          <p className="mt-2 text-xs leading-4 tracking-wide text-[rgba(59,57,57,0.96)] md:mt-4 md:text-base md:leading-7">
-            {content.body}
-          </p>
-          <div className="mt-3 flex items-center justify-end md:mt-5">
-            <ConsultButton
-              compact
-              className="h-8 px-3 text-[10px] md:h-10 md:px-4 md:text-xs"
-              label={
-                lang === "fa"
-                  ? "ویزای سریع"
-                  : lang === "en"
-                    ? "Quick visa"
-                    : "ژر ویزه"
-              }
-            />
-          </div>
-        </div>
+      <div className="text-start">
+        <span className="ks-eyebrow">{labels.eyebrow}</span>
+        <h2
+          id="service-feature-title"
+          className="mt-3 text-[22px] font-extrabold leading-[1.5] text-ink md:text-[32px]"
+        >
+          {content.titlePrefix} <span className="text-teal">{content.titleAccent}</span>{" "}
+          {content.titleSuffix}
+        </h2>
+        <p className="mt-3 text-[15px] leading-8 text-muted md:text-base md:leading-9">
+          {content.body}
+        </p>
+        <a
+          href={CONTACT_WHATSAPP_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="ks-btn ks-btn-primary mt-5 w-full sm:w-auto"
+        >
+          <WhatsAppIcon className="h-5 w-5" />
+          {labels.cta}
+        </a>
       </div>
     </section>
   );

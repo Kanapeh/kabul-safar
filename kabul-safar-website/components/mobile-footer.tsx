@@ -19,72 +19,66 @@ export const MobileFooter = () => {
     { ...allItems[5], icon: Headphones },
   ];
 
+  if (pathname.startsWith("/admin")) return null;
+
+  const isActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(href));
+
+  const renderItem = ({ href, label, icon: Icon }: (typeof navItems)[number]) => {
+    const active = isActive(href);
+    return (
+      <Link
+        key={href}
+        href={href}
+        aria-current={active ? "page" : undefined}
+        className="group flex flex-col items-center justify-center gap-1 py-1.5"
+      >
+        <span
+          className={`flex h-9 w-12 items-center justify-center rounded-full transition-all duration-200 ${
+            active
+              ? "bg-navy text-white shadow-[0_6px_14px_-6px_rgba(25,34,56,0.6)]"
+              : "text-muted group-hover:bg-canvas group-hover:text-ink"
+          }`}
+        >
+          <Icon className="h-[19px] w-[19px]" strokeWidth={active ? 2.2 : 1.8} aria-hidden="true" />
+        </span>
+        <span
+          className={`max-w-full truncate text-[10.5px] leading-none ${
+            active ? "font-bold text-ink" : "font-medium text-muted"
+          }`}
+        >
+          {label}
+        </span>
+      </Link>
+    );
+  };
+
   return (
     <nav
       aria-label={
-        lang === "fa"
-          ? "ناوبری موبایل"
-          : lang === "ps"
-            ? "ګرځنده نیویګیشن"
-            : "Mobile navigation"
+        lang === "fa" ? "ناوبری موبایل" : lang === "ps" ? "ګرځنده نیویګیشن" : "Mobile navigation"
       }
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 px-2 pb-[max(env(safe-area-inset-bottom),0.35rem)] pt-1.5 shadow-[0_-8px_28px_rgba(25,34,56,0.1)] backdrop-blur-2xl md:hidden"
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] md:hidden"
     >
-      <div className="grid grid-cols-5 items-end gap-1">
-        {navItems.slice(0, 2).map(({ href, label, icon: Icon }) => {
-          const isActive =
-            pathname === href || (href !== "/" && pathname.startsWith(href));
+      <div className="pointer-events-auto mx-auto grid max-w-md grid-cols-5 items-end rounded-[26px] border border-white/70 bg-white/80 px-1.5 py-1 shadow-[0_16px_40px_-12px_rgba(25,34,56,0.35),0_2px_6px_rgba(25,34,56,0.06)] backdrop-blur-2xl backdrop-saturate-150">
+        {navItems.slice(0, 2).map(renderItem)}
 
-          return (
-            <Link
-              key={href}
-              href={href}
-              aria-current={isActive ? "page" : undefined}
-              className={`flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl px-1 text-[10px] font-medium transition-colors ${
-                isActive
-                  ? "bg-slate-100 text-[#022d37]"
-                  : "text-slate-500 hover:bg-slate-50"
-              }`}
-            >
-              <Icon className="h-5 w-5" aria-hidden="true" />
-              <span className="max-w-full truncate">{label}</span>
-            </Link>
-          );
-        })}
         <a
           href={CONTACT_WHATSAPP_URL}
           target="_blank"
           rel="noreferrer"
-          aria-label="واتساپ کابل سفر"
-          className="-mt-7 flex min-h-[4.25rem] flex-col items-center justify-end gap-1 rounded-xl px-1 pb-1 text-[10px] font-semibold text-[#16883d] transition-transform hover:-translate-y-0.5 active:translate-y-0"
+          aria-label={lang === "fa" ? "واتساپ کابل سفر" : "WhatsApp"}
+          className="group -mt-7 flex flex-col items-center gap-1 pb-1.5"
         >
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#16883d] text-white shadow-[0_6px_18px_rgba(22,136,61,0.3)] ring-4 ring-white">
+          <span className="flex h-14 w-14 items-center justify-center rounded-[20px] bg-gradient-to-br from-[#25d366] to-[#128c4b] text-white shadow-[0_10px_22px_-6px_rgba(18,140,75,0.6)] ring-[5px] ring-white/90 transition-transform duration-200 group-hover:-translate-y-0.5 group-active:scale-95">
             <WhatsAppIcon className="h-7 w-7" />
           </span>
-          <span className="max-w-full truncate leading-none">
+          <span className="text-[10.5px] font-bold leading-none text-[#128c4b]">
             {lang === "fa" ? "واتساپ" : lang === "ps" ? "واټس‌اپ" : "WhatsApp"}
           </span>
         </a>
-        {navItems.slice(2).map(({ href, label, icon: Icon }) => {
-          const isActive =
-            pathname === href || (href !== "/" && pathname.startsWith(href));
 
-          return (
-            <Link
-              key={href}
-              href={href}
-              aria-current={isActive ? "page" : undefined}
-              className={`flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl px-1 text-[10px] font-medium transition-colors ${
-                isActive
-                  ? "bg-slate-100 text-[#022d37]"
-                  : "text-slate-500 hover:bg-slate-50"
-              }`}
-            >
-              <Icon className="h-5 w-5" aria-hidden="true" />
-              <span className="max-w-full truncate">{label}</span>
-            </Link>
-          );
-        })}
+        {navItems.slice(2).map(renderItem)}
       </div>
     </nav>
   );

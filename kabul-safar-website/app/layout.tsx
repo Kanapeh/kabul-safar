@@ -46,7 +46,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col pb-20 md:pb-0">
+      <body className="min-h-full flex flex-col pb-28 md:pb-0">
         <I18nProvider>
           {children}
           <MobileFooter />

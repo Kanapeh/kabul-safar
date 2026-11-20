@@ -1,92 +1,37 @@
 "use client";
 
 import Image from "next/image";
+import { CheckCircle2, Plane, ShieldCheck } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { getBlogContent, getHeroContent } from "@/lib/data";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 
-function HeroTags({
-  tags,
-  variant,
-  isRtl,
-}: {
-  tags: string[];
-  variant: "mobile" | "desktop";
-  isRtl: boolean;
-}) {
-  const positions = isRtl
-    ? [
-        "top-[18px] right-[48px]",
-        "top-[210px] right-[108px]",
-        "top-[320px] right-[8px]",
-      ]
-    : [
-        "top-[18px] left-[48px]",
-        "top-[210px] left-[108px]",
-        "top-[320px] left-[8px]",
-      ];
-
-  return (
-    <>
-      {tags.map((tag, index) => {
-        const percentMatch = tag.match(/^(.+?[%٪])\s*(.+)$/);
-
-        return (
-          <div
-            key={tag}
-            className={
-              variant === "mobile"
-                ? "flex max-w-[95%] items-center gap-xs whitespace-nowrap rounded-full border border-[#e7e5df] bg-white px-2.5 py-1 text-center text-[10px] font-bold text-[#141d2b] shadow-[0_10px_24px_-12px_rgba(20,29,43,0.25)]"
-                : `absolute z-40 flex max-w-[160px] items-center gap-xs rounded-full border border-[#e7e5df] bg-white px-3 py-2 text-[10.5px] font-bold leading-snug text-[#141d2b] shadow-[0_10px_24px_-12px_rgba(20,29,43,0.25)] sm:max-w-[180px] sm:px-4 sm:py-[9px] sm:text-[11.5px] ${positions[index] ?? ""}`
-            }
-          >
-            {percentMatch ? (
-              <>
-                <span className="font-extrabold text-[#c1512f]">
-                  {percentMatch[1]}
-                </span>
-                <span>{percentMatch[2]}</span>
-              </>
-            ) : (
-              tag
-            )}
-          </div>
-        );
-      })}
-    </>
-  );
-}
-
 function ArchImage({
   src,
   className,
   priority = false,
-  sizes,
 }: {
   src: string;
   className: string;
   priority?: boolean;
-  sizes: string;
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-t-[200px] rounded-b-2xl ${className}`}
+      className={`absolute overflow-hidden rounded-t-[999px] rounded-b-[28px] border-4 border-white shadow-[0_24px_48px_-24px_rgba(25,34,56,0.55)] ${className}`}
     >
-      <div className="relative h-full w-full">
-        <Image
-          src={src}
-          alt=""
-          fill
-          sizes={sizes}
-          className="object-cover"
-          priority={priority}
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/5"
-          aria-hidden="true"
-        />
-      </div>
+      <Image
+        src={src}
+        alt=""
+        fill
+        sizes="(max-width: 768px) 40vw, 220px"
+        className="object-cover"
+        priority={priority}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/25 via-transparent to-transparent"
+        aria-hidden="true"
+      />
     </div>
   );
 }
@@ -94,7 +39,7 @@ function ArchImage({
 export const Hero = () => {
   const { lang } = useI18n();
   const content = getHeroContent(lang);
-  const blogImages = getBlogContent(lang)
+  const images = getBlogContent(lang)
     .posts.slice(0, 3)
     .map((post) => post.image);
   const isRtl = lang === "fa" || lang === "ps";
@@ -103,96 +48,115 @@ export const Hero = () => {
     ? `${content.titlePrefix} ${content.titleIran} ${content.titleAsia}`.trim()
     : content.titlePrefix;
 
-  const desktopArches = isRtl
-    ? [
-        "absolute top-[120px] right-0 z-10 h-[260px] w-[150px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-[60px] right-[199px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-0 right-[80px] z-30 h-[300px] w-[190px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
-      ]
-    : [
-        "absolute top-[120px] left-0 z-10 h-[260px] w-[150px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-[60px] left-[199px] z-20 h-[250px] w-[170px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-0 left-[80px] z-30 h-[300px] w-[150px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
-      ];
-  const mobileArches = isRtl
-    ? [
-        "absolute bottom-0 right-0 z-10 h-[155px] w-[105px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute bottom-2 right-[82px] z-20 h-[175px] w-[118px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-0 right-[172px] z-30 h-[190px] w-[135px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
-      ]
-    : [
-        "absolute bottom-0 left-0 z-10 h-[155px] w-[105px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute bottom-2 left-[82px] z-20 h-[175px] w-[118px] shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)]",
-        "absolute top-0 left-[172px] z-30 h-[190px] w-[135px] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.35)]",
-      ];
+  const labels =
+    lang === "en"
+      ? { eyebrow: "For Afghans living in Europe", flights: "Search flights", trust: "Trusted travel partner" }
+      : lang === "ps"
+        ? { eyebrow: "په اروپا کې د اوسېدونکو افغانانو لپاره", flights: "الوتنه ولټوئ", trust: "د باور وړ ملګری" }
+        : { eyebrow: "ویژه هم‌وطنان مقیم اروپا", flights: "جستجوی پرواز", trust: "همراه مطمئن سفر" };
 
   return (
     <section
       aria-labelledby="hero-title"
-      dir={isRtl ? "rtl" : "ltr"}
-      className="overflow-hidden rounded-[28px] bg-white px-5 py-7 shadow-[0_18px_48px_-34px_rgba(25,34,56,0.32)] md:rounded-[32px] md:px-10 md:pb-10 md:pt-7"
+      className="relative overflow-hidden rounded-[28px] bg-white px-5 pb-6 pt-8 shadow-[0_24px_60px_-40px_rgba(25,34,56,0.45)] md:rounded-[36px] md:px-12 md:py-14"
     >
-      <div className="mt-4 flex flex-col items-center gap-6 md:mt-7 md:flex-row md:items-center md:gap-8 lg:gap-9">
-        {/* Text */}
-        <div
-          className={`motion-enter w-full min-w-0 flex-1 ${isRtl ? "text-right" : "text-left"} text-center md:text-start`}
-        >
+      {/* soft decorative wash */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-32 end-[-6rem] h-80 w-80 rounded-full bg-teal-soft blur-3xl md:h-[28rem] md:w-[28rem]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-24 start-[-5rem] h-64 w-64 rounded-full bg-amber-soft blur-3xl"
+      />
+
+      <div className="relative grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
+        {/* Copy */}
+        <div className="motion-enter text-center md:text-start">
+          <span className="ks-eyebrow">
+            <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+            {labels.eyebrow}
+          </span>
+
           <h1
             id="hero-title"
-            className="text-[30px] font-extrabold leading-[1.35] text-[#192238] md:text-[44px] lg:text-[52px]"
+            className="mt-4 text-[32px] font-black leading-[1.35] text-ink md:text-[48px] lg:text-[56px]"
           >
             {titleLine1}
-            <br className="mt-2 block" />
-            {content.subTitle}
+            <span className="block text-teal">{content.subTitle}</span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-[440px] text-[15px] leading-[1.9] text-[#5a5f68] md:mx-0 md:mt-5 md:max-w-[420px] md:text-base md:leading-[1.85]">
+          <p className="mx-auto mt-4 max-w-[30rem] text-[15px] leading-8 text-muted md:mx-0 md:text-lg md:leading-9">
             {content.description}
           </p>
 
-          <div className="mt-5 w-full md:mb-9">
+          <ul className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2 md:justify-start">
+            {content.bullets.map((bullet) => (
+              <li
+                key={bullet}
+                className="flex items-center gap-1.5 text-sm font-semibold text-ink"
+              >
+                <CheckCircle2 className="h-4 w-4 text-teal" aria-hidden="true" />
+                {bullet}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
             <a
               href={CONTACT_WHATSAPP_URL}
-              className="hero-visa-cta primary-action motion-action group/visa-cta flex w-full items-center justify-center gap-sm rounded-2xl px-[22px] py-4 text-base font-bold text-white"
+              target="_blank"
+              rel="noreferrer"
+              className="hero-visa-cta ks-btn ks-btn-primary w-full py-4 text-base sm:w-auto sm:px-7"
             >
-              {content.consultCta}
               <WhatsAppIcon className="h-5 w-5 shrink-0" />
+              {content.consultCta}
+            </a>
+            <a
+              href="#flight-search"
+              className="ks-btn ks-btn-ghost w-full py-4 text-base sm:w-auto sm:px-6"
+            >
+              <Plane className="h-5 w-5 shrink-0 text-teal" aria-hidden="true" />
+              {labels.flights}
             </a>
           </div>
         </div>
 
-        {/* Mobile: arched image cluster below the hero copy */}
-        <div className="motion-enter w-full [--motion-delay:160ms] md:hidden">
-          <div className="relative mx-auto h-[205px] w-full max-w-[330px]">
-            {blogImages.map((src, index) => (
+        {/* Visual */}
+        <div className="motion-enter [--motion-delay:160ms]">
+          <div className="relative mx-auto h-[250px] w-full max-w-[340px] md:h-[400px] md:max-w-[420px]">
+            {images[0] ? (
               <ArchImage
-                key={src}
-                src={src}
-                className={mobileArches[index] ?? mobileArches[0]}
-                priority={index === 0}
-                sizes="(max-width: 768px) 150px, 190px"
+                src={images[0]}
+                priority
+                className="start-[30%] top-0 z-20 h-[220px] w-[40%] md:h-[350px]"
               />
-            ))}
-            <div className="absolute inset-x-0 bottom-0 z-40 flex flex-col items-center gap-sm">
-              <HeroTags tags={content.tags} variant="mobile" isRtl={isRtl} />
+            ) : null}
+            {images[1] ? (
+              <ArchImage
+                src={images[1]}
+                className="start-0 top-[50px] z-10 h-[180px] w-[34%] md:top-[70px] md:h-[280px]"
+              />
+            ) : null}
+            {images[2] ? (
+              <ArchImage
+                src={images[2]}
+                className="end-0 top-[34px] z-10 h-[190px] w-[34%] md:top-[50px] md:h-[300px]"
+              />
+            ) : null}
+
+            {/* floating trust card */}
+            <div className="absolute inset-x-0 bottom-0 z-30 mx-auto flex w-fit max-w-full items-center gap-2 rounded-2xl border border-line bg-white/95 px-3 py-2 shadow-lg backdrop-blur md:bottom-2">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-soft text-amber">
+                <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="text-start">
+                <span className="block text-xs font-extrabold text-ink">{labels.trust}</span>
+                <span className="block text-[11px] text-muted">
+                  {content.tags.join(" · ")}
+                </span>
+              </span>
             </div>
-          </div>
-        </div>
-
-        {/* Desktop: blog images in arch cluster */}
-        <div className="motion-enter hidden min-w-0 shrink-0 [--motion-delay:160ms] md:flex md:flex-[1_1_380px] md:justify-center lg:flex-[0_0_380px]">
-          <div className="relative h-[400px] w-full max-w-[380px] overflow-hidden">
-            {blogImages.map((src, index) => (
-              <ArchImage
-                key={src}
-                src={src}
-                className={desktopArches[index] ?? desktopArches[0]}
-                priority={index === 0}
-                sizes="190px"
-              />
-            ))}
-
-            <HeroTags tags={content.tags} variant="desktop" isRtl={isRtl} />
           </div>
         </div>
       </div>
