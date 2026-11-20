@@ -146,7 +146,7 @@ export const Blog = () => {
 
   return (
     <section aria-labelledby="blog-title" className="space-y-6">
-      <div className="overflow-hidden rounded-[28px] bg-[#0dadd1] px-5 py-6 text-white shadow-[0_25px_60px_-40px_rgba(13,173,209,0.8)] md:px-8 md:py-10">
+      <div className="overflow-hidden rounded-[28px] bg-[#45bfda] px-5 py-6 text-white shadow-[0_25px_60px_-40px_rgba(13,173,209,0.8)] md:px-8 md:py-10">
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan-100 md:text-xs">
             <FileText className="h-4 w-4" aria-hidden="true" />
@@ -174,7 +174,7 @@ export const Blog = () => {
               </div>
               <h2 className="text-lg font-extrabold text-slate-900 md:text-xl lg:text-3xl">{content.posts[0].title}</h2>
               <p className="text-sm leading-6 text-slate-700 md:text-base md:leading-7">{content.posts[0].excerpt}</p>
-              <div className="flex items-center gap-3 text-xs font-semibold text-[#0dadd1] md:text-sm"><span>{content.cta}</span><ArrowRight className="h-4 w-4" aria-hidden="true" /></div>
+              <div className="flex items-center gap-3 text-xs font-semibold text-[#45bfda] md:text-sm"><span>{content.cta}</span><ArrowRight className="h-4 w-4" aria-hidden="true" /></div>
             </div>
           </article>
 

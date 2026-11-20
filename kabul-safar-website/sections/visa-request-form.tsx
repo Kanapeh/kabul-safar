@@ -206,7 +206,7 @@ export const VisaRequestForm = () => {
           <div
             key={label}
             className={`min-w-28 rounded-2xl border px-3 py-2 text-center text-xs font-semibold ${idx === step
-              ? "border-[#0dadd1] bg-[#0dadd1]/10 text-[#0dadd1]"
+              ? "border-[#45bfda] bg-[#45bfda]/10 text-[#45bfda]"
               : "border-slate-200 bg-white text-slate-500"
               }`}
           >
@@ -435,7 +435,7 @@ export const VisaRequestForm = () => {
             type="button"
             onClick={sendWhatsApp}
             disabled={!isLastStep}
-            className="rounded-full bg-[#0dadd1] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0a94b6] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
+            className="rounded-full bg-[#45bfda] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0a94b6] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
           >
             {content.buttons.send}
           </button>

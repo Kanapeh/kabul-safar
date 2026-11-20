@@ -1180,7 +1180,7 @@ export const FlightSearchForm = () => {
     <>
       <form onSubmit={handleSubmit} className="space-y-lg">
         {/* Trip Type Selector */}
-        <div className="flex gap-1 rounded-2xl bg-[#eef1f4] p-1">
+        <div className="flex gap-1 rounded-2xl bg-[#f4f7f8] p-1">
           <button
             type="button"
             onClick={() => {
@@ -1189,7 +1189,7 @@ export const FlightSearchForm = () => {
             }}
             className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${
               tripType === "one-way"
-                ? "bg-white text-[#192238] shadow-sm"
+                ? "bg-white text-[#2f4b53] shadow-sm"
                 : "bg-transparent text-[#64717b] hover:bg-white/60"
             }`}
           >
@@ -1200,7 +1200,7 @@ export const FlightSearchForm = () => {
             onClick={() => setTripType("round-trip")}
             className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${
               tripType === "round-trip"
-                ? "bg-white text-[#192238] shadow-sm"
+                ? "bg-white text-[#2f4b53] shadow-sm"
                 : "bg-transparent text-[#64717b] hover:bg-white/60"
             }`}
           >
@@ -1247,7 +1247,7 @@ export const FlightSearchForm = () => {
                       ? "د مبدا هیواد"
                       : "Origin country"
                 }
-                className={`w-full border-0 bg-transparent py-2 text-base text-slate-900 placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-0 transition-all md:rounded-xl md:border-2 md:border-slate-200 md:py-3 md:focus:border-[#0b86a3] md:focus:ring-2 md:focus:ring-[#0b86a3]/20 ${isRtl ? "pr-14 pl-4 md:pr-14 md:pl-4" : "pl-14 pr-4 md:pl-14 md:pr-4"}`}
+                className={`w-full border-0 bg-transparent py-2 text-base text-slate-900 placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-0 transition-all md:rounded-xl md:border-2 md:border-slate-200 md:py-3 md:focus:border-[#0e7a93] md:focus:ring-2 md:focus:ring-[#0e7a93]/20 ${isRtl ? "pr-14 pl-4 md:pr-14 md:pl-4" : "pl-14 pr-4 md:pl-14 md:pr-4"}`}
               />
               <Plane
                 className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? "left-4" : "right-4"}`}
@@ -1326,7 +1326,7 @@ export const FlightSearchForm = () => {
                       ? "د مقصد هیواد"
                       : "Destination country"
                 }
-                className={`w-full border-0 bg-transparent py-2 text-base text-slate-900 placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-0 transition-all md:rounded-xl md:border-2 md:border-slate-200 md:py-3 md:focus:border-[#0b86a3] md:focus:ring-2 md:focus:ring-[#0b86a3]/20 ${isRtl ? "pr-14 pl-4 md:pr-14 md:pl-4" : "pl-14 pr-4 md:pl-14 md:pr-4"}`}
+                className={`w-full border-0 bg-transparent py-2 text-base text-slate-900 placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-0 transition-all md:rounded-xl md:border-2 md:border-slate-200 md:py-3 md:focus:border-[#0e7a93] md:focus:ring-2 md:focus:ring-[#0e7a93]/20 ${isRtl ? "pr-14 pl-4 md:pr-14 md:pl-4" : "pl-14 pr-4 md:pl-14 md:pr-4"}`}
               />
               <Plane
                 className={`absolute top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none ${isRtl ? "left-4 rotate-180" : "right-4 rotate-180"}`}
@@ -1379,7 +1379,7 @@ export const FlightSearchForm = () => {
               <div
                 role="radiogroup"
                 aria-label={calendarLabels.title}
-                className="inline-flex rounded-xl bg-[#eef1f4] p-0.5 text-xs font-bold"
+                className="inline-flex rounded-xl bg-[#f4f7f8] p-0.5 text-xs font-bold"
               >
                 {(["afghan", "gregorian"] as const).map((type) => (
                   <button
@@ -1390,8 +1390,8 @@ export const FlightSearchForm = () => {
                     onClick={() => setCalendarChoice(type)}
                     className={`rounded-[10px] px-3 py-1.5 transition-colors ${
                       calendarType === type
-                        ? "bg-white text-[#192238] shadow-sm"
-                        : "text-slate-500 hover:text-[#192238]"
+                        ? "bg-white text-[#2f4b53] shadow-sm"
+                        : "text-slate-500 hover:text-[#2f4b53]"
                     }`}
                   >
                     {calendarLabels[type]}
@@ -1412,12 +1412,12 @@ export const FlightSearchForm = () => {
                   required
                   calendarPosition={isRtl ? "bottom-right" : "bottom-left"}
                   containerClassName="w-full"
-                  inputClass="w-full rounded-xl border-2 border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-[#0b86a3] focus:ring-2 focus:ring-[#0b86a3]/20"
+                  inputClass="w-full rounded-xl border-2 border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-[#0e7a93] focus:ring-2 focus:ring-[#0e7a93]/20"
                 />
                 {date ? (
                   <p className="mt-1.5 text-xs font-medium text-slate-500">
                     {calendarLabels.equivalent} ({calendarLabels[otherCalendarType]}):{" "}
-                    <span className="font-bold text-[#0a7f99]">{otherCalendarLabel(date)}</span>
+                    <span className="font-bold text-[#0e7a93]">{otherCalendarLabel(date)}</span>
                   </p>
                 ) : null}
               </div>
@@ -1446,8 +1446,8 @@ export const FlightSearchForm = () => {
                       onClick={() => setDate(day.isoDate)}
                       className={`flex h-[76px] w-[68px] shrink-0 snap-start flex-col items-center justify-center gap-1 rounded-2xl border text-xs transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                         isSelected
-                          ? "border-[#192238] bg-[#192238] text-white"
-                          : "border-slate-200 bg-white text-[#64717b] hover:border-[#0b86a3]"
+                          ? "border-[#2f4b53] bg-[#2f4b53] text-white"
+                          : "border-slate-200 bg-white text-[#64717b] hover:border-[#0e7a93]"
                       }`}
                     >
                       <span className="whitespace-nowrap">{day.weekday}</span>
@@ -1484,12 +1484,12 @@ export const FlightSearchForm = () => {
                     required={tripType === "round-trip"}
                     calendarPosition={isRtl ? "bottom-right" : "bottom-left"}
                     containerClassName="w-full"
-                    inputClass="w-full rounded-xl border-2 border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-[#0b86a3] focus:ring-2 focus:ring-[#0b86a3]/20"
+                    inputClass="w-full rounded-xl border-2 border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-[#0e7a93] focus:ring-2 focus:ring-[#0e7a93]/20"
                   />
                   {returnDate ? (
                     <p className="mt-1.5 text-xs font-medium text-slate-500">
                       {calendarLabels.equivalent} ({calendarLabels[otherCalendarType]}):{" "}
-                      <span className="font-bold text-[#0a7f99]">{otherCalendarLabel(returnDate)}</span>
+                      <span className="font-bold text-[#0e7a93]">{otherCalendarLabel(returnDate)}</span>
                     </p>
                   ) : null}
                 </div>
@@ -1498,7 +1498,7 @@ export const FlightSearchForm = () => {
                   onClick={() =>
                     setReturnDate(addDaysToIsoDate(date || today, 1))
                   }
-                  className="flex-1 whitespace-nowrap rounded-xl border border-[#d6edf3] bg-[#e5f5f9] px-3 py-2.5 text-xs font-semibold text-[#087f99] transition-colors hover:bg-[#d9f0f5] sm:flex-none"
+                  className="flex-1 whitespace-nowrap rounded-xl border border-[#d6edf3] bg-[#e7f6fa] px-3 py-2.5 text-xs font-semibold text-[#0e7a93] transition-colors hover:bg-[#d9f0f5] sm:flex-none"
                 >
                   {lang === "fa"
                     ? "روز بعد"
@@ -1521,7 +1521,7 @@ export const FlightSearchForm = () => {
             </label>
             <div
               dir={isRtl ? "rtl" : "ltr"}
-              className="flex min-h-12 items-center justify-between rounded-xl border-2 border-slate-200 px-3 text-slate-900 transition-all focus-within:border-[#0dadd1] focus-within:ring-2 focus-within:ring-[#0dadd1]/20"
+              className="flex min-h-12 items-center justify-between rounded-xl border-2 border-slate-200 px-3 text-slate-900 transition-all focus-within:border-[#45bfda] focus-within:ring-2 focus-within:ring-[#45bfda]/20"
             >
               <span className="text-sm font-medium">
                 {lang === "fa"
@@ -1544,7 +1544,7 @@ export const FlightSearchForm = () => {
                         ? "د مسافرو کمول"
                         : "Decrease passengers"
                   }
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#eef1f4] text-[#64717b] transition-colors hover:bg-[#e5f5f9] disabled:cursor-not-allowed disabled:opacity-40"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f7f8] text-[#64717b] transition-colors hover:bg-[#e7f6fa] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <Minus className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -1565,7 +1565,7 @@ export const FlightSearchForm = () => {
                         ? "د مسافرو زیاتول"
                         : "Increase passengers"
                   }
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e5f5f9] text-[#087f99] transition-colors hover:bg-[#d9f0f5] disabled:cursor-not-allowed disabled:opacity-40"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e7f6fa] text-[#0e7a93] transition-colors hover:bg-[#d9f0f5] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <Plus className="h-4 w-4" aria-hidden="true" />
                 </button>

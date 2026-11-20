@@ -29,19 +29,19 @@ export function PageHero({
       className={`relative overflow-hidden rounded-[28px] px-5 py-9 md:rounded-[36px] md:px-12 md:py-14 ${className} ${
         dark
           ? "bg-navy text-white"
-          : "bg-white shadow-[0_24px_60px_-40px_rgba(25,34,56,0.45)]"
+          : "bg-teal-soft"
       }`}
     >
       <div
         aria-hidden="true"
         className={`pointer-events-none absolute -top-32 end-[-6rem] h-80 w-80 rounded-full blur-3xl md:h-[26rem] md:w-[26rem] ${
-          dark ? "bg-teal/45" : "bg-teal-soft"
+          dark ? "bg-sky/35" : "bg-white/70"
         }`}
       />
       <div
         aria-hidden="true"
         className={`pointer-events-none absolute -bottom-24 start-[-5rem] h-64 w-64 rounded-full blur-3xl ${
-          dark ? "bg-amber/20" : "bg-amber-soft"
+          dark ? "bg-sky/15" : "bg-sky/15"
         }`}
       />
 
@@ -54,7 +54,7 @@ export function PageHero({
               className={
                 dark
                   ? "inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white/85"
-                  : "ks-eyebrow"
+                  : "inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-navy"
               }
             >
               {eyebrowIcon}

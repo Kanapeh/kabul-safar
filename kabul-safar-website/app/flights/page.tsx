@@ -3,6 +3,7 @@
 import { CheckCircle2, Plane, Scale, Search } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
+import { ArchVisual } from "@/components/arch-visual";
 import { FlightSearchForm } from "@/components/flight-search-form";
 import { useI18n } from "@/components/i18n-provider";
 import { CtaPromo } from "@/sections/cta-promo";
@@ -16,8 +17,8 @@ const pageText = {
     action: "جستجوی پرواز",
     highlight: "چرا پرواز را از ما رزرو کنید؟",
     points: [
-      "قیمت‌های رقابتی از بیش از 100 ایرلاین معتبر.",
-      "پشتیبانی 24 ساعته و خدمات مشتریان برجسته.",
+      "مقایسه قیمت میان ایرلاین‌های معتبر بین‌المللی.",
+      "پشتیبانی در واتساپ، از جستجو تا صدور بلیط.",
     ],
     steps: [
       {
@@ -47,8 +48,8 @@ const pageText = {
     action: "Search flights",
     highlight: "Why book flights with us?",
     points: [
-      "Competitive prices from over 100 trusted airlines.",
-      "24/7 support and excellent customer service.",
+      "Prices compared across trusted international airlines.",
+      "WhatsApp support from search to ticket.",
     ],
     steps: [
       {
@@ -75,8 +76,8 @@ const pageText = {
     action: "الوتنه وپلټئ",
     highlight: "ولې زمونږ سره الوتنه راجستر کړئ؟",
     points: [
-      "د 100 څخه ډیر باوري الوتونکو شرکتونو څخه رقابتي قیمتونه.",
-      "24 ساعته ملاتړ او ښې د مشتریان خدمتونه.",
+      "د باوري نړیوالو هوايي شرکتونو ترمنځ د بیو پرتله.",
+      "په واټساپ کې ملاتړ، له لټون تر ټکټ پورې.",
     ],
     steps: [
       {
@@ -110,21 +111,36 @@ export default function FlightsPage() {
   return (
     <PageShell>
       <PageHero
-        tone="dark"
-        className="pb-24 md:pb-32"
         eyebrow={eyebrow}
         eyebrowIcon={<Plane className="h-3.5 w-3.5" aria-hidden="true" />}
         title={content.title}
         subtitle={content.subtitle}
+        actions={
+          <a href="#flight-search" className="ks-btn ks-btn-primary py-4 sm:px-7">
+            <Search className="h-5 w-5" aria-hidden="true" />
+            {content.action}
+          </a>
+        }
+        aside={
+          <ArchVisual
+            src="/images/destination-turkey.jpg"
+            badgeIcon={
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-soft text-navy">
+                <Plane className="h-4 w-4" aria-hidden="true" />
+              </span>
+            }
+            badge={lang === "en" ? "Flights to any destination" : lang === "ps" ? "هر منزل ته الوتنه" : "پرواز به هر مقصد"}
+          />
+        }
       />
 
       <section
         id="flight-search"
         aria-labelledby="flight-form-title"
-        className="ks-card relative z-10 -mt-20 scroll-mt-24 px-4 py-6 md:mx-8 md:-mt-24 md:px-10 md:py-9"
+        className="scroll-mt-24 rounded-[20px] border border-line bg-white px-4 py-6 md:px-10 md:py-9"
       >
         <h2 id="flight-form-title" className="mb-5 flex items-center gap-2 text-lg font-extrabold text-ink md:text-xl">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-soft text-teal">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-soft text-navy">
             <Search className="h-4 w-4" aria-hidden="true" />
           </span>
           {formTitle}
@@ -148,14 +164,16 @@ export default function FlightsPage() {
         </div>
         <ol className="grid gap-3 md:grid-cols-3 md:gap-5">
           {content.steps.map((step, index) => (
-            <li key={step.title} className="ks-card flex items-start gap-4 p-5 md:flex-col md:p-7">
-              <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-teal-soft text-teal">
-                <step.icon className="h-6 w-6" aria-hidden="true" />
-                <span className="absolute -end-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-navy text-xs font-bold text-white ring-4 ring-white">
+            <li key={step.title} className="flex flex-col rounded-[20px] bg-teal-soft p-5 md:p-7">
+              <div className="flex items-center justify-between">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-sm font-bold text-white">
                   {lang === "en" ? index + 1 : (index + 1).toLocaleString("fa-IR")}
                 </span>
-              </span>
-              <div>
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-navy shadow-sm">
+                  <step.icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+              </div>
+              <div className="mt-5">
                 <h3 className="text-base font-extrabold text-ink md:text-lg">{step.title}</h3>
                 <p className="mt-1 text-sm leading-7 text-muted">{step.description}</p>
               </div>

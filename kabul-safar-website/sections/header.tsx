@@ -90,7 +90,7 @@ export const Header = () => {
     <header id="home" className="sticky top-2 z-30">
       <nav
         aria-label={labels.menu}
-        className="flex items-center justify-between gap-3 rounded-[20px] border border-white/60 bg-white/90 py-2 ps-2 pe-2 shadow-[0_10px_30px_-18px_rgba(25,34,56,0.35)] backdrop-blur-xl md:rounded-3xl md:py-2.5 md:ps-3 md:pe-3"
+        className="flex items-center justify-between gap-3 rounded-[20px] border border-line bg-white/90 py-2 ps-2 pe-2 shadow-[0_8px_24px_-18px_rgba(30,45,51,0.35)] backdrop-blur-xl md:rounded-3xl md:py-2.5 md:ps-3 md:pe-3"
       >
         <Link
           href="/"
@@ -141,7 +141,7 @@ export const Header = () => {
             href={CONTACT_WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            className="ks-btn ks-btn-whatsapp hidden rounded-xl px-4 py-2.5 text-sm md:inline-flex"
+            className="ks-btn ks-btn-primary hidden rounded-xl px-4 py-2.5 text-sm md:inline-flex"
           >
             <WhatsAppIcon className="h-4 w-4" />
             {labels.cta}

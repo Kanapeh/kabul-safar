@@ -223,7 +223,15 @@ export const Footer = () => {
         <p>
           © {new Date().getFullYear()} {labels.brand} — {labels.rights}
         </p>
-        <p>{content.designer}</p>
+        <a
+          href="https://www.linkedin.com/in/sepantaalizadeh/"
+          target="_blank"
+          rel="noopener noreferrer"
+          dir="ltr"
+          className="underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white"
+        >
+          {content.designer}
+        </a>
       </div>
     </footer>
   );

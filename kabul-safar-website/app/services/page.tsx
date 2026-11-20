@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Globe,
   Heart,
-  Languages,
   MapPin,
   MessageCircle,
   Plane,
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
+import { ArchVisual } from "@/components/arch-visual";
 import { SectionHeading } from "@/components/section-heading";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
@@ -77,7 +77,7 @@ const pageText = {
         icon: Plane,
       },
       {
-        title: "پشتیبانی واتساپ ۲۴/۷",
+        title: "پشتیبانی در واتساپ",
         description: "پاسخ سریع و همراهی کامل با شما در هر مرحله از سفر.",
         icon: MessageCircle,
       },
@@ -135,7 +135,7 @@ const pageText = {
         icon: Plane,
       },
       {
-        title: "24/7 WhatsApp support",
+        title: "WhatsApp support",
         description:
           "Fast responses and full assistance at every stage of your trip.",
         icon: MessageCircle,
@@ -193,7 +193,7 @@ const pageText = {
         icon: Plane,
       },
       {
-        title: "۲۴/۷ واتساپ ملاتړ",
+        title: "په واټساپ کې ملاتړ",
         description: "چټک ځوابونه او بشپړ مرسته په هر پړاو کې.",
         icon: MessageCircle,
       },
@@ -214,11 +214,6 @@ export default function ServicesPage() {
         ? { eyebrow: "د سفر خدمتونه", flights: "الوتنه ولټوئ", listEyebrow: "موږ څه کوو", listTitle: "زموږ خدمتونه", ask: "په واټساپ کې وپوښتئ", hello: "سلام، د دې په اړه معلومات غواړم:" }
         : { eyebrow: "خدمات سفر", flights: "جستجوی پرواز", listEyebrow: "چه کاری انجام می‌دهیم", listTitle: "خدمات ما", ask: "درخواست در واتساپ", hello: "سلام، درباره این خدمت اطلاعات می‌خواهم:" };
 
-  const highlights = [
-    { icon: Shield, label: lang === "en" ? "Visa guidance" : lang === "ps" ? "د ویزې لارښوونه" : "راهنمایی ویزا" },
-    { icon: Plane, label: lang === "en" ? "Flight booking" : lang === "ps" ? "د الوتنې ټکټ" : "تهیه بلیط پرواز" },
-    { icon: Languages, label: lang === "en" ? "Dari, Pashto & English" : lang === "ps" ? "دري، پښتو او انګلیسي" : "دری، پشتو و انگلیسی" },
-  ];
 
   return (
     <PageShell>
@@ -239,36 +234,21 @@ export default function ServicesPage() {
           </>
         }
         aside={
-          <div className="ks-card space-y-3 p-4 md:p-5">
-            <div className="flex items-start gap-3 rounded-2xl bg-teal-soft/70 p-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-teal shadow-sm">
-                <Heart className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <div className="text-start">
-                <p className="font-extrabold text-ink">{content.highlight}</p>
-                <p className="mt-1 text-sm leading-7 text-muted">{content.highlightText}</p>
-              </div>
-            </div>
-            <ul className="grid grid-cols-3 gap-2">
-              {highlights.map(({ icon: Icon, label }) => (
-                <li key={label} className="flex flex-col items-center gap-2 rounded-2xl border border-line px-2 py-3 text-center">
-                  <Icon className="h-5 w-5 text-teal" aria-hidden="true" />
-                  <span className="text-xs font-bold leading-5 text-ink">{label}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ArchVisual
+            src="/images/destination-iran.jpg"
+            badge={lang === "en" ? "Visas & flights worldwide" : lang === "ps" ? "ټولو هېوادونو ته ویزه او ټکټ" : "ویزا و بلیط به همه کشورها"}
+          />
         }
       />
 
       <section aria-labelledby="services-list" className="space-y-6">
-        <SectionHeading id="services-list" eyebrow={ui.listEyebrow} title={ui.listTitle} />
+        <SectionHeading id="services-list" title={ui.listTitle} align="center" />
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {content.items.map((item, index) => (
             <li key={item.title}>
               <ScrollReveal className="h-full" delayMs={(index % 3) * 80}>
-                <article className="ks-card motion-card group flex h-full flex-col p-6">
-                  <span className="motion-card-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-soft text-teal">
+                <article className="motion-card group flex h-full flex-col rounded-[20px] border border-line bg-white p-6">
+                  <span className="motion-card-icon flex h-12 w-12 items-center justify-center rounded-full bg-teal-soft text-navy">
                     <item.icon className="h-6 w-6" aria-hidden="true" />
                   </span>
                   <h2 className="mt-4 text-lg font-extrabold text-ink">{item.title}</h2>
@@ -277,7 +257,7 @@ export default function ServicesPage() {
                     href={`${CONTACT_WHATSAPP_URL}?text=${encodeURIComponent(`${ui.hello} ${item.title}`)}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 self-start rounded-xl text-sm font-bold text-teal transition-colors hover:text-ink"
+                    className="mt-5 inline-flex items-center gap-1.5 self-start rounded-xl text-sm font-bold text-navy transition-colors hover:text-teal"
                   >
                     {ui.ask}
                     <Arrow className="h-4 w-4 transition-transform group-hover:-translate-x-0.5 ltr:group-hover:translate-x-0.5" aria-hidden="true" />

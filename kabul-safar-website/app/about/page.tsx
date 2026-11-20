@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { Check, Clock, Globe, Heart, Quote, Shield } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
+import { ArchVisual } from "@/components/arch-visual";
 import { SectionHeading } from "@/components/section-heading";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
@@ -21,9 +21,9 @@ const pageText = {
     highlightText:
       "ما می‌دانیم که مهاجرت فقط یک پرواز نیست؛ این یک تصمیم بزرگ زندگی است. هدف ما این است که این مسیر برای شما قابل اعتماد، ساده و قابل پیگیری باشد.",
     stats: [
-      { value: "5000+", label: "مسافر راضی" },
-      { value: "24/7", label: "پشتیبانی واتساپ" },
-      { value: "98%", label: "رضایت مشتری" },
+      { value: "۲ دفتر", label: "فرانسه و سوئد" },
+      { value: "۳ زبان", label: "دری، پشتو و انگلیسی" },
+      { value: "رایگان", label: "مشاوره پیش از درخواست" },
     ],
     features: [
       {
@@ -41,7 +41,7 @@ const pageText = {
       {
         title: "همراه جهانی",
         description:
-          "مهاجرین از سراسر دنیا می‌توانند روی پشتیبانی واتساپ و پاسخ‌گویی ۲۴ ساعته ما حساب کنند.",
+          "مهاجرین از هر کشوری می‌توانند از طریق واتساپ با ما در تماس باشند و پاسخ سریع بگیرند.",
         icon: Globe,
       },
       {
@@ -55,7 +55,7 @@ const pageText = {
       "کابل سفر می‌فهمد که هر سفر مهاجرتی نیاز به آرامش، سرعت و شفافیت دارد. ما این مسیر را برای شما قابل‌اعتمادتر می‌کنیم.",
     quoteBy: "تیم کابل سفر",
     impact: [
-      "پشتیبانی واتساپ برای مهاجرین در هر ساعت",
+      "پشتیبانی در واتساپ، از اولین پیام تا پایان کار",
       "هماهنگی سریع بلیط و ویزا برای مسیرهای بین‌المللی",
       "پیگیری کامل تا زمان حرکت و رسیدن به مقصد",
     ],
@@ -68,9 +68,9 @@ const pageText = {
     highlightText:
       "Migration is more than a ticket. It is a life decision, and we make that journey smoother with clear guidance and trusted support.",
     stats: [
-      { value: "5000+", label: "Happy travelers" },
-      { value: "24/7", label: "WhatsApp support" },
-      { value: "98%", label: "Customer satisfaction" },
+      { value: "2 offices", label: "France & Sweden" },
+      { value: "3 languages", label: "Dari, Pashto & English" },
+      { value: "Free", label: "Consultation before you apply" },
     ],
     features: [
       {
@@ -88,7 +88,7 @@ const pageText = {
       {
         title: "Global support",
         description:
-          "Migrants worldwide rely on our WhatsApp support and 24/7 assistance.",
+          "Migrants in any country can reach us on WhatsApp and get a fast answer.",
         icon: Globe,
       },
       {
@@ -102,7 +102,7 @@ const pageText = {
       "Kabul Safar knows migration is not just a flight. It is a life change, and we make it more reliable and easier for you.",
     quoteBy: "The Kabul Safar team",
     impact: [
-      "WhatsApp support for migrants anytime",
+      "WhatsApp support from your first message to the end",
       "Fast ticket and visa coordination worldwide",
       "Full assistance until departure and arrival",
     ],
@@ -115,9 +115,9 @@ const pageText = {
     highlightText:
       "مهاجرې یوازې یوه الوتنه نه ده. دا د ژوند بدلونه انتخاب دی او موږ هغه سفر ستاسو لپاره اسانه کوو.",
     stats: [
-      { value: "5000+", label: "خوشحاله مسافر" },
-      { value: "24/7", label: "واتساپ ملاتړ" },
-      { value: "98%", label: "د مشتری رضایت" },
+      { value: "۲ دفترونه", label: "فرانسه او سویډن" },
+      { value: "۳ ژبې", label: "دري، پښتو او انګلیسي" },
+      { value: "وړیا", label: "له غوښتنې مخکې مشوره" },
     ],
     features: [
       {
@@ -135,7 +135,7 @@ const pageText = {
       {
         title: "نړیوال ملاتړ",
         description:
-          "د نړۍ له ګوټ ګوټ څخه مهاجرین زموږ په ۲۴/۷ واتساپ ملاتړ تکیه کوي.",
+          "په هر هېواد کې مهاجرین کولی شي په واټساپ کې له موږ سره اړیکه ونیسي او ژر ځواب ترلاسه کړي.",
         icon: Globe,
       },
       {
@@ -149,7 +149,7 @@ const pageText = {
       "کابل سفر پوهیږي چې مهاجرت یوازې یو سفر نه دی؛ دا د ژوند بدلون دی. موږ دا لاره ستاسو لپاره باوري او ساده کوو.",
     quoteBy: "د کابل سفر ټیم",
     impact: [
-      "د مهاجرو لپاره هر وخت واتساپ ملاتړ",
+      "په واټساپ کې ملاتړ، له لومړي پیغام تر پایه",
       "د نړۍ په کچه چټک ټکټ او ویزه همغږي",
       "تر تګ او رسیدو پورې بشپړ مرسته",
     ],
@@ -179,44 +179,40 @@ export default function AboutPage() {
             {ui.cta}
           </a>
         }
-        aside={
-          <div className="relative mx-auto h-[260px] w-full max-w-[380px] md:h-[340px]">
-            <div className="absolute inset-0 overflow-hidden rounded-t-[999px] rounded-b-[32px] border-4 border-white shadow-[0_24px_48px_-24px_rgba(25,34,56,0.55)]">
-              <Image src="/images/bamiyan.jpg" alt="" fill sizes="380px" className="object-cover" priority />
-            </div>
-            <div className="absolute -bottom-3 start-1/2 flex -translate-x-1/2 items-center gap-2 rounded-2xl border border-line bg-white px-4 py-2.5 shadow-lg rtl:translate-x-1/2">
-              <Image src="/images/Kabul%20safar%20logo.jpg" alt="" width={32} height={32} className="h-8 w-8 rounded-lg object-contain" />
-              <span className="whitespace-nowrap text-sm font-extrabold text-ink">{lang === "en" ? "Kabul Safar" : "کابل سفر"}</span>
-            </div>
-          </div>
-        }
+        aside={<ArchVisual src="/images/bamiyan.jpg" badge={lang === "en" ? "Kabul Safar" : "کابل سفر"} />}
       />
 
       <section aria-label={content.highlightTitle}>
-        <ul className="grid grid-cols-3 gap-2 rounded-[24px] bg-navy p-2 md:gap-3 md:p-3">
+        <ul className="grid grid-cols-3 gap-2 md:gap-5">
           {content.stats.map((stat) => (
-            <li key={stat.label} className="rounded-[18px] bg-white/5 px-2 py-5 text-center md:py-7">
-              <p className="text-2xl font-black text-amber md:text-4xl" dir="ltr">
-                {stat.value}
-              </p>
-              <p className="mt-1 text-xs font-medium leading-5 text-white/70 md:text-sm">{stat.label}</p>
+            <li
+              key={stat.label}
+              className="flex flex-col items-center justify-center rounded-[18px] border border-line bg-white px-2 py-5 text-center md:rounded-[20px] md:py-8"
+            >
+              <p className="text-lg font-black text-navy md:text-[32px] md:leading-tight">{stat.value}</p>
+              <p className="mt-1 text-[11px] leading-5 text-muted md:text-sm">{stat.label}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      <section aria-labelledby="about-why" className="space-y-6">
-        <SectionHeading id="about-why" eyebrow={ui.why} title={content.highlightTitle} subtitle={content.highlightText} />
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <section aria-labelledby="about-why" className="space-y-8">
+        <SectionHeading
+          id="about-why"
+          title={content.highlightTitle}
+          subtitle={content.highlightText}
+          align="center"
+        />
+        <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {content.features.map((feature, idx) => (
             <li key={feature.title}>
               <ScrollReveal className="h-full" delayMs={idx * 70}>
-                <article className="ks-card motion-card h-full p-6">
-                  <span className="motion-card-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-soft text-teal">
+                <article className="flex h-full flex-col items-center px-2 text-center">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-soft text-navy">
                     <feature.icon className="h-6 w-6" aria-hidden="true" />
                   </span>
-                  <h3 className="mt-4 text-lg font-extrabold text-ink">{feature.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-muted">{feature.description}</p>
+                  <h3 className="mt-4 text-base font-extrabold text-ink md:text-lg">{feature.title}</h3>
+                  <p className="mt-1.5 max-w-[18rem] text-sm leading-7 text-muted">{feature.description}</p>
                 </article>
               </ScrollReveal>
             </li>
@@ -224,21 +220,21 @@ export default function AboutPage() {
         </ul>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
-        <figure className="relative overflow-hidden rounded-[28px] bg-amber-soft/80 p-7 md:p-10">
-          <Quote className="h-10 w-10 text-amber" aria-hidden="true" />
-          <blockquote className="mt-4 text-xl font-extrabold leading-[1.8] text-ink md:text-2xl">
+      <section className="grid gap-4 md:grid-cols-[1.1fr_0.9fr] md:gap-5">
+        <figure className="relative overflow-hidden rounded-[24px] bg-navy p-7 text-white md:p-10">
+          <Quote className="h-10 w-10 text-sky" aria-hidden="true" />
+          <blockquote className="mt-4 text-xl font-extrabold leading-[1.8] md:text-2xl">
             {content.quote}
           </blockquote>
-          <figcaption className="mt-5 text-sm font-bold text-muted">— {content.quoteBy}</figcaption>
+          <figcaption className="mt-5 text-sm font-bold text-white/65">— {content.quoteBy}</figcaption>
         </figure>
 
-        <div className="ks-card p-7 md:p-8">
+        <div className="rounded-[24px] bg-teal-soft p-7 md:p-8">
           <h2 className="text-lg font-extrabold text-ink">{ui.impact}</h2>
           <ul className="mt-5 space-y-4">
             {content.impact.map((item) => (
               <li key={item} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-navy text-white">
                   <Check className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className="text-[15px] leading-7 text-ink">{item}</span>

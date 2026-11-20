@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f2f4f7;
+  --background: #ffffff;
   --foreground: #192238;
   --cyan: #0b86a3;
   --blue: #3576ba;
@@ -15,20 +15,21 @@
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-2xl: 3rem;
-  --primary-action: #192238;
-  --primary-action-hover: #29334b;
+  --primary-action: #2f4b53;
+  --primary-action-hover: #3d5c65;
 
-  /* Design system — Kabul Safar */
-  --ks-navy: #192238;
-  --ks-navy-2: #243150;
-  --ks-teal: #0a7f99;
-  --ks-teal-soft: #e5f4f7;
-  --ks-amber: #e8a13a;
-  --ks-amber-soft: #fdf3e2;
-  --ks-ink: #192238;
-  --ks-muted: #5d6878;
-  --ks-line: #e3e8ee;
-  --ks-canvas: #f2f4f7;
+  /* Design system — Kabul Safar (Figma palette: bright cyan + dark slate-teal) */
+  --ks-navy: #2f4b53;
+  --ks-navy-2: #3d5c65;
+  --ks-sky: #45bfda;
+  --ks-teal: #0e7a93;
+  --ks-teal-soft: #e7f6fa;
+  --ks-amber: #f2b33d;
+  --ks-amber-soft: #fdf4e3;
+  --ks-ink: #1e2d33;
+  --ks-muted: #5f6f76;
+  --ks-line: #e1e8eb;
+  --ks-canvas: #f4f7f8;
 }
 
 @theme inline {
@@ -37,6 +38,7 @@
   --color-navy: var(--ks-navy);
   --color-navy-2: var(--ks-navy-2);
   --color-teal: var(--ks-teal);
+  --color-sky: var(--ks-sky);
   --color-teal-soft: var(--ks-teal-soft);
   --color-amber: var(--ks-amber);
   --color-amber-soft: var(--ks-amber-soft);
@@ -305,9 +307,8 @@ body {
 .ks-card {
   background: #fff;
   border: 1px solid var(--ks-line);
-  border-radius: 1.5rem;
-  box-shadow: 0 1px 2px rgba(25, 34, 56, 0.04),
-    0 12px 32px -24px rgba(25, 34, 56, 0.18);
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 2px rgba(30, 45, 51, 0.03);
 }
 
 .ks-eyebrow {
@@ -349,7 +350,7 @@ body {
 .ks-btn-primary {
   background: var(--ks-navy);
   color: #fff;
-  box-shadow: 0 10px 24px -14px rgba(25, 34, 56, 0.7);
+  box-shadow: 0 8px 20px -12px rgba(47, 75, 83, 0.6);
 }
 
 .ks-btn-primary:hover {

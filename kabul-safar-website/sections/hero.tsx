@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { CheckCircle2, Plane, ShieldCheck } from "lucide-react";
+import { Check, Plane } from "lucide-react";
 import { useI18n } from "@/components/i18n-provider";
 import { getBlogContent, getHeroContent } from "@/lib/data";
 import { CONTACT_WHATSAPP_URL } from "@/lib/contact";
@@ -18,7 +18,7 @@ function ArchImage({
 }) {
   return (
     <div
-      className={`absolute overflow-hidden rounded-t-[999px] rounded-b-[28px] border-4 border-white shadow-[0_24px_48px_-24px_rgba(25,34,56,0.55)] ${className}`}
+      className={`absolute overflow-hidden rounded-t-[999px] rounded-b-[28px] border-[5px] border-white/90 shadow-[0_28px_50px_-24px_rgba(20,60,72,0.6)] ${className}`}
     >
       <Image
         src={src}
@@ -27,10 +27,6 @@ function ArchImage({
         sizes="(max-width: 768px) 40vw, 220px"
         className="object-cover"
         priority={priority}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/25 via-transparent to-transparent"
-        aria-hidden="true"
       />
     </div>
   );
@@ -45,31 +41,26 @@ export const Hero = () => {
 
   const labels =
     lang === "en"
-      ? { eyebrow: "For Afghans living in Europe", flights: "Search flights", trust: "Trusted travel partner" }
+      ? { eyebrow: "For Afghans living in Europe", flights: "Search flights", note: "Replies on WhatsApp — no sign-up needed" }
       : lang === "ps"
-        ? { eyebrow: "په اروپا کې د اوسېدونکو افغانانو لپاره", flights: "الوتنه ولټوئ", trust: "د باور وړ ملګری" }
-        : { eyebrow: "ویژه افغان‌های مقیم اروپا", flights: "جستجوی پرواز", trust: "همراه مطمئن سفر" };
+        ? { eyebrow: "په اروپا کې د اوسېدونکو افغانانو لپاره", flights: "الوتنه ولټوئ", note: "په واټساپ کې ځواب — نوم لیکنې ته اړتیا نشته" }
+        : { eyebrow: "ویژه افغان‌های مقیم اروپا", flights: "جستجوی پرواز", note: "پاسخ در واتساپ، بدون نیاز به ثبت‌نام" };
 
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative overflow-hidden rounded-[28px] bg-white px-5 pb-6 pt-8 shadow-[0_24px_60px_-40px_rgba(25,34,56,0.45)] md:rounded-[36px] md:px-12 md:py-14"
+      className="relative overflow-hidden rounded-[28px] bg-teal-soft px-5 pb-8 pt-9 md:rounded-[32px] md:px-14 md:py-14"
     >
-      {/* soft decorative wash */}
+      {/* soft light wash, same as inner-page heroes */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-32 end-[-6rem] h-80 w-80 rounded-full bg-teal-soft blur-3xl md:h-[28rem] md:w-[28rem]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-24 start-[-5rem] h-64 w-64 rounded-full bg-amber-soft blur-3xl"
+        className="pointer-events-none absolute -top-32 end-[-6rem] h-80 w-80 rounded-full bg-white/70 blur-3xl md:h-[26rem] md:w-[26rem]"
       />
 
-      <div className="relative grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
+      <div className="relative grid items-center gap-9 md:grid-cols-[1.1fr_0.9fr] md:gap-10">
         {/* Copy */}
         <div className="motion-enter text-center md:text-start">
-          <span className="ks-eyebrow">
-            <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+          <span className="inline-flex items-center rounded-full bg-white px-3 py-1.5 text-xs font-bold text-navy">
             {labels.eyebrow}
           </span>
 
@@ -87,13 +78,12 @@ export const Hero = () => {
             {content.description}
           </p>
 
-          <ul className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2 md:justify-start">
+          <ul className="mt-5 inline-flex flex-col items-start gap-2 text-start">
             {content.bullets.map((bullet) => (
-              <li
-                key={bullet}
-                className="flex items-center gap-1.5 text-sm font-semibold text-ink"
-              >
-                <CheckCircle2 className="h-4 w-4 text-teal" aria-hidden="true" />
+              <li key={bullet} className="flex items-center gap-2 text-[15px] font-semibold text-ink">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky text-white">
+                  <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
+                </span>
                 {bullet}
               </li>
             ))}
@@ -117,43 +107,36 @@ export const Hero = () => {
               {labels.flights}
             </a>
           </div>
+          <p className="mt-3 text-xs font-medium text-muted">{labels.note}</p>
         </div>
 
-        {/* Visual */}
+        {/* Visual — the client's own photos, no stock illustration */}
         <div className="motion-enter [--motion-delay:160ms]">
           <div className="relative mx-auto h-[250px] w-full max-w-[340px] md:h-[400px] md:max-w-[420px]">
+            {/* Brand accent: the Figma bright cyan, kept as a shape behind the photos */}
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-[6%] aspect-square h-[92%] -translate-x-1/2 rounded-full bg-sky"
+            />
             {images[0] ? (
               <ArchImage
                 src={images[0]}
                 priority
-                className="start-[30%] top-0 z-20 h-[220px] w-[40%] md:h-[350px]"
+                className="start-[30%] top-0 z-20 h-[230px] w-[40%] md:h-[370px]"
               />
             ) : null}
             {images[1] ? (
               <ArchImage
                 src={images[1]}
-                className="start-0 top-[50px] z-10 h-[180px] w-[34%] md:top-[70px] md:h-[280px]"
+                className="start-0 top-[50px] z-10 h-[185px] w-[34%] md:top-[70px] md:h-[290px]"
               />
             ) : null}
             {images[2] ? (
               <ArchImage
                 src={images[2]}
-                className="end-0 top-[34px] z-10 h-[190px] w-[34%] md:top-[50px] md:h-[300px]"
+                className="end-0 top-[34px] z-10 h-[195px] w-[34%] md:top-[50px] md:h-[310px]"
               />
             ) : null}
-
-            {/* floating trust card */}
-            <div className="absolute inset-x-0 bottom-0 z-30 mx-auto flex w-fit max-w-full items-center gap-2 rounded-2xl border border-line bg-white/95 px-3 py-2 shadow-lg backdrop-blur md:bottom-2">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-soft text-amber">
-                <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-              </span>
-              <span className="text-start">
-                <span className="block text-xs font-extrabold text-ink">{labels.trust}</span>
-                <span className="block text-[11px] text-muted">
-                  {content.tags.join(" · ")}
-                </span>
-              </span>
-            </div>
           </div>
         </div>
       </div>

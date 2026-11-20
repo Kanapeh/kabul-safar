@@ -23,27 +23,22 @@ export const HowItWorks = () => {
       />
 
       <ol className="relative grid gap-3 md:grid-cols-3 md:gap-5">
-        {/* connector line (desktop) */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-[16%] top-[3.25rem] hidden border-t-2 border-dashed border-teal/25 md:block"
-        />
         {content.steps.map((step) => (
           <li key={step.id}>
             <ScrollReveal className="h-full" delayMs={(step.id - 1) * 100}>
-              <article className="ks-card relative flex h-full items-start gap-4 p-5 md:flex-col md:items-center md:p-7 md:text-center">
-                <span className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-teal-soft text-teal">
-                  <step.icon className="h-6 w-6" aria-hidden="true" />
-                  <span className="absolute -end-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-navy text-xs font-bold text-white ring-4 ring-white">
+              <article className="flex h-full flex-col rounded-[20px] bg-teal-soft p-5 md:p-7">
+                <div className="flex items-center justify-between">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-sm font-bold text-white">
                     {toDigits(step.id)}
                   </span>
-                </span>
-                <div className="min-w-0">
-                  <h3 className="text-base font-extrabold leading-7 text-ink md:text-lg">
-                    {step.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-7 text-muted">{step.description}</p>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-navy shadow-sm">
+                    <step.icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
                 </div>
+                <h3 className="mt-5 text-base font-extrabold leading-7 text-ink md:text-lg">
+                  {step.title}
+                </h3>
+                <p className="mt-1 text-sm leading-7 text-muted">{step.description}</p>
               </article>
             </ScrollReveal>
           </li>

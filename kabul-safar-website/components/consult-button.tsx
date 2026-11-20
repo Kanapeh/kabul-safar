@@ -24,7 +24,7 @@ export const ConsultButton = ({
         } ${className}`}
     >
       <span
-        className={`flex shrink-0 items-center justify-start rounded-full bg-white text-[#0dadd1] ${compact ? "h-6 w-6 pl-0.5 md:h-8 md:w-8 md:pl-1" : "h-8 w-8 pl-1"
+        className={`flex shrink-0 items-center justify-start rounded-full bg-white text-[#45bfda] ${compact ? "h-6 w-6 pl-0.5 md:h-8 md:w-8 md:pl-1" : "h-8 w-8 pl-1"
           }`}
       >
         <ChevronLeft

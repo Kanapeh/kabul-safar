@@ -11,17 +11,17 @@ export const ServiceFeature = () => {
   const content = getServiceFeatureContent(lang);
   const labels =
     lang === "en"
-      ? { cta: "Quick visa", eyebrow: "Why Kabul Safar" }
+      ? { cta: "Quick visa" }
       : lang === "ps"
-        ? { cta: "ژر ویزه", eyebrow: "ولې کابل سفر" }
-        : { cta: "درخواست ویزای سریع", eyebrow: "چرا کابل سفر" };
+        ? { cta: "ژر ویزه" }
+        : { cta: "درخواست ویزای سریع" };
 
   return (
     <section
       aria-labelledby="service-feature-title"
-      className="grid items-center gap-6 md:grid-cols-[0.8fr_1.2fr] md:gap-10"
+      className="grid items-center gap-6 md:grid-cols-[1.2fr_0.8fr] md:gap-12"
     >
-      <div className="relative h-56 overflow-hidden rounded-[24px] md:h-[360px]">
+      <div className="relative order-first h-56 overflow-hidden rounded-[20px] md:order-last md:h-[400px]">
         <Image
           src="/images/bamiyan.jpg"
           alt={lang === "en" ? "Buddhas of Bamiyan" : "بت‌های بامیان"}
@@ -32,10 +32,9 @@ export const ServiceFeature = () => {
       </div>
 
       <div className="text-start">
-        <span className="ks-eyebrow">{labels.eyebrow}</span>
         <h2
           id="service-feature-title"
-          className="mt-3 text-[22px] font-extrabold leading-[1.5] text-ink md:text-[32px]"
+          className="text-[26px] font-black leading-[1.5] text-ink md:text-[40px] md:leading-[1.4]"
         >
           {content.titlePrefix} <span className="text-teal">{content.titleAccent}</span>{" "}
           {content.titleSuffix}

@@ -11,12 +11,12 @@ type SectionHeadingProps = {
 };
 
 /**
- * Consistent section heading used across the site:
- * eyebrow pill → bold title → muted supporting line, with an optional action link.
+ * Consistent section heading used across the site: bold title → muted supporting line,
+ * with an optional action link. (`eyebrow` is accepted for compatibility but not shown —
+ * the Figma direction keeps headings clean.)
  */
 export const SectionHeading = ({
   id,
-  eyebrow,
   title,
   subtitle,
   align = "start",
@@ -32,10 +32,9 @@ export const SectionHeading = ({
       className={`flex gap-4 ${centered ? "flex-col items-center text-center" : "items-end justify-between text-start"}`}
     >
       <div className={`min-w-0 space-y-2 ${centered ? "w-full max-w-[42rem]" : "max-w-[42rem] flex-1"}`}>
-        {eyebrow ? <span className="ks-eyebrow">{eyebrow}</span> : null}
         <h2
           id={id}
-          className={`text-[22px] font-extrabold leading-[1.45] md:text-[30px] ${titleColor}`}
+          className={`text-[24px] font-extrabold leading-[1.45] md:text-[34px] ${titleColor}`}
         >
           {title}
         </h2>

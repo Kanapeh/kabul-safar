@@ -247,7 +247,7 @@ const content: Record<Lang, LocalizedContent> = {
         "کابل سفر همراه مطمئن شما در دریافت ویزا، بلیط پرواز و خدمات سفر به همه کشورهاست. ما با ارائه مشاوره تخصصی و پشتیبانی حرفه‌ای، در تمام مراحل کنار شما خواهیم بود.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
-      designer: "Designer: Sepanta(Ali) Alizadeh",
+      designer: "Designed by Sepanta (Ali) Alizadeh — Senior UI/UX Designer",
       groups: [
         {
           title: "شرکت",
@@ -439,7 +439,7 @@ const content: Record<Lang, LocalizedContent> = {
         "Kabul Safar is your reliable partner for visas, flights and travel services to every country. We provide expert consultation and support in every step.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
-      designer: "Designer: Sepanta(Ali) Alizadeh",
+      designer: "Designed by Sepanta (Ali) Alizadeh — Senior UI/UX Designer",
       groups: [
         {
           title: "Company",
@@ -622,7 +622,7 @@ const content: Record<Lang, LocalizedContent> = {
         "کابل سفر ټولو هېوادونو ته د ویزې، ټکټ او سفر خدمتونو کې ستاسو باوري ملګری دی. موږ په هر پړاو کې مسلکي مشوره او ملاتړ وړاندې کوو.",
       follow: "Follow",
       phone: "0033 6 36 39 30 50",
-      designer: "Designer: Sepanta(Ali) Alizadeh",
+      designer: "Designed by Sepanta (Ali) Alizadeh — Senior UI/UX Designer",
       groups: [
         {
           title: "شرکت",

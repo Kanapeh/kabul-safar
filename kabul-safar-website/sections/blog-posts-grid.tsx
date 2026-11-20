@@ -61,7 +61,7 @@ export const BlogPostsGrid = () => {
           <div className="relative h-56 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <div className="absolute top-3 right-3 z-10">
-              <div className="rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#0dadd1] shadow-md">
+              <div className="rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#45bfda] shadow-md">
                 {article.category || (lang === "fa" ? "عمومی" : lang === "ps" ? "عمومي" : "General")}
               </div>
             </div>
@@ -74,18 +74,18 @@ export const BlogPostsGrid = () => {
           </div>
           <div className="space-y-3 p-5">
             <div className="flex items-center gap-2 text-xs text-slate-500">
-              <span className="font-semibold text-[#0dadd1]">{article.author || (lang === "fa" ? "ناشناس" : lang === "ps" ? "ناجنوميت" : "Unknown")}</span>
+              <span className="font-semibold text-[#45bfda]">{article.author || (lang === "fa" ? "ناشناس" : lang === "ps" ? "ناجنوميت" : "Unknown")}</span>
               <span className="text-slate-300">•</span>
               <span>{new Date(article.created_at).toLocaleDateString(lang === "fa" ? "fa-IR" : lang === "ps" ? "ps-AF" : "en-US")}</span>
             </div>
-            <h3 className="text-lg font-bold text-slate-900 leading-tight group-hover:text-[#0dadd1] transition-colors line-clamp-2">
+            <h3 className="text-lg font-bold text-slate-900 leading-tight group-hover:text-[#45bfda] transition-colors line-clamp-2">
               {article.title}
             </h3>
             <p className="text-sm leading-6 text-slate-600 line-clamp-2">
               {article.excerpt}
             </p>
             <div className="pt-2">
-              <span className="text-xs font-semibold text-[#0dadd1] group-hover:underline">
+              <span className="text-xs font-semibold text-[#45bfda] group-hover:underline">
                 {lang === "fa" ? "ادامه مطلب" : lang === "ps" ? "ادامه وګورئ" : "Read more"} →
               </span>
             </div>

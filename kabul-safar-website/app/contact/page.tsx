@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
+import { ArchVisual } from "@/components/arch-visual";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { useI18n } from "@/components/i18n-provider";
 import {
@@ -176,7 +177,22 @@ export default function ContactPage() {
 
   return (
     <PageShell>
-      <PageHero eyebrow={ui.eyebrow} title={content.heading} subtitle={content.description} />
+      <PageHero
+        eyebrow={ui.eyebrow}
+        title={content.heading}
+        subtitle={content.description}
+        aside={
+          <ArchVisual
+            src="/images/Kabul%20hero.jpg"
+            badgeIcon={
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-soft text-navy">
+                <Phone className="h-4 w-4" aria-hidden="true" />
+              </span>
+            }
+            badge={<span dir="ltr">{CONTACT_PHONE_DISPLAY_FORMATTED}</span>}
+          />
+        }
+      />
 
       <section className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
         {/* Contact methods */}
@@ -185,9 +201,9 @@ export default function ContactPage() {
             href={CONTACT_WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            className="group relative flex items-center gap-4 overflow-hidden rounded-[24px] bg-gradient-to-br from-[#25d366] to-[#128c4b] p-5 text-white shadow-[0_20px_40px_-24px_rgba(18,140,75,0.8)] md:p-6"
+            className="group relative flex items-center gap-4 overflow-hidden rounded-[20px] bg-navy p-5 text-white transition-colors hover:bg-navy-2 md:p-6"
           >
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/20">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#1f9d55]">
               <WhatsAppIcon className="h-7 w-7" />
             </span>
             <span className="min-w-0 flex-1">
@@ -199,11 +215,11 @@ export default function ContactPage() {
             </span>
           </a>
 
-          <ul className="ks-card divide-y divide-line">
+          <ul className="divide-y divide-line rounded-[20px] border border-line bg-white">
             {methods.map((m) => (
               <li key={m.value}>
                 <a href={m.href} className="flex items-center gap-4 p-4 transition-colors hover:bg-canvas/60 md:p-5">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-soft text-teal">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal-soft text-navy">
                     <m.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <span className="min-w-0">
@@ -217,7 +233,7 @@ export default function ContactPage() {
             ))}
           </ul>
 
-          <div className="ks-card p-5">
+          <div className="rounded-[20px] bg-teal-soft p-5">
             <p className="flex items-center gap-2 text-sm font-extrabold text-ink">
               <MapPin className="h-4 w-4 text-teal" aria-hidden="true" />
               {content.locationTitle}
@@ -227,7 +243,7 @@ export default function ContactPage() {
                 { flag: "🇫🇷", city: content.locationFrance, country: ui.france },
                 { flag: "🇸🇪", city: content.locationSweden, country: ui.sweden },
               ].map((office) => (
-                <li key={office.city} className="rounded-2xl bg-canvas p-4">
+                <li key={office.city} className="rounded-2xl bg-white p-4">
                   <span className="text-2xl" aria-hidden="true">
                     {office.flag}
                   </span>
@@ -239,7 +255,7 @@ export default function ContactPage() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} noValidate className="ks-card space-y-4 p-5 md:p-8">
+        <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-[20px] border border-line bg-white p-5 md:p-8">
           <div>
             <h2 className="text-xl font-extrabold text-ink">{ui.formTitle}</h2>
             <p className="mt-1 text-sm leading-7 text-muted">{ui.formHint}</p>
