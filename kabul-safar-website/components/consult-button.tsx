@@ -11,7 +11,7 @@ type ConsultButtonProps = {
 export const ConsultButton = ({
   href = CONTACT_WHATSAPP_URL,
   className = "",
-  label = "دریافت ویزا و مشاوره",
+  label = "دریافت ویزه و مشاوره",
   compact = false,
 }: ConsultButtonProps) => {
   return (

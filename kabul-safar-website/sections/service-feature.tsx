@@ -14,7 +14,7 @@ export const ServiceFeature = () => {
       ? { cta: "Quick visa" }
       : lang === "ps"
         ? { cta: "ژر ویزه" }
-        : { cta: "درخواست ویزای سریع" };
+        : { cta: "درخواست ویزه سریع" };
 
   return (
     <section

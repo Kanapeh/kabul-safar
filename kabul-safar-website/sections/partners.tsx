@@ -14,7 +14,7 @@ export const Partners = () => {
       ? { eyebrow: "Flight tickets", title: "Start your trip", subtitle: "Pick your route and date — we'll find the best options and confirm on WhatsApp." }
       : lang === "ps"
         ? { eyebrow: "د الوتکې ټکټ", title: "خپل سفر پیل کړئ", subtitle: "لاره او نېټه وټاکئ؛ موږ غوره انتخابونه پیدا کوو او په واټساپ کې یې تاییدوو." }
-        : { eyebrow: "بلیط هواپیما", title: "سفر خود را آغاز کنید", subtitle: "مسیر و تاریخ را انتخاب کنید؛ بهترین گزینه‌ها را پیدا کرده و در واتساپ با شما هماهنگ می‌کنیم." };
+        : { eyebrow: "تکت هواپیما", title: "سفر خود را آغاز کنید", subtitle: "مسیر و تاریخ را انتخاب کنید؛ بهترین گزینه‌ها را پیدا کرده و در واتساپ با شما هماهنگ می‌کنیم." };
 
   return (
     <section

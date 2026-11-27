@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { MapPin, Phone, Send } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
 import { ArchVisual } from "@/components/arch-visual";
@@ -21,10 +21,10 @@ const pageText = {
   fa: {
     heading: "تماس با ما",
     description:
-      "برای برنامه‌ریزی سفر و دریافت ویزا با دفترهای ما در فرانسه و سوئد تماس بگیرید. ما آماده پاسخگویی سریع و پشتیبانی حرفه‌ای هستیم.",
+      "برای برنامه‌ریزی سفر و دریافت ویزه با دفترهای ما در فرانسه و سوئد تماس بگیرید. ما آماده پاسخگویی سریع و پشتیبانی حرفه‌ای هستیم.",
     contactTitle: "اطلاعات تماس",
     contactSubtitle:
-      "دفاتر ما در فرانسه و سوئد آماده راهنمایی شما در مسیر سفر و ویزا هستند.",
+      "دفاتر ما در فرانسه و سوئد آماده راهنمایی شما در مسیر سفر و ویزه هستند.",
     nameLabel: "نام کامل",
     emailLabel: "ایمیل",
     subjectLabel: "موضوع",
@@ -32,7 +32,6 @@ const pageText = {
     writePlaceholder: "پیام خود را اینجا بنویسید...",
     sendButton: "ارسال پیام",
     phone: CONTACT_PHONE_DISPLAY,
-    email: "info@kabulsafar.com",
     locationTitle: "دفاتر ما",
     locationFrance: "پاریس، فرانسه",
     locationSweden: "استکهلم، سوئد",
@@ -51,7 +50,6 @@ const pageText = {
     writePlaceholder: "Write your message here...",
     sendButton: "Send Message",
     phone: CONTACT_PHONE_DISPLAY,
-    email: "info@kabulsafar.com",
     locationTitle: "Our Offices",
     locationFrance: "Paris, France",
     locationSweden: "Stockholm, Sweden",
@@ -70,7 +68,6 @@ const pageText = {
     writePlaceholder: "خپل پیغام دلته ولیکئ...",
     sendButton: "پیغام واستوئ",
     phone: CONTACT_PHONE_DISPLAY,
-    email: "info@kabulsafar.com",
     locationTitle: "زموږ دفترونه",
     locationFrance: "پاریس، فرانسه",
     locationSweden: "سټاکهولم، سویډن",
@@ -89,7 +86,6 @@ export default function ContactPage() {
           whatsapp: "WhatsApp",
           whatsappHint: "Fastest way to reach us",
           phone: "Phone",
-          email: "Email",
           formTitle: "Send us a message",
           formHint: "Your message opens in WhatsApp so our team can answer you right away.",
           required: "Please write your name and message.",
@@ -102,7 +98,6 @@ export default function ContactPage() {
             whatsapp: "واټساپ",
             whatsappHint: "موږ ته د رسېدو تر ټولو چټکه لاره",
             phone: "تلیفون",
-            email: "بریښنالیک",
             formTitle: "موږ ته پیغام ولیږئ",
             formHint: "ستاسو پیغام په واټساپ کې پرانیستل کېږي څو زموږ ټیم ژر ځواب درکړي.",
             required: "مهرباني وکړئ خپل نوم او پیغام ولیکئ.",
@@ -114,7 +109,6 @@ export default function ContactPage() {
             whatsapp: "واتساپ",
             whatsappHint: "سریع‌ترین راه ارتباط با ما",
             phone: "تلفن",
-            email: "ایمیل",
             formTitle: "برای ما پیام بفرستید",
             formHint: "پیام شما در واتساپ باز می‌شود تا تیم ما سریع پاسخ دهد.",
             required: "لطفاً نام و پیام خود را بنویسید.",
@@ -164,13 +158,6 @@ export default function ContactPage() {
       icon: Phone,
       label: ui.phone,
       value: CONTACT_PHONE_DISPLAY_2_FORMATTED,
-      ltr: true,
-    },
-    {
-      href: `mailto:${content.email}`,
-      icon: Mail,
-      label: ui.email,
-      value: content.email,
       ltr: true,
     },
   ];

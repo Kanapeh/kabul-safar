@@ -9,7 +9,7 @@ const formText = {
     stepTitles: ["جزئیات سفر", "اطلاعات تماس", "بازبینی و ارسال"],
     labels: {
       tripType: "نوع سفر",
-      visaType: "نوع ویزا",
+      visaType: "نوع ویزه",
       flightClass: "کلاس پرواز",
       origin: "مبدا",
       destination: "مقصد",
@@ -38,7 +38,7 @@ const formText = {
       edit: "ویرایش",
     },
     summaryTitle: "خلاصه درخواست شما",
-    formTitle: "درخواست ویزای پیشرفته",
+    formTitle: "درخواست ویزه پیشرفته",
     formSubtitle: "یک فرم چند مرحله‌ای برای برنامه‌ریزی کامل سفر شما.",
     successMessage: "پیام شما آماده ارسال به واتساپ است.",
   },

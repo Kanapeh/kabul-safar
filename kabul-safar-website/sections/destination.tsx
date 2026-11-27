@@ -20,7 +20,7 @@ export const Destination = () => {
       ? "Visa and travel services for these destinations — and beyond."
       : lang === "ps"
         ? "د دې منزلونو او نورو هېوادونو لپاره ویزه او د سفر خدمتونه."
-        : "خدمات ویزا و سفر برای این مقصدها و سایر کشورها.";
+        : "خدمات ویزه و سفر برای این مقصدها و سایر کشورها.";
 
   return (
     <section aria-labelledby="destinations-title" className="space-y-7">

@@ -60,12 +60,12 @@ export const Header = () => {
           }
         : {
             brand: "کابل سفر",
-            tagline: "ویزا و خدمات سفر",
+            tagline: "ویزه و خدمات سفر",
             cta: "مشاوره رایگان",
             menu: "منو",
             close: "بستن منو",
             hello: "به کجا سفر می‌کنید؟",
-            helloSub: "ویزا، بلیط و مشاوره سفر — همه در یک جا.",
+            helloSub: "ویزه، تکت و مشاوره سفر — همه در یک جا.",
           };
 
   const Chevron = lang === "en" ? ChevronRight : ChevronLeft;
