@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Clock, Globe, Heart, Quote, Shield } from "lucide-react";
+import { BadgeCheck, Check, Clock, Globe, Heart, Quote, Shield } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
 import { ArchVisual } from "@/components/arch-visual";
@@ -14,6 +14,8 @@ import { Testimonials } from "@/sections/testimonials";
 
 const pageText = {
   fa: {
+    legalTitle: "شرکت رسمی و کاملاً قانونی در سوئد",
+    legalText: "کابل سفر یک شرکت رسمی و ثبت‌شده است که به‌صورت کاملاً قانونی در کشور سوئد فعالیت می‌کند.",
     heading: "کابل سفر، مسیر مهاجرین را ساده می‌کند",
     description:
       "کابل سفر به خوبی نیاز روزافزون مهاجرین به مسافرت امن و پروسهٔ پیچیده دریافت بلیط را درک می‌کند. ما تلاش می‌کنیم سفر شما را از هر نقطهٔ جهان با برنامه‌ای روشن، پشتیبانی سریع و هماهنگی کامل آسان‌تر کنیم.",
@@ -61,6 +63,8 @@ const pageText = {
     ],
   },
   en: {
+    legalTitle: "An officially registered company in Sweden",
+    legalText: "Kabul Safar is an official, registered company operating fully legally in Sweden.",
     heading: "Kabul Safar simplifies migrant journeys",
     description:
       "Kabul Safar understands the rising need of migrants for secure travel and the complexity of ticketing. We make visa, ticket, and migration travel easier from anywhere in the world.",
@@ -108,6 +112,8 @@ const pageText = {
     ],
   },
   ps: {
+    legalTitle: "په سویډن کې رسمي او بشپړ قانوني شرکت",
+    legalText: "کابل سفر یو رسمي او ثبت شوی شرکت دی چې په سویډن کې په بشپړ قانوني ډول فعالیت کوي.",
     heading: "کابل سفر د کډوالو سفر اسانوي",
     description:
       "کابل سفر د کډوالو د سفري اړتیاوو او د ټکټ اخیستلو د پیچلتیا کامل درک لري. موږ د ویزې، ټکټ او مهاجرت سفرونه د نړۍ له هر ځایه آسانه کوو.",
@@ -194,6 +200,18 @@ export default function AboutPage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section aria-label={content.legalTitle}>
+        <div className="flex items-start gap-4 rounded-[20px] border border-line bg-teal-soft p-5 md:items-center md:p-6">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy text-white">
+            <BadgeCheck className="h-6 w-6" aria-hidden="true" />
+          </span>
+          <div>
+            <h2 className="text-base font-extrabold text-ink md:text-lg">{content.legalTitle}</h2>
+            <p className="mt-1 text-sm leading-7 text-muted md:text-[15px]">{content.legalText}</p>
+          </div>
+        </div>
       </section>
 
       <section aria-labelledby="about-why" className="space-y-8">
